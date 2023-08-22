@@ -171,7 +171,7 @@
 
 .forgot-custom {
     color: rgb(206, 34, 34);
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-family: "Noto Sans KR", sans-serif;
     text-decoration: none;
     margin-left: 450px;
