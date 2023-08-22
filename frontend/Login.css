@@ -1,0 +1,193 @@
+.topbar {
+    background-color: rgb(212, 212, 212);
+    display: flex;
+    justify-content: center;
+    top: 0;
+    width: 100%;
+    align-items: center;
+    height: 80px;
+    z-index: 1;
+    justify-content: space-between;
+    font-family: Arial, sans-serif;
+    color: rgb(71, 71, 71);
+    font-size: larger;
+    font-weight: bolder;
+    text-decoration: none;
+    position: fixed;
+}
+
+.logo {
+    width: 160px;
+    height: 130px;
+}
+
+.logo-container {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6px;
+}
+
+.login_id {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.login_id input {
+    width: 100%;
+    max-width: 600px;
+    height: 60px;
+    border-radius: 13px;
+    padding: 0px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+}
+
+.login_pw {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.login_pw input {
+    width: 100%;
+    max-width: 600px;
+    height: 60px;
+    border-radius: 13px;
+    padding: 0px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+}
+
+.submit-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.forgot-pw {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.submit-login button {
+    width: 100%;
+    max-width: 645px;
+    height: 50px;
+    border: 0;
+    outline: none;
+    border-radius: 7px;
+    background-color: rgb(68, 60, 60);
+    color: white;
+    font-size: 0.9em;
+    letter-spacing: 2px;
+    border: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.line-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34%;
+    height: 1px;
+    background-color: gray;
+    position: relative;
+    margin: 0 auto;
+}
+
+.line-text {
+    position: absolute;
+    background-color: white;
+    padding: 0 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.google-login {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+
+}
+
+.google-icon {
+    width: 3px;
+    height: 3px;
+}
+
+
+.google-login button {
+    width: 645px;
+    height: 50px;
+    border: 0;
+    outline: none;
+    border-radius: 7px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(68, 60, 60);
+    font-size: 0.9em;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    border: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.font-a {
+    font-family: "Noto Sans KR", sans-serif;
+    margin-bottom: 10px;
+}
+
+.font-b {
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: bold;
+    font-size: small;
+}
+
+.login h1 {
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: bold;
+    color: rgb(68, 60, 60);
+    margin-top: 200px;
+    margin-right: 540px;
+}
+
+.forgot-custom {
+    color: rgb(206, 34, 34);
+    font-weight: bold;
+    font-family: "Noto Sans KR", sans-serif;
+    text-decoration: none;
+    margin-left: 450px;
+}
+
+.sign-custom {
+    color: rgb(206, 34, 34);
+    font-weight: bold;
+    font-family: "Noto Sans KR", sans-serif;
+    text-decoration: none;
+}
+
+.text-position {
+    text-align: center;
+}
+.submit-login button,
+.google-login button{
+    font-weight: bold;
+}
