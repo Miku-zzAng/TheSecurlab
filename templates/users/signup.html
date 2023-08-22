@@ -1,16 +1,50 @@
-{% extends 'base.html' %}
+{% load static %}
+<html lang="ko">
 
-{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
 
-<div id="signup">
-    <form method="POST" enctype="multipart/form-data"> <!--enctype: 파일 이미지 전송을 포함하므로 -->
-        <h1>회원가입</h1>
-        <a href="/" class="btn"><img src="/media/LOGO.png" style="width:200px; height:150px;"></a>
-        {% csrf_token %}
-        {{ SignupForm.as_p }} <!-- 각각 <p> 태그 안에 입력 폼 생성 -->
-        <button type="submit" class="btn btn signup">회원가입</button>
-        <a href="/users/login/" class="btn btn login">로그인</a>
-    </form>
-</div>
+<body>
+    <div class="topbar"> <!--상단 바-->
+        <div class="logo-container">
+            <a href="메인페이지로 이동.html">
+                <img class="logo" src="/media/로고.png" alt="none">
+            </a>
+        </div>
+    </div>
 
-{% endblock %}
+    <div class="sign">
+        <h1 style="text-align: center;">SIGN UP</h1>
+        <form method="POST" enctype="multipart/form-data"> <!--enctype: 파일 이미지 전송을 포함하므로 -->
+            {% csrf_token %}
+
+            <h3 class="text-position" style="margin-right: 540px;">아이디</h3>
+            <div class="sign_id">
+                {{ SignupForm.username }}
+            </div>
+
+            <h3 class="text-position" style="margin-right: 520px;">비밀번호</h3>
+            <div class="sign_pw">
+                {{ SignupForm.password1 }}
+            </div>
+
+            <h3 class="text-position" style="margin-right: 460px;">비밀번호 재확인</h3>
+            <div class="sign_rpw">
+                {{ SignupForm.password2 }}
+            </div>
+
+            <h3 class="text-position" style="margin-right:  540px;">닉네임</h3>
+            <div class="sign_name">
+                {{ SignupForm.nickname }}
+            </div>
+
+            <button type="submit" class="button">회원가입</button>
+            <a href="/users/login/" class="button"">로그인</a>
+        </form>
+</body>
+
+</html>
