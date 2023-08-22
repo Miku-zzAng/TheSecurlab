@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Login.css">
+    <script src="Login.js"></script>
+</head>
+
+<body>
+    <div class="topbar"> <!--상단 바-->
+        <div class="logo-container">
+            <a href="/">
+                <img class="logo" src="/media/로고.png" alt="none">
+            </a>
+        </div>
+    </div>
+
+    <form class="join_form" method="POST">
+        <h2>LOGIN</h2>
+        {% csrf_token %}
+
+        <div class="login">
+            <h1 class="text-position">LOGIN</h1>
+
+            <div class="login_id">
+                <input type="text" name="{{ LoginForm.username.name }}" id="login_id" placeholder="아이디 또는 이메일"
+                    value="{{ LoginForm.username.value }}"> <!--id 입력 필드-->
+            </div>
+
+            <div class="login_pw">
+                <input type="password" name="{{ LoginForm.password.name }}" id="login_pw" placeholder="비밀번호"
+                    value="{{ LoginForm.password.value }}"> <!--password 입력 필드-->
+            </div>
+
+            <div class="forgot-pw">
+                <a href="비밀번호 찾는 페이지 이동.html" class="forgot-custom">비밀번호를 잊어버리셨나요?</a>
+            </div>
+            
+            <div class="submit-login">
+                <button type="submit">로그인</button>
+            </div>
+
+            <div class="line-container">
+                <div class="line-text">또는</div>
+            </div>
+
+            {% if LoginForm.non_field_errors %} <!--로그인 오류 처리로직 구현-->
+            <div class="error">
+                {{ LoginForm.non_field_errors.0 }}
+            </div>
+            {% endif %}
+
+            <div class="google-login"> <!-- 구글로 로그인 -->
+                <button type="button" onclick="document.location.href='구글로 로그인 이동.html'">
+                    <img class="google-logo" src="/media/구글 로고.png" alt="Google 로고" width="20" height="20"
+                        style="margin-right: 10px;">
+                    Google로 로그인
+                </button>
+            </div>
+
+            <div class="text-position"> <!-- 회원가입 -->
+                <a class="font-a">아직 <a class="font-b">SECULAB</a> 회원이 아니신가요?</a>
+                <a href="/users/signup/" class="sign-custom">회원가입</a>
+            </div>
+
+        </div>
+    </form>
+
+</body>
+
+</html>
