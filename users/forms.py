@@ -6,7 +6,7 @@ class LoginForm(forms.Form):
                                    attrs={"placeholder": "아이디 (4자리 이상)"}
                                ))
     password = forms.CharField(min_length=4,
-                               widget=forms.TextInput(
+                               widget=forms.PasswordInput(
                                    attrs={"placeholder": "비밀번호 (4자리 이상)"}
                                ))
 

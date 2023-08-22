@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/pystagram_style.css' %}">
+</head>
+
+<body>
+    <div id="login">
+        <form method="POST">
+            <h1>로그인</h1>
+            <a href="/" class="btn"><img src="/media/LOGO.png" style="width:200px; height:150px;"></a>
+            {% csrf_token %}
+
+            <!-- 각 필드를 직접 렌더링 -->
+            {% for field in LoginForm %}
+            <div class="form-group">
+                {{ field.label_tag }} <!-- 레이블 출력 -->
+                <br>
+                {{ field }} <!-- 입력 필드 출력 -->
+                <br>
+            </div>
+            {% endfor %}
+            {% if LoginForm.non_field_errors %}
+            <div class="error">
+                {{ LoginForm.non_field_errors.0 }}
+            </div>
+            {% endif %}
+            <button type="submit" class="btn btn login">로그인</button>
+            <a href="/users/signup/" class="btn btn login">회원가입</a>
+        </form>
+    </div>
+</body>
+
+</html>
