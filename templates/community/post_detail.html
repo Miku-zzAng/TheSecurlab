@@ -1,0 +1,42 @@
+{% extends 'base_pylog.html' %}
+
+{% block content %}
+<a href="/" class="btn"><img src="/media/LOGO.png" style="width:200px; height:150px;"></a>
+<h1>커뮤니티 게시판</h1>
+{% if request.user.is_authenticated %}
+    <div>
+        <img src="{{ user.profile_image.url }}" style="width:100px; height:100px; object-fit: cover;">
+        {{ user.nickname }}님 환영합니다. ID: {{ user.username }}
+    </div>
+    <a href="/users/logout/">로그아웃</a>
+{% else %}
+    <h1>로그인 해라</h1>
+    <strong><a href="/users/login/">로그인</a></strong>
+    <strong><a href="/users/signup">회원가입</a></strong>
+{% endif %}
+
+
+<div id = "post-detail">
+    <h1>{{ post.id }} - {{ post.title }}</h1>
+    <h1>{{ post.content|linebreaksbr }}</h1><br>
+    <h1>작성자: {{ post.writer.nickname }}님 ({{ post.writer.username }})</h1><br>
+    <h1>작성일시: {{ post.createdDate }}</h1>
+    <hr>
+    <div>{% for comment in post.comment_set.all %}
+        <h2>{{ comment.content }}</h2>
+        작성일시: {{ comment.createdDate }}<br>
+        작성자: {{ comment.writer.nickname }}님 ({{ comment.writer.username }})
+    {% empty %}
+    <li>아직 댓글이 없습니다.</li>
+    {% endfor %}
+</div>
+    <form method="POST">
+        {% csrf_token %}
+        <textarea name="comment"></textarea>
+        <button type="submit" class="btn btn-primary">댓글작성</button>
+    </form>
+</div>
+<a href="/community/board/" class="btn">뒤로 가기</a><br>
+<a href="/community/board/{{ post.id|add:'-1' }}" class="btn">이전 게시물 보기</a><br>
+<a href="/community/board/{{ post.id|add:'+1' }}" class="btn">다음 게시물 보기</a><br>
+{% endblock %}

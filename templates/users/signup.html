@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="signup">
+    <form method="POST" enctype="multipart/form-data"> <!--enctype: 파일 이미지 전송을 포함하므로 -->
+        <h1>회원가입</h1>
+        <a href="/" class="btn"><img src="/media/LOGO.png" style="width:200px; height:150px;"></a>
+        {% csrf_token %}
+        {{ SignupForm.as_p }} <!-- 각각 <p> 태그 안에 입력 폼 생성 -->
+        <button type="submit" class="btn btn signup">회원가입</button>
+        <a href="/users/login/" class="btn btn login">로그인</a>
+    </form>
+</div>
+
+{% endblock %}

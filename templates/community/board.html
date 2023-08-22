@@ -1,0 +1,76 @@
+{% extends 'base_pylog.html' %}
+
+{% block content %}
+<a href="/" class="btn"><img src="/media/LOGO.png" style="width:200px; height:150px;"></a>
+<h1>커뮤니티 게시판</h1>
+{% if request.user.is_authenticated %}
+<div>
+    <img src="{{ user.profile_image.url }}" style="width:100px; height:100px; object-fit: cover;">
+    {{ user.nickname }}님 환영합니다. ID: {{ user.username }}
+</div>
+<a href="/users/logout/">로그아웃</a>
+{% else %}
+<h1>마 로그인 해라 .... ......</h1>
+<strong><a href="/users/login/">로그인</a></strong>
+<strong><a href="/users/signup">회원가입</a></strong>
+{% endif %}
+<a href="/community/board/add/" class="btn btn-primary">글 작성</a>
+<div>
+    <ul>
+        {% for post in postList %}
+        <li>
+            <h1>{{ post.id }}</h1>
+            <h1><a href="/community/board/{{ post.id }}">{{ post.title }}</a></h1>
+            <span>(댓글: {{ post.num_comments }}개)</span>
+            <small>작성자: {{ post.writer.username }}</small><br>
+            <small>작성일시: {{ post.createdDate }}</small>
+            <hr>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- 페이징처리 시작 -->
+<ul class="">
+
+    <!-- 이전페이지 -->
+    {% if postList.has_previous %}
+    <li class="">
+        <a class="" href="?page={{ postList.previous_page_number }}">이전 페이지</a>
+    </li>
+    {% else %}
+    <li class="">
+        <a class="" tabindex="-1" aria-disabled="true" href="#">이전 페이지</a>
+    </li>
+    {% endif %}
+
+    <!-- 페이지리스트 -->
+    {% for page_number in postList.paginator.page_range %}
+    {% if page_number >= postList.number|add:-5 and page_number <= postList.number|add:5 %}
+    {% if page_number == postList.number %}
+    <li class="" aria-current="page">
+        <a class="" href="?page={{ page_number }}">{{ page_number }}</a>
+    </li>
+    {% else %}
+    <li class="">
+        <a class="" href="?page={{ page_number }}">{{ page_number }}</a>
+    </li>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+    <!-- 다음페이지 -->
+    {% if postList.has_next %}
+    <li class="">
+        <a class="" href="?page={{ postList.next_page_number }}">다음 페이지</a>
+    </li>
+    {% else %}
+    <li class="">
+        <a class="" tabindex="-1" aria-disabled="true" href="#">다음 페이지</a>
+    </li>
+    {% endif %}
+
+</ul>
+
+
+{% endblock %}

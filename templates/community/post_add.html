@@ -1,0 +1,40 @@
+{% extends 'base_pylog.html' %}
+
+{% block content %}
+<a href="/" class="btn"><img src="/media/LOGO.png" style="width:200px; height:150px;"></a>
+<h1>커뮤니티 게시판</h1>
+{% if request.user.is_authenticated %}
+    <div>
+        <img src="{{ user.profile_image.url }}" style="width:100px; height:100px; object-fit: cover;">
+        {{ user.nickname }}님 환영합니다. ID: {{ user.username }}
+    </div>
+    <a href="/users/logout/">로그아웃</a>
+{% else %}
+    <h1>로그인 해라</h1>
+    <strong><a href="/users/login/">로그인</a></strong>
+    <strong><a href="/users/signup">회원가입</a></strong>
+{% endif %}
+
+<div id="navbar">
+    <a href="/community/board/" class="">뒤로 가기</a>
+    <h1>Post Add</h1>
+</div>
+<div id="post-add">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div>
+            <label>제목</label>
+            <input name= "title" type="text">
+        </div>
+
+        <div>
+            <label>내용</label>
+            <textarea name="content" cols="50" rows="50"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">작성</button>
+
+    </form>
+</div>
+  {% endblock %}
