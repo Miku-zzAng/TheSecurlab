@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from community.models import Post, Comment
 from django.core.paginator import Paginator
 from django.db.models import Count
+from django.contrib import messages
+
 
 def board(request):
     receivePage = request.GET.get('page', '1')  # 페이지
@@ -10,6 +12,7 @@ def board(request):
     paginator_obj = paginator.get_page(receivePage)
     context = {"postList": paginator_obj}
     return render(request, "community/board.html", context)
+
 
 def post_detail(request, post_id):
     idTargetPost = Post.objects.get(id=post_id)
@@ -48,3 +51,7 @@ def post_add(request):
     else:
         return redirect(f"/users/login/")
     return render(request, "community/post_add.html")
+
+
+#@login_required(login_url='common:login')
+#def post_modify(request, post_id):

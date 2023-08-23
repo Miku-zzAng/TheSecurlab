@@ -36,6 +36,12 @@
                 <a href="비밀번호 찾는 페이지 이동.html" class="forgot-custom">비밀번호를 잊어버리셨나요?</a>
             </div>
             
+            {% if LoginForm.non_field_errors %} <!--로그인 오류 처리로직 구현-->
+            <div class="error">
+                {{ LoginForm.non_field_errors.0 }}
+            </div>
+            {% endif %}
+
             <div class="submit-login">
                 <button type="submit">로그인</button>
             </div>
@@ -43,12 +49,6 @@
             <div class="line-container">
                 <div class="line-text">또는</div>
             </div>
-
-            {% if LoginForm.non_field_errors %} <!--로그인 오류 처리로직 구현-->
-            <div class="error">
-                {{ LoginForm.non_field_errors.0 }}
-            </div>
-            {% endif %}
 
             <div class="google-login"> <!-- 구글로 로그인 -->
                 <button type="button" onclick="document.location.href='구글로 로그인 이동.html'">

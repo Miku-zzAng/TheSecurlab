@@ -11,7 +11,7 @@
 <body>
     <div class="topbar"> <!--상단 바-->
         <div class="logo-container">
-            <a href="메인페이지로 이동.html">
+            <a href="/">
                 <img class="logo" src="/media/로고.png" alt="none">
             </a>
         </div>
@@ -22,29 +22,65 @@
         <form method="POST" enctype="multipart/form-data"> <!--enctype: 파일 이미지 전송을 포함하므로 -->
             {% csrf_token %}
 
+            <h3 class="text-position" style="margin-right: 540px;">닉네임</h3>
+            <div class="sign_name">
+                <input type="text" name="nickname" required id="sign_name" placeholder="닉네임을 입력하세요. (최대 8글자 제한)">
+                {% if SignupForm.nickname.errors %}
+                <div class="field-error">
+                    {{ SignupForm.nickname.errors.0 }}
+                </div>
+            {% endif %}
+            </div>
+
             <h3 class="text-position" style="margin-right: 540px;">아이디</h3>
             <div class="sign_id">
-                {{ SignupForm.username }}
+                <input type="text" name="username" required id="sign_id" placeholder="아이디를 입력하세요.">
+                {% if SignupForm.username.errors %}
+                    <div class="field-error">
+                        {{ SignupForm.username.errors.0 }}
+                    </div>
+                {% endif %}
             </div>
 
             <h3 class="text-position" style="margin-right: 520px;">비밀번호</h3>
             <div class="sign_pw">
-                {{ SignupForm.password1 }}
+                <input type="password" name="password1" required id="sign_pw" placeholder="비밀번호를 입력하세요.">
+                {% if SignupForm.password1.errors %}
+                <div class="field-error">
+                    {{ SignupForm.password1.errors.0 }}
+                </div>
+            {% endif %}
             </div>
 
-            <h3 class="text-position" style="margin-right: 460px;">비밀번호 재확인</h3>
+            <h3 class="text-position" style="margin-right: 481px;">비밀번호 확인</h3>
             <div class="sign_rpw">
-                {{ SignupForm.password2 }}
+                <input type="password" name="password2" required id="sign_rpw" placeholder="비밀번호를 다시 한 번 입력하세요.">
+                {% if SignupForm.password2.errors %}
+                <div class="field-error">
+                    {{ SignupForm.password2.errors.0 }}
+                </div>
+            {% endif %}
             </div>
 
-            <h3 class="text-position" style="margin-right:  540px;">닉네임</h3>
+            <h3 class="text-position" style="margin-right: 520px;">자기소개</h3>
             <div class="sign_name">
-                {{ SignupForm.nickname }}
+                <input type="text" name="short_description" required id="sign_name" placeholder="자기소개를 간단하게 작성하세요.">
             </div>
 
-            <button type="submit" class="button">회원가입</button>
-            <a href="/users/login/" class="button"">로그인</a>
+            <h3 class="text-position" style="margin-right: 481px;">프로필 이미지</h3>
+            <div class="profile">
+                <div class="box-profile">
+                    <input type="file" name="profile_image" accept="image/*" id="profileImageInput">
+                    <div id="sign-profile"></div>
+                </div>
+            </div>
+
+            <div class="submit-sign">
+                <button type="submit">회원가입</button>
+            </div>
+
         </form>
+    </div>
 </body>
 
 </html>
