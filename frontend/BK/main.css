@@ -1,0 +1,117 @@
+.back1 {
+    width: 100%;
+    height: 125vh;
+    background-image: url('newback1.png');
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    margin: 0;
+    padding: 0;
+
+}
+
+.back2 {
+    width: 100%;
+    height: 100vh;
+    background-image: url('ss.jpg');
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    margin: 0;
+    padding: 0;
+
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.img1 {
+    float: right;
+    margin-left: 20px;
+    /* 오른쪽 여백을 줘서 레이아웃을 조정합니다. */
+    width: 50%;
+    /* 이미지의 너비를 조정하세요. */
+    height: 50%;
+}
+
+.back3 {
+    margin: 10%;
+    padding: 10%;
+    float: left;
+    width: 45%;
+    height: 200px;
+    box-sizing : border-box;
+}
+
+.content-container {
+    display: flex;
+    /* 컨텐츠를 수평으로 배치합니다. */
+    align-items: center;
+    /* 내용을 수직으로 중앙에 배치합니다. */
+    justify-content: space-between;
+    /* 컨텐츠 간격을 좌우로 고르게 배치합니다. */
+    padding: 10%;
+    /* 내용의 여백을 추가합니다. */
+}
+
+.text-container {
+    width: 70%;
+    /* 내용 컨테이너의 절반 너비를 설정합니다. */
+}
+
+.image-container {
+    width: 50%;
+    /* 이미지 컨테이너의 너비를 설정합니다. */
+    text-align: center;
+    /* 이미지를 가운데 정렬합니다. */
+}
+
+
+body {
+    text-align: center;
+    font-size: 250%;
+    margin: 0;
+    padding: 0;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.c1 {
+    color: rgb(54, 53, 53);
+    font-size: 290%;
+
+
+}
+
+.c2 {
+    color: rgb(41, 33, 33);
+    line-height: 2.5;
+    font-family: fantasy;
+}
+
+.c3 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+
+.c4 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+footer {
+    font-size: 50px;
+    background-color: rgb(83, 74, 74);
+    padding: 50px;
+    text-align: center;
+    font-size: 30%;
+    color: rgb(255, 255, 255);
+}
