@@ -1,127 +1,131 @@
-        * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-            }
-        .topbar {
-            background-color: rgb(212, 212, 212);
-            display: flex;
-            justify-content: center;
-            top: 0;
-            width: 100%;
-            align-items: center;
-            height: 80px;
-            z-index: 1;
-            justify-content: space-between;
-            font-family: Arial, sans-serif;
-            color: rgb(71, 71, 71);
-            font-size: larger;
-            font-weight: bolder;
-            text-decoration: none;
-            margin-bottom: 0;
-        }
-        .field-error {
-            color:red;
-            font-size: 9pt;
-        }
-        .logo {
-            width: 160px;
-            height: 130px;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .logo-container {
-            margin-right: auto;
-            margin-left: auto;
-            margin-top: 6px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 6px;
-        }
+.topbar {
+    background-color: rgb(212, 212, 212);
+    display: flex;
+    justify-content: center;
+    top: 0;
+    width: 100%;
+    align-items: center;
+    height: 80px;
+    z-index: 1;
+    justify-content: space-between;
+    font-family: Arial, sans-serif;
+    color: rgb(71, 71, 71);
+    font-size: larger;
+    font-weight: bolder;
+    text-decoration: none;
+    margin-bottom: 0;
+}
 
-        .text-position {
-            text-align: center;
-        }
+.field-error {
+    color: red;
+    font-size: 9pt;
+}
 
-        .sign h1 {
-            font-family: "Noto Sans KR", sans-serif;
-            font-weight: bold;
-            color: rgb(68, 60, 60);
-            margin-top: 150px;
-            margin-bottom: 60px;
-        }
-        
+.logo {
+    width: 160px;
+    height: 130px;
+}
 
-        .sign_id input,
-        .sign_pw input,
-        .sign_rpw input,
-        .sign_name input,
-        .sign_email input {
-            width: 100%;
-            max-width: 600px;
-            height: 45px;
-            border-radius: 13px;
-            padding: 0px 20px;
-            border: 1px solid lightgray;
-            outline: none;
-        }
+.logo-container {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6px;
+}
 
-        .sign_id,
-        .sign_pw,
-        .sign_rpw,
-        .sign_name,
-        .sign_email {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+.text-position {
+    text-align: center;
+}
 
-        .submit-sign button {
-            width: 100%;
-            max-width: 600px;
-            height: 50px;
-            border: 0;
-            outline: none;
-            border-radius: 7px;
-            background-color: rgb(68, 60, 60);
-            color: white;
-            font-size: 0.9em;
-            letter-spacing: 2px;
-            border: 1px solid lightgray;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 40px;
-        }
+.sign h1 {
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: bold;
+    color: rgb(68, 60, 60);
+    margin-top: 150px;
+    margin-bottom: 60px;
+}
 
-        .submit-sign {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 50px;
-            width: 100%;
-        }
 
-        .submit-sign button {
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
+.sign_id input,
+.sign_pw input,
+.sign_rpw input,
+.sign_name input,
+.sign_email input {
+    width: 100%;
+    max-width: 600px;
+    height: 45px;
+    border-radius: 13px;
+    padding: 0px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+}
 
-        .profile {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+.sign_id,
+.sign_pw,
+.sign_rpw,
+.sign_name,
+.sign_email {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-        .box-profile { /*프로필 박스*/
-            width: 100%;
-            max-width: 600px;
-            height: 60px;
-            border-radius: 13px;
-            padding: 20px 20px;
-            border: 1px solid lightgray;
-            outline: none;
-        }
+.submit-sign button {
+    width: 100%;
+    max-width: 600px;
+    height: 50px;
+    border: 0;
+    outline: none;
+    border-radius: 7px;
+    background-color: rgb(68, 60, 60);
+    color: white;
+    font-size: 0.9em;
+    letter-spacing: 2px;
+    border: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.submit-sign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.submit-sign button {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-profile {
+    /*프로필 박스*/
+    width: 100%;
+    max-width: 600px;
+    height: 60px;
+    border-radius: 13px;
+    padding: 20px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+}

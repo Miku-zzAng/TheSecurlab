@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .topbar {
     background-color: rgb(212, 212, 212);
     display: flex;
@@ -13,13 +19,13 @@
     font-size: larger;
     font-weight: bolder;
     text-decoration: none;
-    position: fixed;
+    margin-bottom: 0;
 }
 
 .logo {
     width: 160px;
     height: 130px;
-} 
+}
 
 .logo-container {
     margin-right: auto;
@@ -187,13 +193,14 @@
 .text-position {
     text-align: center;
 }
+
 .submit-login button,
-.google-login button{
+.google-login button {
     font-weight: bold;
 }
 
 .error {
-    color:red;
+    color: red;
     font-size: 9pt;
     text-align: center;
 }
