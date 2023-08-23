@@ -1,16 +1,86 @@
-{% extends 'base.html' %}
+{% load static %}
+<html lang="ko">
 
-{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
 
-<div id="signup">
-    <form method="POST" enctype="multipart/form-data"> <!--enctype: 파일 이미지 전송을 포함하므로 -->
-        <h1>회원가입</h1>
-        <a href="/" class="btn"><img src="/media/LOGO.png" style="width:200px; height:150px;"></a>
-        {% csrf_token %}
-        {{ SignupForm.as_p }} <!-- 각각 <p> 태그 안에 입력 폼 생성 -->
-        <button type="submit" class="btn btn signup">회원가입</button>
-        <a href="/users/login/" class="btn btn login">로그인</a>
-    </form>
-</div>
+<body>
+    <div class="topbar"> <!--상단 바-->
+        <div class="logo-container">
+            <a href="/">
+                <img class="logo" src="/media/로고.png" alt="none">
+            </a>
+        </div>
+    </div>
 
-{% endblock %}
+    <div class="sign">
+        <h1 style="text-align: center;">SIGN UP</h1>
+        <form method="POST" enctype="multipart/form-data"> <!--enctype: 파일 이미지 전송을 포함하므로 -->
+            {% csrf_token %}
+
+            <h3 class="text-position" style="margin-right: 540px;">닉네임</h3>
+            <div class="sign_name">
+                <input type="text" name="nickname" required id="sign_name" placeholder="닉네임을 입력하세요. (최대 8글자 제한)">
+                {% if SignupForm.nickname.errors %}
+                <div class="field-error">
+                    {{ SignupForm.nickname.errors.0 }}
+                </div>
+            {% endif %}
+            </div>
+
+            <h3 class="text-position" style="margin-right: 540px;">아이디</h3>
+            <div class="sign_id">
+                <input type="text" name="username" required id="sign_id" placeholder="아이디를 입력하세요.">
+                {% if SignupForm.username.errors %}
+                    <div class="field-error">
+                        {{ SignupForm.username.errors.0 }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <h3 class="text-position" style="margin-right: 520px;">비밀번호</h3>
+            <div class="sign_pw">
+                <input type="password" name="password1" required id="sign_pw" placeholder="비밀번호를 입력하세요.">
+                {% if SignupForm.password1.errors %}
+                <div class="field-error">
+                    {{ SignupForm.password1.errors.0 }}
+                </div>
+            {% endif %}
+            </div>
+
+            <h3 class="text-position" style="margin-right: 481px;">비밀번호 확인</h3>
+            <div class="sign_rpw">
+                <input type="password" name="password2" required id="sign_rpw" placeholder="비밀번호를 다시 한 번 입력하세요.">
+                {% if SignupForm.password2.errors %}
+                <div class="field-error">
+                    {{ SignupForm.password2.errors.0 }}
+                </div>
+            {% endif %}
+            </div>
+
+            <h3 class="text-position" style="margin-right: 520px;">자기소개</h3>
+            <div class="sign_name">
+                <input type="text" name="short_description" required id="sign_name" placeholder="자기소개를 간단하게 작성하세요.">
+            </div>
+
+            <h3 class="text-position" style="margin-right: 481px;">프로필 이미지</h3>
+            <div class="profile">
+                <div class="box-profile">
+                    <input type="file" name="profile_image" accept="image/*" id="profileImageInput">
+                    <div id="sign-profile"></div>
+                </div>
+            </div>
+
+            <div class="submit-sign">
+                <button type="submit">회원가입</button>
+            </div>
+
+        </form>
+    </div>
+</body>
+
+</html>

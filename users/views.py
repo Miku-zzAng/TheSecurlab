@@ -57,9 +57,15 @@ def signup(request):
                 receive_profile_image = 'default_profile_image.png'
             else:
                 receive_profile_image = receiveSignupForm.cleaned_data["profile_image"]
+            
+            if len(receive_nickname) > 8:
+                receiveSignupForm.add_error("nickname", "닉네임의 최대 길이 제한은 8자입니다.")
 
             if receive_password1 != receive_password2 :
                 receiveSignupForm.add_error("password2", "비밀번호와 비밀번호 확인란의 입력이 일치하지 않습니다.")
+            
+            if receive_password1 == receive_username:
+                receiveSignupForm.add_error("password1", "아이디와 비밀번호는 동일하게 설정할 수 없습니다.")
 
             if User.objects.filter(username = receive_username).exists(): # DB의 조건에 해당하는 객체가 있다면 exists()
                 receiveSignupForm.add_error("username", "이미 중복된 ID가 존재합니다.")
@@ -81,9 +87,11 @@ def signup(request):
                     short_description = receive_short_description,
                 )
                 login(request, createUser)
+                print("성공 렌더")
                 return redirect("/")
 
     else: # 회원가입 창에서 POST 요청이 따로 없다면, 빈 회원가입 창 보여준다.
         createSignupForm = SignupForm()
         context = {"SignupForm": createSignupForm}
+        print("무반응 렌더")
         return render(request, "users/signup.html", context)

@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Post(models.Model):
     title = models.CharField("게시물 제목", max_length=100)
     content = models.TextField("포스트 내용")
