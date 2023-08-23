@@ -1,0 +1,122 @@
+        .body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .back1 {
+            width: 100%;
+            height: 10vh;
+            /* 화면 높이에 꽉 채움 */
+            background-image: url('1.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back1::before {
+            content: "";
+            display: block;
+            width: 100%;
+            padding-top: 75%;
+            /* 이미지 높이 비율 조절 */
+            background-image: inherit;
+            background-size: cover;
+            /* 이미지를 화면에 꽉 채우면서 비율 유지 */
+        }
+
+        .text-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            background: rgba(0, 0, 0, 0);
+            margin-top: 580px;
+
+
+        }
+
+        .text-overlay h1 {
+            font-size: 7rem;
+            margin: 0;
+            padding: 0;
+            color: rgb(22, 21, 21);
+            margin-right: 70px;
+        }
+
+        .back-container {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+        }
+
+        .h1-container {
+            text-align: center;
+            width: 100%;
+            margin-top: 300px;
+            margin-bottom: 50px;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 8px;
+            background-color: white;
+        }
+
+        #search-input {
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            flex: 1;
+        }
+
+        .article {
+            width: 50%;
+            height: 50%;
+        }
+
+        .ph1 {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: 12px;
+            border: 1, solid;
+        }
+
+        #img1 {
+            width: 50%;
+            height: 50%;
+        }
+
+        .wr1{
+            display: flex;
+            align-items: center;
+            border-radius: 4px;
+            padding: 8px;
+            color: rgb(19, 18, 18);
+            font-size: 7px;
+        }
+
+        footer {
+            margin-top: 300px;
+            font-size: 20px;
+            background-color: rgb(83, 74, 74);
+            padding: 50px;
+            text-align: center;
+            color: rgb(255, 255, 255);
+        
+        }

@@ -16,6 +16,9 @@
     <strong><a href="/users/signup">회원가입</a></strong>
 {% endif %}
 
+{% if request.user == post.writer %}
+<a href="/community/board/{{post.id}}/modify/">수정하기</a>
+{% endif %}
 
 <div id = "post-detail">
     <h1>{{ post.id }} - {{ post.title }}</h1>
