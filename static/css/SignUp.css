@@ -20,7 +20,10 @@
             text-decoration: none;
             margin-bottom: 0;
         }
-
+        .field-error {
+            color:red;
+            font-size: 9pt;
+        }
         .logo {
             width: 160px;
             height: 130px;
@@ -56,7 +59,7 @@
         .sign_email input {
             width: 100%;
             max-width: 600px;
-            height: 60px;
+            height: 45px;
             border-radius: 13px;
             padding: 0px 20px;
             border: 1px solid lightgray;
@@ -72,7 +75,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin-bottom: 45px;
+            margin-bottom: 20px;
         }
 
         .submit-sign button {
@@ -103,7 +106,7 @@
 
         .submit-sign button {
             font-weight: bold;
-            margin-bottom: 200px;
+            margin-bottom: 20px;
         }
 
         .profile {
@@ -116,9 +119,9 @@
         .box-profile { /*프로필 박스*/
             width: 100%;
             max-width: 600px;
-            height: 26px;
+            height: 60px;
             border-radius: 13px;
-            padding: 0px 20px;
+            padding: 20px 20px;
             border: 1px solid lightgray;
             outline: none;
         }
