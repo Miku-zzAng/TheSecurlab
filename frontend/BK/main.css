@@ -26,6 +26,15 @@
     text-align: center;
 }
 
+
+.c2 {
+    font-size: 20pt;
+    margin-bottom : 300px;
+}
+
+.c3 {
+}
+
 .img1 {
     float: right;
     margin-left: 20px;
@@ -33,15 +42,6 @@
     width: 50%;
     /* 이미지의 너비를 조정하세요. */
     height: 50%;
-}
-
-.back3 {
-    margin: 10%;
-    padding: 10%;
-    float: left;
-    width: 45%;
-    height: 200px;
-    box-sizing : border-box;
 }
 
 .content-container {
@@ -67,44 +67,22 @@
     /* 이미지를 가운데 정렬합니다. */
 }
 
-
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 body {
+    height: 100%;
     text-align: center;
+    display: flex;
+    flex-direction: column;
     font-size: 250%;
     margin: 0;
     padding: 0;
     color: black;
     margin: 0;
     padding: 0;
-}
-
-.c1 {
-    color: rgb(54, 53, 53);
-    font-size: 290%;
-
-
-}
-
-.c2 {
-    color: rgb(41, 33, 33);
-    line-height: 2.5;
-    font-family: fantasy;
-}
-
-.c3 {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    vertical-align: baseline;
-}
-
-.c4 {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font: inherit;
-    font-size: 100%;
-    vertical-align: baseline;
 }
 
 footer {
@@ -114,4 +92,5 @@ footer {
     text-align: center;
     font-size: 30%;
     color: rgb(255, 255, 255);
+    margin-top: auto;
 }
