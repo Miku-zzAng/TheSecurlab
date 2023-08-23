@@ -1,6 +1,5 @@
 from django.contrib import admin
 from community.models import Post, PostImage, Comment
-import admin_thumbnails
 
 
 class CommentInline(admin.TabularInline):
