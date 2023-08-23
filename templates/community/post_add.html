@@ -1,18 +1,30 @@
 {% extends 'base_pylog.html' %}
 
 {% block content %}
+<!-- message 표시 -->
+{% if messages %}
+<div class="alert alert-danger my-3" role="alert">
+    {% for message in messages %}
+    <strong>{{ message.tags }}</strong>
+    <ul>
+        <li>{{ message.message }}</li>
+    </ul>
+    {% endfor %}
+</div>
+{% endif %}
+
 <a href="/" class="btn"><img src="/media/LOGO.png" style="width:200px; height:150px;"></a>
 <h1>커뮤니티 게시판</h1>
 {% if request.user.is_authenticated %}
-    <div>
-        <img src="{{ user.profile_image.url }}" style="width:100px; height:100px; object-fit: cover;">
-        {{ user.nickname }}님 환영합니다. ID: {{ user.username }}
-    </div>
-    <a href="/users/logout/">로그아웃</a>
+<div>
+    <img src="{{ user.profile_image.url }}" style="width:100px; height:100px; object-fit: cover;">
+    {{ user.nickname }}님 환영합니다. ID: {{ user.username }}
+</div>
+<a href="/users/logout/">로그아웃</a>
 {% else %}
-    <h1>로그인 해라</h1>
-    <strong><a href="/users/login/">로그인</a></strong>
-    <strong><a href="/users/signup">회원가입</a></strong>
+<h1>로그인 해라</h1>
+<strong><a href="/users/login/">로그인</a></strong>
+<strong><a href="/users/signup">회원가입</a></strong>
 {% endif %}
 
 <div id="navbar">
@@ -25,7 +37,7 @@
 
         <div>
             <label>제목</label>
-            <input name= "title" type="text">
+            <input name="title" type="text">
         </div>
 
         <div>
@@ -33,8 +45,8 @@
             <textarea name="content" cols="50" rows="50"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">작성</button>
+        <button type="submit" class="btn btn-primary">저장하기</button>
 
     </form>
 </div>
-  {% endblock %}
+{% endblock %}
