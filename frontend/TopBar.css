@@ -65,30 +65,30 @@ body {
     display: block;
 } 
 
-.tcontent {
+.content {
     margin-top: 100px;
     padding: 20px;
 }
 
-.tleft {
+.left {
     display: flex;
     margin-left: 50px;
     align-items: center;
     position: relative;
 }
 
-.tright {
+.right {
     margin-left: auto;
     color: rgb(90, 90, 90);
     text-decoration: none;
 }
 
-.tlogo {
+.logo {
     width: 140px;
     height: 110px;
 }
 
-.tlogo-container {
-    margin-right: 50px;
+.logo-container {
+    margin-right: 5px;
     margin-top: 6px;
 }

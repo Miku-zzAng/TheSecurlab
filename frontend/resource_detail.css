@@ -1,0 +1,188 @@
+.back-container {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.back1::before {
+    content: "";
+    display: block;
+    width: 100%;
+    padding-top: 75%;
+    /* 이미지 높이 비율 조절 */
+    background-image: inherit;
+    background-size: cover;
+    /* 이미지를 화면에 꽉 채우면서 비율 유지 */
+}
+
+.back1 {
+    width: 100%;
+    height: 10vh;
+    /* 화면 높이에 꽉 채움 */
+    background-image: url('dfdf.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.text-overlay {
+    position: absolute;
+    top: 280px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 2.6rem;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: rgb(253, 244, 244);
+}
+
+.t1 {
+    position: absolute;
+    font-size: 17px;
+    top: 385px;
+    /* 기본값으로 설정하여 아래로 배치 */
+    bottom: 0;
+    /* 아래에 위치 */
+    color: aliceblue;
+}
+
+.all {
+    max-width: 700px;
+    margin: 80px auto 0 auto;
+    margin-top: 150px;
+    text-align: left;
+    line-height: 2;
+    font-family: 'Noto Sans Demilight', 'Noto Sans KR';
+    font-size: 16px;
+    line-height: 1.88;
+}
+
+.none {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.art1 {
+    width: 100%;
+    height: inherit;
+    /* 가로 길이를 부모 요소인 .all의 너비에 맞춤 */
+    display: flex;
+    margin: 0;
+}
+
+.container1 {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    /* 내부 요소를 좌우로 분배 */
+    max-width: 700px;
+    margin: 80px auto 0 auto;
+    margin-top: 10px;
+    text-align: left;
+    line-height: 2;
+    font-family: 'Noto Sans Demilight', 'Noto Sans KR';
+    font-size: 16px;
+    line-height: 1.88;
+}
+
+.con1 {
+    justify-content: center;
+    /* 가로축 중앙 정렬 */
+    align-items: center;
+    /* 세로축 중앙 정렬 */
+    flex: 1;
+    margin-right: 30px;
+    padding-top: 20px;
+}
+
+.imgart1 {
+    width: 400px;
+    height: 330px;
+}
+
+.con2 {
+    flex: 1;
+    display: flex;
+    /* Flexbox 사용 */
+    justify-content: center;
+    /* 가로축 중앙 정렬 */
+    align-items: center;
+    /* 세로축 중앙 정렬 */
+    text-align: justify;
+}
+
+.container2 {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    /* 내부 요소를 좌우로 분배 */
+    max-width: 700px;
+    margin: 80px auto 0 auto;
+    margin-top: 10px;
+    text-align: left;
+    line-height: 2;
+    font-family: 'Noto Sans Demilight', 'Noto Sans KR';
+    font-size: 16px;
+    line-height: 1.88;
+}
+
+.imgart2 {
+    width: 370px;
+    height: 310px;
+}
+
+.con3 {
+    flex: 1;
+    display: flex;
+    /* Flexbox 사용 */
+    justify-content: center;
+    /* 가로축 중앙 정렬 */
+    align-items: center;
+    /* 세로축 중앙 정렬 */
+    text-align: justify;
+    margin-right: 22px;
+}
+
+.con4 {
+    justify-content: center;
+    /* 가로축 중앙 정렬 */
+    align-items: center;
+    /* 세로축 중앙 정렬 */
+    flex: 1;
+    padding-top: 30px;
+}
+
+
+.imgart4{
+    width:100%
+}
+
+body {
+    font-family: 'Noto Sans Demilight', 'Noto Sans KR';
+
+}
+
+footer {
+    margin-top: 200px;
+    font-size: 20px;
+    background-color: rgb(83, 74, 74);
+    padding: 50px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+
+}
