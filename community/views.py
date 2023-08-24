@@ -12,7 +12,7 @@ def board(request):
     postListAllData = Post.objects.annotate(num_comments=Count("comment")).order_by(
         "-createdDate"
     )
-    paginator = Paginator(postListAllData, 5)
+    paginator = Paginator(postListAllData, 10)
     paginator_obj = paginator.get_page(receivePage)
     context = {"postList": paginator_obj,
                        "action": "view",}
@@ -90,24 +90,29 @@ def board_search(request):
     receivePage= request.GET.get('page', "1")
 
     # 게시물 목록 기본 쿼리셋
-    allPostList = Post.objects.all()
+    allPostList = Post.objects.annotate(num_comments=Count("comment")).order_by(
+        "-createdDate")
 
     # 검색어가 있다면 필터 적용
     if search_kw:
         if search_type == 'title':
             searchPostList = allPostList.filter(title__icontains = search_kw)
-        elif search_type == 'writer':
+        elif search_type == 'nickname':
             searchPostList = allPostList.filter(writer__nickname__icontains = search_kw)
+        elif search_type == 'username':
+            searchPostList = allPostList.filter(writer__username__icontains = search_kw)
+        elif search_type == 'content':
+            searchPostList = allPostList.filter(content__icontains=search_kw)
 
-    paginator = Paginator(searchPostList, 5)
-    posts = paginator.get_page(receivePage)
+    paginator = Paginator(searchPostList, 10)
+    paginator_obj = paginator.get_page(receivePage)
 
     context = {
-        'PostList': posts,
+        'postList': paginator_obj,
         'search_kw': search_kw,
         'search_type': search_type,
         "action": "search",
     }
 
-    return render(request, 'board.html', context)
+    return render(request, 'community/board.html', context)
 
