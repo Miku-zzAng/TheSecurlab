@@ -52,8 +52,11 @@
         <tr>
             <td>{{ post.id }}</td>
             <td><a href="/community/board/{{ post.id }}">{{ post.title }}
+                {% if post.modify_date %}
+                <span style="color:gray; font-size:9pt;">(수정됨)</span>
+                {% endif %}
                 {% if post.num_comments > 0 %}
-                <span style="color:lightcoral; font-weight: bold;">{{ post.num_comments }}</span>
+                <span style="color:lightcoral; font-weight: bold;">　{{ post.num_comments }}</span>
                 {% endif %}</a></td>
             <td><img src="{{ post.writer.profile_image.url }}" class = "profile_image"> {{ post.writer.nickname }} ({{ post.writer.username }})</td>
             <td>{{ post.createdDate }}</td>

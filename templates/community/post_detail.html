@@ -1,27 +1,32 @@
 
+{% extends 'base_topbar.html' %}
 {% load filter %}
 
+{% block head %}
+<script>
+    function checkLastPost(post_id, max_post_id) {
+        if (post_id >= max_post_id) {
+            alert('마지막 게시물입니다.');
+            return false;
+        }
+        return true;
+    }
+</script>
+{% endblock %}
+
 {% block content %}
-<a href="/" class="btn"><img src="/media/LOGO.png" style="width:200px; height:150px;"></a>
 <h1>커뮤니티 게시판</h1>
-{% if request.user.is_authenticated %}
-    <div>
-        <img src="{{ user.profile_image.url }}" style="width:100px; height:100px; object-fit: cover;">
-        {{ user.nickname }}님 환영합니다. ID: {{ user.username }}
-    </div>
-    <a href="/users/logout/">로그아웃</a>
-{% else %}
-    <h1>로그인 해라</h1>
-    <strong><a href="/users/login/">로그인</a></strong>
-    <strong><a href="/users/signup">회원가입</a></strong>
-{% endif %}
 
 {% if request.user == post.writer %}
 <a href="/community/board/{{post.id}}/modify/">수정하기</a>
 {% endif %}
 
 <div id = "post-detail">
-    <h1>{{ post.id }} - {{ post.title }}</h1>
+    <h1>{{ post.id }}<br>{{ post.title }}
+        {% if post.modify_date %}
+        <span style="color:gray; font-size:12pt; font-weight: normal;">(최근 수정한 날짜: {{post.modify_date}})</span>
+        {% endif %}
+    </h1>
     <h1>{{ post.content|mark }}</h1><br>
     <h1>작성자: {{ post.writer.nickname }}님 ({{ post.writer.username }})</h1><br>
     <h1>작성일시: {{ post.createdDate }}</h1>
@@ -42,5 +47,5 @@
 </div>
 <a href="/community/board/" class="btn">뒤로 가기</a><br>
 <a href="/community/board/{{ post.id|add:'-1' }}" class="btn">이전 게시물 보기</a><br>
-<a href="/community/board/{{ post.id|add:'+1' }}" class="btn">다음 게시물 보기</a><br>
+<a href="/community/board/{{ post.id|add:'+1' }}" class="btn" onclick="return checkLastPost({{ post.id }}, {{ max_post_id }})">다음 게시물 보기</a><br>
 {% endblock %}
