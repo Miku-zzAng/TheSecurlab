@@ -1,7 +1,11 @@
-{% extends 'base_pylog.html' %}
+{% extends 'base_topbar.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/board.css' %}">
+{% endblock %}
 
 {% block content %}
-<a href="/" class="btn"><img src="/media/LOGO.png" style="width:200px; height:150px;"></a>
 <h1>커뮤니티 게시판</h1>
 {% if request.user.is_authenticated %}
 <div>
@@ -46,31 +50,28 @@
 
     <!-- 페이지리스트 -->
     {% for page_number in postList.paginator.page_range %}
-    {% if page_number >= postList.number|add:-5 and page_number <= postList.number|add:5 %}
-    {% if page_number == postList.number %}
-    <li class="" aria-current="page">
+    {% if page_number >= postList.number|add:-5 and page_number <= postList.number|add:5 %} {% if
+        page_number==postList.number %} <li class="" aria-current="page">
         <a class="" href="?page={{ page_number }}">{{ page_number }}</a>
-    </li>
-    {% else %}
-    <li class="">
-        <a class="" href="?page={{ page_number }}">{{ page_number }}</a>
-    </li>
-    {% endif %}
-    {% endif %}
-    {% endfor %}
+        </li>
+        {% else %}
+        <li class="">
+            <a class="" href="?page={{ page_number }}">{{ page_number }}</a>
+        </li>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
 
-    <!-- 다음페이지 -->
-    {% if postList.has_next %}
-    <li class="">
-        <a class="" href="?page={{ postList.next_page_number }}">다음 페이지</a>
-    </li>
-    {% else %}
-    <li class="">
-        <a class="" tabindex="-1" aria-disabled="true" href="#">다음 페이지</a>
-    </li>
-    {% endif %}
+        <!-- 다음페이지 -->
+        {% if postList.has_next %}
+        <li class="">
+            <a class="" href="?page={{ postList.next_page_number }}">다음 페이지</a>
+        </li>
+        {% else %}
+        <li class="">
+            <a class="" tabindex="-1" aria-disabled="true" href="#">다음 페이지</a>
+        </li>
+        {% endif %}
 
 </ul>
-
-
 {% endblock %}

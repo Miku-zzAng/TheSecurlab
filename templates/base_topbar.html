@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/topbar.css' %}">
+    {% block head %} {% endblock %}
+</head>
+
+<body>
+    <div class="tnavbar">
+        <div class="tleft">
+            <div class="logo-container">
+                <a href="/">
+                    <img class="logo" src="/media/로고.png" alt="none">
+                </a>
+            </div>
+            <ul class="menu" style="align-items: center;">
+                <li><a href="보안 체크리스트로 이동.html" class="menu-item"
+                        style="font-family: Noto Sans KR, sans-serif;">Security CheckList</a></li>
+                <li class="menu-item" style="font-family: Noto Sans KR, sans-serif;">Tool
+                    <ul class="submenu">
+                        <li><a href="보안관련 자료로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">보안 관련
+                                자료</a></li>
+                        <li><a href="진단 및 대응으로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">진단 및
+                                대응 툴</a></li>
+                        <li><a href="기타 자료로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">기타 자료</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-item" style="font-family: Noto Sans KR, sans-serif;">
+                    <a href="/community/board/" style="color: inherit; text-decoration: none;">Community</a>
+                    <!--로그인 회원가입 텍스트-->
+                    <ul class="submenu">
+                        <li><a href="공지사항으로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">공지사항</a>
+                        </li>
+                        <li><a href="FAQ로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">FAQ</a>
+                        </li>
+                        <li><a href="/community/board/" style="color: rgb(112, 112, 112); text-decoration: none;">사용자
+                                게시판</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="tright"><!--로그인 회원가입 텍스트-->
+            {% if request.user.is_authenticated %}
+            <img src="{{ user.profile_image.url }}" style="width:40px; height:40px; object-fit: cover;">
+            <div style="padding: 25px">{{ user.nickname }}님 환영합니다.</div>
+            {% else %}
+            <a href="/users/login/" class="log-item" style="font-family: Noto Sans KR, sans-serif;">Log in</a>
+            {% endif %}
+
+            {% if request.user.is_authenticated %}
+            <a href="/users/logout/" style="color: rgb(134, 21, 21); text-decoration: none;">Log out</a>
+            {% else %}
+            <a href="/users/signup/" class="log-item" style="font-family: Noto Sans KR, sans-serif;">Sign up</a>
+            {% endif %}
+        </div>
+    </div>
+    {% block content %}
+
+    {% endblock %}
+
+</body>

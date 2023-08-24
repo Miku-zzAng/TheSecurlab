@@ -40,7 +40,7 @@ def logout_view(request):
     else:
         connect_username = "Unknown User"
     logout(request) # 요청받음에 따라 로그아웃 수행
-    return redirect("/users/login/")
+    return redirect("/")
 
 
 
