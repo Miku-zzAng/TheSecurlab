@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/topbar.css' %}">
+    <link rel="stylesheet" href = "{% static 'css/topbar.css' %}">
     {% block head %} {% endblock %}
 </head>
 
@@ -21,7 +21,7 @@
             <ul class="menu" style="align-items: center;">
                 <li><a href="보안 체크리스트로 이동.html" class="menu-item"
                         style="font-family: Noto Sans KR, sans-serif;">Security CheckList</a></li>
-                <li class="menu-item" style="font-family: Noto Sans KR, sans-serif;">Tool
+                <li class="menu-item" style="font-family: Noto Sans KR, sans-serif;">Resources
                     <ul class="submenu">
                         <li><a href="보안관련 자료로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">보안 관련
                                 자료</a></li>
@@ -32,10 +32,10 @@
                     </ul>
                 </li>
                 <li class="menu-item" style="font-family: Noto Sans KR, sans-serif;">
-                    <a href="/community/board/" style="color: inherit; text-decoration: none;">Community</a>
+                    <a href="/community/notice/" style="color: inherit; text-decoration: none;">Community</a>
                     <!--로그인 회원가입 텍스트-->
                     <ul class="submenu">
-                        <li><a href="공지사항으로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">공지사항</a>
+                        <li><a href="/community/notice/" style="color: rgb(112, 112, 112); text-decoration: none;">공지사항</a>
                         </li>
                         <li><a href="FAQ로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">FAQ</a>
                         </li>
@@ -63,8 +63,9 @@
     {% block content %}
 
     {% endblock %}
+
     <footer>
-        <div style="font-size: 10pt;">
+        <div>
             yANUs 개발 2팀 | 대표 김선혁<br>
             안동시 송천동 경동로 1375 공학2호관 3층<br>
             <br>
@@ -72,4 +73,5 @@
             <br>
         </div>
     </footer>
+    
 </body>

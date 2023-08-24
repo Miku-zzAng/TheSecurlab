@@ -9,7 +9,7 @@ from community.forms import PostForm
 
 def board(request):
     receivePage = request.GET.get("page", "1")  # 페이지
-    postListAllData = Post.objects.annotate(num_comments=Count("comment")).order_by(
+    postListAllData = Post.objects.filter(notice_id__isnull=True).annotate(num_comments=Count("comment")).order_by(
         "-createdDate"
     )
     paginator = Paginator(postListAllData, 10)
@@ -148,11 +148,9 @@ def comment_delete(request, post_id, comment_id):
 
 def notice(request):
     receivePage = request.GET.get("page", "1")  # 페이지
-    postListAllData = Post.objects.annotate(num_comments=Count("comment")).order_by(
-        "-createdDate"
-    )
+    postListAllData = Post.objects.filter(notice_id__isnull=False).annotate(num_comments=Count("comment")).order_by("-createdDate")
     paginator = Paginator(postListAllData, 10)
     paginator_obj = paginator.get_page(receivePage)
     context = {"postList": paginator_obj,
                        "action": "view",}
-    return render(request, "community/board.html", context)
+    return render(request, "community/notice.html", context)

@@ -69,6 +69,7 @@ body {
     border: 1px solid #000000;
     padding: 8px;
     margin-left: 7px;
+    vertical-align: middle;
 }
 
 .search-box {
@@ -81,17 +82,19 @@ body {
     margin: 20px auto;
 }
 
+.search-box form {
+    height: 50px;
+}
+
 .search-container {
-    display: flex;
     align-items: center;
     justify-content: center;
-    height: 34px;
+    height: 33px;
 }
 
 .search-button {
-    width: 34px;
     height: 34px;
-    align-items: center;
+    align-items: middle;
     color: white;
     border-radius: 4px;
 }
@@ -99,12 +102,13 @@ body {
 .icon-search {
     width: 25px;
     height: 25px;
-    margin-right: auto;
-    margin: 1px 2px 3px -3px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .search-container input {
     width: 500px;
+    vertical-align: middle; /* To align it with the other elements */
 }
 
 .notice {
@@ -137,7 +141,6 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .board_list {
@@ -151,22 +154,50 @@ a {
     border-bottom: 1px solid #535353;
 }
 
+/* 제목의 폭을 늘림 */
+.board_list th:nth-child(2) {
+    width: 50%;
+    /* 원하는 폭으로 조정하실 수 있습니다. */
+}
+
+.board_list th:nth-child(1),
+.board_list th:nth-child(5) {
+    width: 5%;
+}
+/* 다른 열의 폭을 줄임 */
+.board_list th:nth-child(3),
+.board_list th:nth-child(4) {
+    width: 15%;
+}
+
+/* 제목의 내용을 왼쪽에서 시작 */
+.board_list .tit {
+    text-align: left;
+}
+
+/* 제목 링크 왼쪽 정렬 */
+.board_list .tit a {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .board_list th,
 .board_list td {
     padding: 20px;
     font-size: 15px;
     text-align: center;
     align-items: center;
-      /* Flexbox를 활용합니다. */
+    /* Flexbox를 활용합니다. */
 }
 
 .board_list td img {
-    width:30px;
-    height:30px;
+    width: 30px;
+    height: 30px;
     object-fit: cover;
     vertical-align: middle;
     margin: -4px 5px 0 0;
 }
+
 .board_list .tit {
     text-align: left;
 }
@@ -203,12 +234,13 @@ a {
     color: #535353;
 }
 
-.board_list_wrap .paging a.num.on { /*해당 페이지일 떄 숫자 박스에 대한 css*/
+.board_list_wrap .paging a.num.on {
+    /*해당 페이지일 떄 숫자 박스에 대한 css*/
     background: gray;
     color: #fff;
 }
 
-.write-button{
+.write-button {
     width: 50px;
     height: 30px;
     background: gray;

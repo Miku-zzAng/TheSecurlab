@@ -8,6 +8,6 @@ urlpatterns = [
     path("board/<int:post_id>/modify/", post_modify),
     path("board/<int:post_id>/delete/", board_delete),
     path("board/search/", board_search, name='board_search'),
-    path("notice/", notice,),
     path("board/<int:post_id>/delete/<int:comment_id>", comment_delete),
+    path("notice/", notice,),
 ]
