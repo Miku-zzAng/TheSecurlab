@@ -21,6 +21,8 @@ def board(request):
 def post_detail(request, post_id):
     idTargetPost = Post.objects.get(id=post_id)
     print(idTargetPost)
+    idTargetPost.viewNum += 1
+    idTargetPost.save()
 
     if request.method == "POST":
         if request.user.is_authenticated:

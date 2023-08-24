@@ -51,10 +51,13 @@
         {% for post in postList %}
         <tr>
             <td>{{ post.id }}</td>
-            <td><a href="/community/board/{{ post.id }}">{{ post.title }}　({{ post.num_comments }})</a></td>
+            <td><a href="/community/board/{{ post.id }}">{{ post.title }}
+                {% if post.num_comments > 0 %}
+                <span style="color:lightcoral; font-weight: bold;">{{ post.num_comments }}</span>
+                {% endif %}</a></td>
             <td><img src="{{ post.writer.profile_image.url }}" class = "profile_image"> {{ post.writer.nickname }} ({{ post.writer.username }})</td>
             <td>{{ post.createdDate }}</td>
-            <td></td>
+            <td>{{ post.viewNum }}</td>
         </tr>
         {% endfor %}
     </tbody>

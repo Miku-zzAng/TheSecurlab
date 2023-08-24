@@ -81,6 +81,11 @@ body {
     margin-left: auto;
     color: rgb(90, 90, 90);
     text-decoration: none;
+    align-items: center;
+    position: relative;
+    justify-content: space-between;
+    display: flex;
+    padding: 70px;
 }
 
 .logo {
