@@ -81,11 +81,7 @@
 
         <!-- 이전페이지 -->
         {% if postList.has_previous %}
-            {% if action == view %}
-                <a class="bt" href="?page={{ postList.previous_page_number }}">이전 페이지</a>
-            {% elif action == search %}
-                <a class="bt" href="?search_kw={{ search_kw }}&search_type={{ search_type }}&page={{ postList.previous_page_number }}">이전 페이지</a>
-            {% endif %}
+            <a class="bt" href="?page={{ postList.previous_page_number }}">이전 페이지</a>
         {% else %}
             <a class="bt" tabindex="-1" aria-disabled="true" href="#">이전 페이지</a>
         {% endif %}
