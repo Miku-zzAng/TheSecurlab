@@ -40,11 +40,7 @@
     </div>
 </div>
 
-
-<a href="/community/board/add/" class="btn btn-primary">글 작성</a>
-
-
-<div class="board_list_wrap">
+<div class="board_list_wrap">  
     <table class="board_list">
         <thead>
             <tr>
@@ -132,6 +128,7 @@
             <a class="bt" href="?search_kw={{ search_kw }}&search_type={{ search_type }}&page={{ postList.paginator.num_pages }}">끝 페이지</a>
         {% endif %}
     </div>
+    <a href="/community/board/add/" class="write-button" style="margin-left: 1200px">글쓰기</a>
 </div>
 
 {% endblock %}

@@ -80,4 +80,5 @@
   <a href="/community/board/" class="btn">뒤로 가기</a><br />
   <a href="/community/board/{{ post.id|add:'-1' }}" class="btn" onclick="return checkFirstPost({{ post.id }})">이전 게시물 보기</a><br />
   <a href="/community/board/{{ post.id|add:'+1' }}" class="btn" onclick="return checkLastPost({{ post.id }}, {{ max_post_id }})">다음 게시물 보기</a><br />
-{% endblock %}
+
+  {% endblock %}
