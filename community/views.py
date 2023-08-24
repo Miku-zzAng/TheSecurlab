@@ -12,7 +12,7 @@ def board(request):
     postListAllData = Post.objects.annotate(num_comments=Count("comment")).order_by(
         "-createdDate"
     )
-    paginator = Paginator(postListAllData, 5)
+    paginator = Paginator(postListAllData, 10)
     paginator_obj = paginator.get_page(receivePage)
     context = {"postList": paginator_obj,
                        "action": "view",}
@@ -104,7 +104,7 @@ def board_search(request):
         elif search_type == 'content':
             searchPostList = allPostList.filter(content__icontains=search_kw)
 
-    paginator = Paginator(searchPostList, 5)
+    paginator = Paginator(searchPostList, 10)
     paginator_obj = paginator.get_page(receivePage)
 
     context = {

@@ -1,60 +1,59 @@
-
 {% extends 'base_topbar.html' %}
 {% load filter %}
 
 {% block head %}
-<script>
+  <script>
     function checkLastPost(post_id, max_post_id) {
-        if (post_id >= max_post_id) {
-            alert('마지막 게시물입니다.');
-            return false;
-        }
-        return true;
+      if (post_id >= max_post_id) {
+        alert('마지막 게시물입니다.')
+        return false
+      }
+      return true
     }
-
+    
     function checkFirstPost(post_id) {
-        if (post_id == 1) {
-            alert('마지막 게시물입니다.');
-            return false;
-        }
-        return true;
+      if (post_id == 1) {
+        alert('마지막 게시물입니다.')
+        return false
+      }
+      return true
     }
-
-</script>
+  </script>
 {% endblock %}
 
 {% block content %}
-<h1>커뮤니티 게시판</h1>
+  <h1>커뮤니티 게시판</h1>
 
-{% if request.user == post.writer %}
-<a href="/community/board/{{post.id}}/modify/">수정하기</a>
-{% endif %}
+  {% if request.user == post.writer %}
+    <a href="/community/board/{{ post.id }}/modify/">수정하기</a>
+  {% endif %}
 
-<div id = "post-detail">
-    <h1>{{ post.id }}<br>{{ post.title }}
-        {% if post.modify_date %}
-        <span style="color:gray; font-size:12pt; font-weight: normal;">(최근 수정한 날짜: {{post.modify_date}})</span>
-        {% endif %}
+  <div id="post-detail">
+    <h1>
+      {{ post.id }}<br />{{ post.title }}
+      {% if post.modify_date %}
+        <span style="color:gray; font-size:12pt; font-weight: normal;">(최근 수정한 날짜: {{ post.modify_date }})</span>
+      {% endif %}
     </h1>
-    <h1>{{ post.content|mark }}</h1><br>
-    <h1>작성자: {{ post.writer.nickname }}님 ({{ post.writer.username }})</h1><br>
+    <h1>{{ post.content|mark }}</h1><br />
+    <h1>작성자: {{ post.writer.nickname }}님 ({{ post.writer.username }})</h1><br />
     <h1>작성일시: {{ post.createdDate }}</h1>
-    <hr>
-    <div>{% for comment in post.comment_set.all %}
+    <hr />
+    <div>
+      {% for comment in post.comment_set.all %}
         <h2>{{ comment.content }}</h2>
-        작성일시: {{ comment.createdDate }}<br>
-        작성자: {{ comment.writer.nickname }}님 ({{ comment.writer.username }})
-    {% empty %}
-    <li>아직 댓글이 없습니다.</li>
-    {% endfor %}
-</div>
+        작성일시: {{ comment.createdDate }}<br />
+        작성자: {{ comment.writer.nickname }}님 ({{ comment.writer.username }}){% empty %}
+        <li>아직 댓글이 없습니다.</li>
+      {% endfor %}
+    </div>
     <form method="POST">
-        {% csrf_token %}
-        <textarea name="comment"></textarea>
-        <button type="submit" class="btn btn-primary">댓글작성</button>
+      {% csrf_token %}
+      <textarea name="comment"></textarea>
+      <button type="submit" class="btn btn-primary">댓글작성</button>
     </form>
-</div>
-<a href="/community/board/" class="btn">뒤로 가기</a><br>
-<a href="/community/board/{{ post.id|add:'-1' }}" class="btn" onclick="return checkFirstPost({{ post.id }})">이전 게시물 보기</a><br>
-<a href="/community/board/{{ post.id|add:'+1' }}" class="btn" onclick="return checkLastPost({{ post.id }}, {{ max_post_id }})">다음 게시물 보기</a><br>
+  </div>
+  <a href="/community/board/" class="btn">뒤로 가기</a><br />
+  <a href="/community/board/{{ post.id|add:'-1' }}" class="btn" onclick="return checkFirstPost({{ post.id }})">이전 게시물 보기</a><br />
+  <a href="/community/board/{{ post.id|add:'+1' }}" class="btn" onclick="return checkLastPost({{ post.id }}, {{ max_post_id }})">다음 게시물 보기</a><br />
 {% endblock %}

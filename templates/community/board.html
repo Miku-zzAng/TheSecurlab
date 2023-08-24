@@ -98,7 +98,7 @@
 
         <!-- 페이지리스트 -->
         {% for page_number in postList.paginator.page_range %}
-            {% if page_number >= postList.number|add:-5 and page_number <= postList.number|add:5 %}
+            {% if page_number >= postList.number|add:-10 and page_number <= postList.number|add:10 %}
                 {% if action == 'view' %}
                     {% if page_number == postList.number %}
                         <a class="num{% if page_number == postList.number %} on{% endif %}" href="?page={{ page_number }}">{{ page_number }}</a>
@@ -118,9 +118,9 @@
         <!-- 다음페이지 -->
         {% if postList.has_next %}
             {% if action == 'view' %}
-                <a class="bt" href="?page={{ postList.next_page_number }}">이전 페이지</a>
+                <a class="bt" href="?page={{ postList.next_page_number }}">다음 페이지</a>
             {% elif action == 'search' %}
-                <a class="bt" href="?search_kw={{ search_kw }}&search_type={{ search_type }}&page={{ postList.next_page_number }}">이전 페이지</a>
+                <a class="bt" href="?search_kw={{ search_kw }}&search_type={{ search_type }}&page={{ postList.next_page_number }}">다음 페이지</a>
             {% endif %}
         {% else %}
             <a class="bt" tabindex="-1" aria-disabled="true" href="#">다음 페이지</a>
