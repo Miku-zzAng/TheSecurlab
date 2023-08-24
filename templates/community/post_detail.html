@@ -18,7 +18,25 @@
       }
       return true
     }
+
+    function QuestionDelete(post_id) {
+      var userDeleteSelect = confirm('정말 게시글을 삭제하시겠습니까?')
+      if (userDeleteSelect) {
+        window.location.href = "/community/board/" + post_id + "/delete/";
+        alert('게시글을 삭제하였습니다.')
+      }
+    }
+
+    function QuestionDeleteComment(post_id, comment_id) {
+      var userDeleteSelect = confirm('정말 댓글을 삭제하시겠습니까?')
+      if (userDeleteSelect) {
+        window.location.href = "/community/board/" + post_id + "/delete/" + comment_id;
+        alert('댓글을 삭제하였습니다.')
+      }
+    }
   </script>
+
+  
 {% endblock %}
 
 {% block content %}
@@ -26,6 +44,7 @@
 
   {% if request.user == post.writer %}
     <a href="/community/board/{{ post.id }}/modify/">수정하기</a>
+    <a href="javascript:void(0);" onclick="QuestionDelete({{ post.id }})">삭제하기</a>
   {% endif %}
 
   <div id="post-detail">
@@ -43,8 +62,13 @@
       {% for comment in post.comment_set.all %}
         <h2>{{ comment.content }}</h2>
         작성일시: {{ comment.createdDate }}<br />
-        작성자: {{ comment.writer.nickname }}님 ({{ comment.writer.username }}){% empty %}
+        작성자: {{ comment.writer.nickname }}님 ({{ comment.writer.username }})
+        {% if comment.writer == request.user %}
+        <a href="javascript:void(0);" onclick="QuestionDeleteComment({{ post.id }}, {{ comment.id }})">댓글 삭제</a>
+        {% endif %}
+        {% empty %}
         <li>아직 댓글이 없습니다.</li>
+        
       {% endfor %}
     </div>
     <form method="POST">
@@ -56,4 +80,5 @@
   <a href="/community/board/" class="btn">뒤로 가기</a><br />
   <a href="/community/board/{{ post.id|add:'-1' }}" class="btn" onclick="return checkFirstPost({{ post.id }})">이전 게시물 보기</a><br />
   <a href="/community/board/{{ post.id|add:'+1' }}" class="btn" onclick="return checkLastPost({{ post.id }}, {{ max_post_id }})">다음 게시물 보기</a><br />
-{% endblock %}
+
+  {% endblock %}
