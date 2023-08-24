@@ -5,6 +5,10 @@ body {
     flex-direction: column;
 }
 
+.submenu li:hover {
+    background-color: lightgray;
+}
+
 .tnavbar {
     background-color: rgb(255, 255, 255);
     display: flex;

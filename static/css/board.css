@@ -1,3 +1,4 @@
+
 body {
     margin: 0;
     padding: 0;
@@ -6,7 +7,7 @@ body {
 .back1 {
     width: 100%;
     height: 10vh;
-    background-image: url('community1.jpg');
+    background-image: url('/media/community1.jpg');
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
@@ -153,14 +154,20 @@ a {
 
 .board_list th,
 .board_list td {
-    padding: 10px;
-    font-size: 14px;
-}
-
-.board_list td {
+    padding: 20px;
+    font-size: 15px;
     text-align: center;
+    align-items: center;
+      /* Flexbox를 활용합니다. */
 }
 
+.board_list td img {
+    width:30px;
+    height:30px;
+    object-fit: cover;
+    vertical-align: middle;
+    margin: -4px 5px 0 0;
+}
 .board_list .tit {
     text-align: left;
 }
@@ -189,7 +196,6 @@ a {
 
 .board_list_wrap .paging a.bt {
     border: 1px solid #000;
-    background: #;
 }
 
 .board_list_wrap .paging a.num {
