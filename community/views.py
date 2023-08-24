@@ -116,3 +116,43 @@ def board_search(request):
 
     return render(request, 'community/board.html', context)
 
+@login_required(login_url="/users/login/")
+def board_delete(request, post_id):
+    targetPost = get_object_or_404(Post, pk=post_id)
+
+    if request.user != targetPost.writer:
+        messages.error(request, "삭제 권한이 없습니다.")
+        return redirect(f"/community/board/{targetPost.id}")
+
+    if request.user == targetPost.writer:
+        targetPost.delete()
+        return redirect('/community/board/')
+    else:
+        return redirect(f"/community/board/{targetPost.id}")
+    
+@login_required(login_url="/users/login/")
+def comment_delete(request, post_id, comment_id):
+    targetComment = get_object_or_404(Comment, pk=comment_id)
+    #post_id = comment_id
+
+    if request.user != targetComment.writer:
+        messages.error(request, "삭제 권한이 없습니다.")
+        return redirect(f"/community/board/{post_id}")
+    
+    if request.user == targetComment.writer:
+        targetComment.delete()
+        return redirect(f'/community/board/{post_id}')
+    else:
+        return redirect(f"/community/board/{post_id}")
+
+
+def notice(request):
+    receivePage = request.GET.get("page", "1")  # 페이지
+    postListAllData = Post.objects.annotate(num_comments=Count("comment")).order_by(
+        "-createdDate"
+    )
+    paginator = Paginator(postListAllData, 10)
+    paginator_obj = paginator.get_page(receivePage)
+    context = {"postList": paginator_obj,
+                       "action": "view",}
+    return render(request, "community/board.html", context)
