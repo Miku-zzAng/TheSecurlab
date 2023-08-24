@@ -10,4 +10,5 @@ urlpatterns = [
     path("board/search/", board_search, name='board_search'),
     path("board/<int:post_id>/delete/<int:comment_id>", comment_delete),
     path("notice/", notice,),
+    path("notice/<int:notice_id>/", notice_detail),
 ]

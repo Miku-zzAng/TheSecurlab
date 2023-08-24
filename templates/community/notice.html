@@ -57,7 +57,7 @@
         {% for post in postList %}
         <tr>
             <td>{{ post.notice_id }}</td>
-            <td style="font-weight:bold;"><a href="/community/board/{{ post.id }}">{{ post.title }}</td>
+            <td style="font-weight:bold;"><a href="/community/notice/{{ post.notice_id }}">{{ post.title }}</td>
             <td style="font-weight:bold;">관리자</td>
             <td>{{ post.createdDate }}</td>
             <td>{{ post.viewNum }}</td>
