@@ -1,0 +1,217 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.back1 {
+    width: 100%;
+    height: 0.1vh;
+    background-image: url('community1.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back1::before {
+    content: "";
+    display: block;
+    width: 100%;
+    padding-top: 50%;
+    background-image: inherit;
+    background-size: cover;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    background: rgba(0, 0, 0, 0);
+    margin-top: 350px;
+}
+
+.text-overlay h1 {
+    font-size: 7rem;
+    margin: 0;
+    padding: 0;
+    color: rgb(255, 255, 255);
+    margin-right: 60px;
+}
+
+.back-container {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    overflow: hidden;
+}
+
+.h1-container {
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.top-containter {
+    border: 1px solid rgba(128, 128, 128, 0.404);
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    /* Flex 컨테이너로 설정 */
+    justify-content: space-between;
+    /* 내용을 좌우로 분산 배치 */
+    margin-bottom: 70px;
+    margin-top: 100px;
+
+}
+
+.top-h5 {
+    margin-top: 60px;
+    margin-right: 20px;
+    font-size: larger;
+    display: inline;
+    margin-bottom: 10px;
+}
+
+.top-h2 {
+    margin-top: 100px;
+}
+
+.top-text {
+    color: gray;
+    margin-left: 3px;
+}
+
+.text-container {
+    width: 1000px;
+    margin: 0 auto;
+    margin-bottom: 80px;
+}
+
+.next-page {
+    margin-left: 10px;
+    text-align: center;
+    margin-bottom: 80px;
+    margin-top: 120px;
+
+}
+
+.bt {
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 100px;
+    font-size: 15px;
+    text-decoration: none;
+    border: 1px solid gray;
+    color: gray;
+    background-color: rgb(255, 255, 255);
+    margin: 10px;
+
+}
+
+.comment_container {
+    width: 1000px;
+    height: 40px;
+    background-color: rgb(238, 238, 238);
+    border-radius: 10px;
+    display: flex;
+    /* 추가 */
+    align-items: center;
+    margin-bottom: 30px;
+    /* 추가 */
+
+}
+
+.comment_boxtext {
+    margin-left: 20px;
+    justify-content: center;
+    margin-top: 3px;
+}
+
+.comment_box {
+    width: 1000px;
+    height: 400px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+
+}
+
+.text_delet{
+    text-align: right;
+    color: blue;
+    text-decoration: none;
+    display: flex;
+    margin-left: 930px;
+}
+
+.user_text {
+    font-weight: bolder;
+}
+
+.user_textyear {
+    color: gray;
+    font-size: small;
+    margin-left: 10px;
+}
+
+.comment {
+    margin-left: 41px;
+    margin-top: 10px;
+    display: flex;
+}
+
+.comment-userbox {
+    margin-bottom: 10px;
+}
+
+.comment_left {
+    margin-top: 10px;
+    margin-left: 4px;
+    align-items: center;
+    display: flex;
+}
+
+.comment-line {
+    width: 99%;
+    height: 1px;
+    background-color: rgb(209, 209, 209);
+    margin: 20px auto;
+}
+.commnent_input{
+    width: 100%;
+    height: 100px;
+    margin-bottom: 5px;
+    align-items: center;
+    display: flex;
+
+}
+.comment_submit{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.submit_buton{
+    font-weight: 600;
+    padding: 5px 15px;
+    border-radius: 100px;
+    font-size: 15px;
+    text-decoration: none;
+    border: 1px solid gray;
+    color: gray;
+    background-color: rgb(255, 255, 255);
+    margin-left: 926px;
+    margin-top: 2px;
+    margin-bottom: 70px;
+    width: 80px;
+}
