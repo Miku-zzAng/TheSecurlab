@@ -154,3 +154,17 @@ def notice(request):
     context = {"postList": paginator_obj,
                        "action": "view",}
     return render(request, "community/notice.html", context)
+
+
+def notice_detail(request, notice_id):
+    idTargetPost = Post.objects.get(notice_id=notice_id)
+    idTargetPost.viewNum += 1
+    idTargetPost.save()
+
+    max_post_id = Post.objects.latest('notice_id').notice_id
+
+    context = {
+        "post": idTargetPost,
+        'max_post_id': max_post_id
+    }
+    return render(request, "community/notice_detail.html", context)
