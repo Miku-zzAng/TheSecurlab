@@ -1,6 +1,7 @@
 from django.db import models
 
 class Post(models.Model):
+    viewNum = models.PositiveIntegerField("조회수", default=0)
     title = models.CharField("게시물 제목", max_length=100)
     content = models.TextField("포스트 내용")
     createdDate = models.DateTimeField("생성일시", auto_now_add=True)
