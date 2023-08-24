@@ -1,6 +1,7 @@
 from django.db import models
 
 class Post(models.Model):
+    viewNum = models.PositiveIntegerField("조회수", default=0)
     title = models.CharField("게시물 제목", max_length=100)
     content = models.TextField("포스트 내용")
     createdDate = models.DateTimeField("생성일시", auto_now_add=True)
@@ -8,6 +9,7 @@ class Post(models.Model):
         "users.User", verbose_name="작성자", on_delete=models.CASCADE
     )
     modify_date = models.DateTimeField("수정일시", null=True, blank=True)
+    notice_id = models.PositiveIntegerField("공지글", null=True, blank=True)
     thumbnailImage = models.ImageField(
         "썸네일",
         upload_to="community/board",
@@ -16,7 +18,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-
+    
 
 class PostImage(models.Model):
     targetPost = models.ForeignKey(Post, verbose_name="게시물", on_delete=models.CASCADE)

@@ -1,4 +1,3 @@
-{% extends 'base_pylog.html' %}
 
 {% block content %}
 <!-- message 표시 -->
@@ -31,10 +30,12 @@
     <a href="/community/board/" class="">뒤로 가기</a>
     <h1>Post Add</h1>
 </div>
+
 <div id="post-add">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-
+        
+        {% if action == "add" %}
         <div>
             <label>제목</label>
             <input name="title" type="text">
@@ -44,7 +45,18 @@
             <label>내용</label>
             <textarea name="content" cols="50" rows="50"></textarea>
         </div>
+        
+        {% elif action == "modify" %}
+        <div>
+            <label>제목</label>
+            <input name="title" type="text" value="{{ post.title }}">
+        </div>
 
+        <div>
+            <label>내용</label>
+            <textarea name="content" cols="50" rows="50">{{ post.content }}</textarea>
+        </div>
+        {% endif %}
         <button type="submit" class="btn btn-primary">저장하기</button>
 
     </form>
