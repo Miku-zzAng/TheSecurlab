@@ -57,7 +57,7 @@ input, textarea {
     /* 내용을 수직으로 중앙에 배치합니다. */
     justify-content: space-between;
     /* 컨텐츠 간격을 좌우로 고르게 배치합니다. */
-    padding: 3% 15%;
+    padding: 3% 12%;
     /* 내용의 여백을 추가합니다. */
     align-items: stretch;
 }

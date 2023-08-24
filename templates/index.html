@@ -32,7 +32,8 @@
                     </ul>
                 </li>
                 <li class="menu-item" style="font-family: Noto Sans KR, sans-serif;">
-                    <a href="/community/board/" style="color: inherit; text-decoration: none;">Community</a> <!--로그인 회원가입 텍스트-->
+                    <a href="/community/board/" style="color: inherit; text-decoration: none;">Community</a>
+                    <!--로그인 회원가입 텍스트-->
                     <ul class="submenu">
                         <li><a href="공지사항으로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">공지사항</a>
                         </li>
@@ -46,16 +47,16 @@
         </div>
         <div class="tright"><!--로그인 회원가입 텍스트-->
             {% if request.user.is_authenticated %}
-                <img src="{{ user.profile_image.url }}" style="width:40px; height:40px; object-fit: cover;">
-                <div style="padding: 25px" >{{ user.nickname }}님 환영합니다.</div>
+            <img src="{{ user.profile_image.url }}" style="width:40px; height:40px; object-fit: cover;">
+            <div style="padding: 25px">{{ user.nickname }}님 환영합니다.</div>
             {% else %}
-                <a href="/users/login/" class="log-item" style="font-family: Noto Sans KR, sans-serif;">Log in</a>
+            <a href="/users/login/" class="log-item" style="font-family: Noto Sans KR, sans-serif;">Log in</a>
             {% endif %}
 
             {% if request.user.is_authenticated %}
-                <a href="/users/logout/" style="color: rgb(134, 21, 21); text-decoration: none;">Log out</a>
+            <a href="/users/logout/" style="color: rgb(134, 21, 21); text-decoration: none;">Log out</a>
             {% else %}
-                <a href="/users/signup/" class="log-item" style="font-family: Noto Sans KR, sans-serif;">Sign up</a>
+            <a href="/users/signup/" class="log-item" style="font-family: Noto Sans KR, sans-serif;">Sign up</a>
             {% endif %}
         </div>
     </div>
@@ -108,6 +109,46 @@
                         웹 개발자들은 보안에 대한 이해와 인식을 높이고, 보안 전문가들은 웹 사이트의 취약점을 검증하고 보완하는 데에 도움이 되는 정보들을 수집할 수 있음
                         웹 사이트의 신뢰성과 안정성을 높이고, 보안 위협에 대응할 수 있는 능력을 키우는 데에 기여할 수 있음
                     </p>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="font-size:50px; text-align: center; margin: 200px 0 80px;">왜 중요할까요?</h2>
+        <div>
+            <div class="content-container">
+                <div class="text-container">
+                    <p class="c3">
+                        웹 사이트는 많은 정보와 데이터를 다루기 때문에 보안 위협에
+                        노출될 가능성이 매우 높음또한 웹 애플리케이션 보안은
+                        매우 중요한 이슈 중 하나로 인식되고 있음
+                        이에 대한 이해와 적극적인 대응은 웹 사이트의 개발에 있어
+                        신뢰성과 안정성을 보장하는 데에 필수적인 요소
+                        OWASP Top 10은 웹 어플리케이션에서 가장 많이 발생하는 취약점들을
+                        정리한 목록으로, 3,4년에 한번씩 업데이트되어 최신 보안 이슈를 반영하고,
+                        이 목록은 웹 개발자나 보안 전문가들이 보다 안전한 웹 사이트를 구축하고
+                        운영할 수 있도록 도움이 되는 정보들을 제공함
+                    <p>
+                </div>
+                <div class="image-container">
+                    <img class="img1" src="media/security.png">
+                </div>
+            </div>
+        </div>
+
+        <h2 style="font-size:50px; text-align: center; margin: 200px 0 80px;">어떻게 쓰일까요?</h2>
+        <div>
+            <div class="content-container">
+                <div class="image-container">
+                    <img class="img1" src="media/security.png">
+                </div>
+                <div class="text-container">
+                    <p class="c3">
+                        최신 트렌드를 반영한 웹 취약점 탐지 및 대응 강화
+                        보안 커뮤니티 형성을 통한 보안 지식, 최신 보안 이슈를 공유하고 협력
+                        보안 업데이트 및 정책 시행을 강화하여 웹 사이트 보안을 지속 유지
+                        개발자들의 자체적인 웹 사이트 보안 점검 수행
+                        보안 체크리스트를 기반으로 한 보안 컨설팅 및 서비스 제공
+                    <p>
                 </div>
             </div>
         </div>
