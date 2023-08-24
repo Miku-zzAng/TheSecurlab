@@ -5,50 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="TopBar.css">
-    <link rel="stylesheet" href="community-notice.css">
-    <script src="TopBar.js"></script>
+    <link rel="stylesheet" href="community_free.css">
 </head>
 
 <body>
-    <div class="navbar">
-        <div class="left">
-            <div class="logo-container">
-                <a href="main-page.html">
-                    <img class="logo" src="로고.png" alt="none">
-                </a>
-            </div>
-    <ul class="menu" style="align-items: center;">
-                <li><a href="보안 체크리스트로 이동.html" class="menu-item"
-                        style="font-family: Noto Sans KR, sans-serif;">Security CheckList</a></li>
-                <li class="menu-item" style="font-family: Noto Sans KR, sans-serif;">Tool
-                    <ul class="submenu">
-                        <li><a href="보안관련 자료로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">보안 관련
-                                자료</a></li>
-                        <li><a href="진단 및 대응으로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">진단 및
-                                대응 툴</a></li>
-                        <li><a href="기타 자료로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">기타 자료</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="menu-item" style="font-family: Noto Sans KR, sans-serif;">Community <!--로그인 회원가입 텍스트-->
-                    <ul class="submenu">
-                        <li><a href="공지사항으로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">공지사항</a>
-                        </li>
-                        <li><a href="FAQ로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">FAQ</a>
-                        </li>
-                        <li><a href="사용자 게시판으로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">사용자
-                                게시판</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div class="right" style="align-items: center;"><!--로그인 회원가입 텍스트-->
-            <a href="로그인으로 이동.html" class="log-item" style="font-family: Noto Sans KR, sans-serif;">Log in</a>
-            <a href="회원가입으로 이동.html" class="log-item" style="font-family: Noto Sans KR, sans-serif;">Sign up</a>
-        </div>
-    </div>
-
     <div class="back-container">
         <div class="back1">
             <div class="text-overlay">
@@ -58,23 +18,26 @@
     </div>
 
     <div class='h1-container'>
-        <h1 style="font-size: 3rem;">공지사항</h1>
+        <h1 style="font-size: 3rem;">사용자 커뮤니티</h1>
     </div>
-    <!-- 키워드 검색하는 박스에 대한 html-->
+<!-- 키워드 검색하는 박스에 대한 html-->
     <div class="search-box">
         <div class="search-container">
             <select class="select-box">
                 <option>제목</option>
                 <option>글쓴이</option>
             </select>
+
             <input class="select-box" type="text" id="search-input" placeholder="검색어를 입력하세요">
+
             <button type="button" class="search-button">
                 <img src="검색 아이콘.png" alt="검색" class="icon-search" style="align-self: center;">
             </button>
+
         </div>
     </div>
-    
-    <!-- 아래 공지사항 리스트에 대한 html-->
+
+<!-- 아래 공지사항 리스트에 대한 html-->
     <div class="board_list_wrap">
         <table class="board_list">
             <thead>
@@ -134,8 +97,8 @@
                 </tr>
             </tbody>
         </table>
-        <!--맨 아래 버튼에 대한 코드 -->
-        <div class="paging">
+<!--맨 아래 버튼에 대한 코드 -->
+        <div class="paging" style="display: flex; justify-content: space-between;align-items: center;"> 
             <a href="첫페이지로 이동" class="bt">첫 페이지</a>
             <a href="이전페이지로 이동" class="bt">이전 페이지</a>
             <a href="1페이지" class="num on">1</a>
@@ -143,8 +106,9 @@
             <a href="3페이지" class="num">3</a>
             <a href="다음페이지로 이동" class="bt">다음 페이지</a>
             <a href="마지막 페이지로 이동" class="bt">마지막 페이지</a>
-        </div>
+        </div>   
+
+        <a href="글쓰기 페이지로 이동" class="write-button" style="margin-left: 1450px;">글쓰기</a>   
+        </div>     
     </div>
 </body>
-
-</html>

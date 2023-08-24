@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="TopBar.css">
+    <script src="TopBar.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .back1 {
+            width: 100%;
+            height: 10vh;
+            background-image: url('community1.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back1::before {
+            content: "";
+            display: block;
+            width: 100%;
+            padding-top: 75%;
+            background-image: inherit;
+            background-size: cover;
+        }
+
+        .text-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            background: rgba(0, 0, 0, 0);
+            margin-top: 580px;
+        }
+
+        .text-overlay h1 {
+            font-size: 7rem;
+            margin: 0;
+            padding: 0;
+            color: rgb(255, 255, 255);
+            margin-right: 70px;
+        }
+
+        .back-container {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+        }
+
+        .h1-container {
+            text-align: center;
+            width: 100%;
+            margin-top: 100px;
+            margin-bottom: 30px;
+        }
+
+        .select-box {
+            color: gray;
+            border-radius: 4px;
+            border: 1px solid #000000;
+            padding: 8px;
+            margin-left: 7px;
+        }
+
+        .search-box {
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 1500px;
+            margin: 20px auto;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-button {
+            width: 34px;
+            height: 34px;
+            align-items: center;
+            margin-left: 1px;
+            color: white;
+            border-radius: 4px;
+        }
+
+        .icon-search {
+            width: 25px;
+            height: 25px;
+            margin-right: auto;
+            margin: 1px 2px 3px -3px;
+        }
+
+        .search-container input {
+            width: 500px;
+        }
+
+        .notice {
+            display: table-cell;
+            color: #000000;
+            font-size: larger;
+            line-height: 1rem;
+            padding: 10px 0 12px 0;
+            text-align: center;
+            vertical-align: middle;
+            font-weight: 600;
+            border-top: solid 2px #535353;
+            border-bottom: solid 1px #b5b5b5;
+        }
+
+        /*공지사항 리스트에 대한 스타일 시트*/
+
+
+        table {
+            border-collapse: collapse;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .board_list_wrap {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        .board_list {
+            width: 100%;
+            border-top: 2px solid #535353;
+            max-width: 1545px;
+
+        }
+
+        .board_list tr {
+            border-bottom: 1px solid #535353;
+        }
+
+        .board_list th,
+        .board_list td {
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        .board_list td {
+            text-align: center;
+        }
+
+        .board_list .tit {
+            text-align: left;
+        }
+
+        .board_list .tit:hover {
+            text-decoration: underline;
+        }
+
+        .board_list_wrap .paging {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0;
+        }
+
+        .board_list_wrap .paging a {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-size: 12px;
+        }
+
+        .board_list_wrap .paging a:first-child {
+            margin-left: 0;
+        }
+
+        .board_list_wrap .paging a.bt {
+            border: 1px solid #000;
+        
+        }
+
+        .board_list_wrap .paging a.num {
+            border: 1px solid#535353;
+            font-weight: 600;
+            color: #535353;
+        }
+
+        .board_list_wrap .paging a.num.on { /*해당 페이지일 떄 숫자 박스에 대한 css*/
+            background: gray;
+            color: #fff;
+        }
+
+        .write-button{
+            background: gray;
+            color: white;
+            font-weight: bold;
+            padding: 19px 35px;
+            border-radius: 100px;
+            font-size: 12px;
+            
+        }
+        
+
+    </style>
+</head>
+
+
+<body>
+    <div class="back-container">
+        <div class="back1">
+            <div class="text-overlay">
+                <h1>Community</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class='h1-container'>
+        <h1 style="font-size: 3rem;">FAQ</h1>
+    </div>
+<!-- 키워드 검색하는 박스에 대한 html-->
+    <div class="search-box">
+        <div class="search-container">
+            <select class="select-box">
+                <option>제목</option>
+                <option>글쓴이</option>
+            </select>
+
+            <input class="select-box" type="text" id="search-input" placeholder="검색어를 입력하세요">
+
+            <button type="button" class="search-button">
+                <img src="검색 아이콘.png" alt="검색" class="icon-search" style="align-self: center;">
+            </button>
+
+        </div>
+    </div>
+
+<!-- 아래 공지사항 리스트에 대한 html-->
+    <div class="board_list_wrap">
+        <table class="board_list">
+            <thead>
+                <tr>
+                    <th>순번</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                    <th>조회수</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5</td>
+                    <td class="tit">
+                        <a href="제목 클릭시.html">집에 가고싶다다다다다다다다다ㅏ다다다다닫</a>
+                    </td>
+                    <td>관리자</td>
+                    <td>2022-08-24</td>
+                    <td>123</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td class="tit">
+                        <a href="제목 클릭시.html">피시방 가고싶다다다다다다ㅏ다다닫</a>
+                    </td>
+                    <td>관리자</td>
+                    <td>2022-08-24</td>
+                    <td>234</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td class="tit">
+                        <a href="제목 클릭시.html">노래방 가고싶다</a>
+                    </td>
+                    <td>관리자</td>
+                    <td>2022-08-24</td>
+                    <td>456</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td class="tit">
+                        <a href="제목 클릭시.html">당구치러 가고싶다</a>
+                    </td>
+                    <td>관리자</td>
+                    <td>2022-08-24</td>
+                    <td>678</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td class="tit">
+                        <a href="제목 클릭시.html">풋살하고 싶다</a>
+                    </td>
+                    <td>관리자</td>
+                    <td>2022-08-24</td>
+                    <td>890</td>
+                </tr>
+            </tbody>
+        </table>
+<!--맨 아래 버튼에 대한 코드 -->
+        <div class="paging" style="display: flex; justify-content: space-between;align-items: center;"> 
+            <a href="첫페이지로 이동" class="bt">첫 페이지</a>
+            <a href="이전페이지로 이동" class="bt">이전 페이지</a>
+            <a href="1페이지" class="num on">1</a>
+            <a href="2페이지" class="num">2</a>
+            <a href="3페이지" class="num">3</a>
+            <a href="다음페이지로 이동" class="bt">다음 페이지</a>
+            <a href="마지막 페이지로 이동" class="bt">마지막 페이지</a>
+        </div>   
+
+        <a href="글쓰기 페이지로 이동" class="write-button" style="margin-left: 1450px;">글쓰기</a>   
+        </div>     
+    </div>
+</body>
