@@ -1,84 +1,148 @@
 {% extends 'base_topbar.html' %}
 {% load filter %}
-
+{% load static %}
 {% block head %}
-  <script>
-    function checkLastPost(post_id, max_post_id) {
-      if (post_id >= max_post_id) {
-        alert('마지막 게시물입니다.')
-        return false
-      }
-      return true
+<script>
+  function checkLastPost(post_id, max_post_id) {
+    if (post_id >= max_post_id) {
+      alert('마지막 게시물입니다.')
+      return false
     }
-    
-    function checkFirstPost(post_id) {
-      if (post_id == 1) {
-        alert('마지막 게시물입니다.')
-        return false
-      }
-      return true
-    }
+    return true
+  }
 
-    function QuestionDelete(post_id) {
-      var userDeleteSelect = confirm('정말 게시글을 삭제하시겠습니까?')
-      if (userDeleteSelect) {
-        window.location.href = "/community/board/" + post_id + "/delete/";
-        alert('게시글을 삭제하였습니다.')
-      }
+  function checkFirstPost(post_id) {
+    if (post_id == 1) {
+      alert('마지막 게시물입니다.')
+      return false
     }
+    return true
+  }
 
-    function QuestionDeleteComment(post_id, comment_id) {
-      var userDeleteSelect = confirm('정말 댓글을 삭제하시겠습니까?')
-      if (userDeleteSelect) {
-        window.location.href = "/community/board/" + post_id + "/delete/" + comment_id;
-        alert('댓글을 삭제하였습니다.')
-      }
+  function QuestionDelete(post_id) {
+    var userDeleteSelect = confirm('정말 게시글을 삭제하시겠습니까?')
+    if (userDeleteSelect) {
+      window.location.href = "/community/board/" + post_id + "/delete/";
+      alert('게시글을 삭제하였습니다.')
     }
-  </script>
+  }
 
-  
+  function QuestionDeleteComment(post_id, comment_id) {
+    var userDeleteSelect = confirm('정말 댓글을 삭제하시겠습니까?')
+    if (userDeleteSelect) {
+      window.location.href = "/community/board/" + post_id + "/delete/" + comment_id;
+      alert('댓글을 삭제하였습니다.')
+    }
+  }
+
+  document.getElementById("commentForm").addEventListener("submit", function(event){
+    const commentInput = document.querySelector(".comment_input");
+    const errorMessage = document.getElementById("errorMessage");
+
+    if(commentInput.value.length < 5) {
+        event.preventDefault();
+        errorMessage.textContent = "5자 이상의 댓글을 달아주세요!";
+    } else {
+        errorMessage.textContent = "";
+    }
+});
+
+</script>
+<link rel="stylesheet" href="{% static 'css/post_detail.css' %}">
 {% endblock %}
 
+
+
 {% block content %}
-  <h1>커뮤니티 게시판</h1>
-
-  {% if request.user == post.writer %}
-    <a href="/community/board/{{ post.id }}/modify/">수정하기</a>
-    <a href="javascript:void(0);" onclick="QuestionDelete({{ post.id }})">삭제하기</a>
-  {% endif %}
-
-  <div id="post-detail">
-    <h1>
-      {{ post.id }}<br />{{ post.title }}
-      {% if post.modify_date %}
-        <span style="color:gray; font-size:12pt; font-weight: normal;">(최근 수정한 날짜: {{ post.modify_date }})</span>
-      {% endif %}
-    </h1>
-    <h1>{{ post.content|mark }}</h1><br />
-    <h1>작성자: {{ post.writer.nickname }}님 ({{ post.writer.username }})</h1><br />
-    <h1>작성일시: {{ post.createdDate }}</h1>
-    <hr />
-    <div>
-      {% for comment in post.comment_set.all %}
-        <h2>{{ comment.content }}</h2>
-        작성일시: {{ comment.createdDate }}<br />
-        작성자: {{ comment.writer.nickname }}님 ({{ comment.writer.username }})
-        {% if comment.writer == request.user %}
-        <a href="javascript:void(0);" onclick="QuestionDeleteComment({{ post.id }}, {{ comment.id }})">댓글 삭제</a>
-        {% endif %}
-        {% empty %}
-        <li>아직 댓글이 없습니다.</li>
-        
-      {% endfor %}
+<div class="back-container">
+  <div class="back1">
+    <div class="text-overlay">
+      <h1>Community</h1>
     </div>
-    <form method="POST">
-      {% csrf_token %}
-      <textarea name="comment"></textarea>
-      <button type="submit" class="btn btn-primary">댓글작성</button>
-    </form>
   </div>
-  <a href="/community/board/" class="btn">뒤로 가기</a><br />
-  <a href="/community/board/{{ post.id|add:'-1' }}" class="btn" onclick="return checkFirstPost({{ post.id }})">이전 게시물 보기</a><br />
-  <a href="/community/board/{{ post.id|add:'+1' }}" class="btn" onclick="return checkLastPost({{ post.id }}, {{ max_post_id }})">다음 게시물 보기</a><br />
+</div>
 
-  {% endblock %}
+
+<div class="top-containter">
+	<div>
+  <h2 clss="'top-h2" style="margin-left: 30px;">{{ post.title }}
+	{% if post.modify_date %}
+	<span style="color:gray; font-size:9pt;">(최근 수정: {{post.modify_date}})</span>
+	{% endif %}
+	{% if post.num_comments > 0 %}
+	<span style="color:lightcoral; font-weight: bold;">　{{ post.num_comments }}</span>
+	{% endif %}</a></td>
+  </h2>
+</div>
+  <div class="top-h5">
+    <h5 class="top-text" style="display: inline;">등록인</h5>
+    <h5 style="display: inline;">{{ post.writer.nickname }} ({{ post.writer.username }})</h5>
+    <!--<h5 class="top-text" style="display: inline;">글 번호</h5>-->
+    <!--<h5 style="display: inline;">{{ post.id }}</h5>-->
+    <h5 class="top-text" style="display: inline;">작성일</h5>
+    <h5 style="display: inline;">{{ post.createdDate }}</h5>
+    <h5 class="top-text" style="display: inline;">조회수</h5>
+    <h5 style="display: inline;">{{ post.viewNum }}</h5>
+  </div>
+</div>
+
+<div class=" text-container">
+  <p>{{ post.content|mark }}</p>
+	{% if request.user == post.writer %}
+	<div class="edit-and-delete">
+		<a href="/community/board/{{ post.id }}/modify/" class="submit_buton" type="button">수정</a><br>
+		<a href="javascript:void(0);" onclick="QuestionDelete({{ post.id }})" class="submit_buton" style="margin-left: 10px;" type="button">삭제</a>
+	</div>
+	{% endif %}
+</div>
+
+
+
+<div class="comment_box">
+
+	<div class=" comment_container">
+		<div class="comment_boxtext">
+			<h3 class="comment_text">
+				댓글
+					{% if post.num_comments > 0 %}
+					({{ post.num_comments }})
+					{% else %}
+					(0)
+					{% endif %}
+			</h3>
+		</div>
+	</div>
+
+	{% for comment in post.comment_set.all %}
+	<div class="comment-userbox">
+		<div class="comment_left">
+			<img src="{{ comment.writer.profile_image.url }}" alt="프로필" style="height: 30px; width: 30px; margin-right: 5px;">
+			<a class="user_text" style="justify-content: center; margin-left: 3px;">{{ comment.writer.nickname }} ({{ comment.writer.username }})</a>
+			<a class="user_textyear">{{ comment.createdDate }}</a>
+		</div>
+		<a class="comment" style= >{{ comment.content }}</a>
+			{% if comment.writer == request.user %}
+			<a href="javascript:void(0);" class="text_delet" onclick="QuestionDeleteComment({{ post.id }}, {{ comment.id }})">댓글 삭제</a>
+			{% endif %}
+		<div class="comment-line"></div>
+	</div>
+	{% empty %}
+	<li>아직 댓글이 없습니다.</li>
+	<div class="comment-line"></div>
+	{% endfor %}
+
+	<form method="POST">
+		{% csrf_token %}
+		<textarea class="commnent_input" type="text" name="comment" placeholder="댓글을 작성해주세요."></textarea>
+		<button class="submit_buton" type="submit" style="margin-left:926px; ">등록</button>
+	</form>
+
+	<div class="next-page">
+		<a href="/community/board/{{ post.id|add:'-1' }}" class="bt" onclick="return checkFirstPost({{ post.id }})">이전 게시글</a>
+		<a href="/community/board/" class="bt" style="padding: 10px 30px;">글 목록</a>
+		<a href="/community/board/{{ post.id|add:'+1' }}" class="bt" onclick="return checkLastPost({{ post.id }}, {{ max_post_id }})">다음 게시글</a>
+	</div>
+
+</div>
+
+{% endblock %}

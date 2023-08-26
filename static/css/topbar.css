@@ -3,10 +3,12 @@ body {
     font-family: "Noto Sans KR", sans-serif;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 footer {
-    margin-top: 300px;
+    margin-top: 200px;
+    margin-bottom: 0;
     font-size: 10pt;
     background-color: rgb(83, 74, 74);
     padding: 20px;

@@ -31,7 +31,7 @@ class PostImage(models.Model):
 
 class Comment(models.Model):
     targetPost = models.ForeignKey(Post, on_delete=models.CASCADE)
-    content = models.TextField("댓글 내용")
+    content = models.TextField("댓글 내용", blank=False)
     createdDate = models.DateTimeField("생성일시", auto_now_add=True)
     modify_date = models.DateTimeField("수정일시", null=True, blank=True)
     writer = models.ForeignKey(

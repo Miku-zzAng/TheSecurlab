@@ -21,6 +21,13 @@ class CustomUserManager(BaseUserManager):
             extra_fields['nickname'] = username
 
         return self._create_user(username, email, password, **extra_fields)
+    
+    def create_user(self, username, email=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', False)
+        extra_fields.setdefault('is_superuser', False)
+        if 'nickname' not in extra_fields:
+            extra_fields['nickname'] = username
+        return self._create_user(username, email, password, **extra_fields)
 
 
 # 그리고 나서 User 클래스를 정의합니다.

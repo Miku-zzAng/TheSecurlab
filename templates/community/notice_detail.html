@@ -2,68 +2,68 @@
 {% load filter %}
 {% load static %}
 {% block head %}
-  <script>
-    function checkLastPost(post_id, max_post_id) {
-      if (post_id >= max_post_id) {
-        alert('마지막 게시물입니다.')
-        return false
-      }
-      return true
+<script>
+  function checkLastPost(post_id, max_post_id) {
+    if (post_id >= max_post_id) {
+      alert('마지막 게시물입니다.')
+      return false
     }
-    
-    function checkFirstPost(post_id) {
-      if (post_id == 1) {
-        alert('마지막 게시물입니다.')
-        return false
-      }
-      return true
+    return true
+  }
+
+  function checkFirstPost(post_id) {
+    if (post_id == 1) {
+      alert('마지막 게시물입니다.')
+      return false
     }
-  </script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{% static 'css/notice_detail.css' %}">
+    return true
+  }
+</script>
+<link rel="stylesheet" href="{% static 'css/notice_detail.css' %}">
 {% endblock %}
 
-{% block content %}
-<div class="back-container">
-    <div class="back1">
-        <div class="text-overlay">
-            <h1>Community</h1>
-        </div>
-    </div>
-</div>
 
+
+{% block content %}
+
+
+<div class="back-container">
+  <div class="back1">
+    <div class="text-overlay">
+      <h1>Community</h1>
+    </div>
+  </div>
+</div>
 <div class='h1-container'>
-    <h1 style="font-size: 3rem;">공지사항</h1>
+  <h1 style="font-size: 3rem;">공지사항</h1>
 </div>
 
 
 <div class="top-containter">
-    <h2 clss="'top-h2" style="margin-left: 20px;">{{ post.title }}
-        {% if post.modify_date %}
-            <span style="color:gray; font-size:12pt; font-weight: normal;">(최근 수정한 날짜: {{ post.modify_date }})</span>
-      {% endif %}
-    </h2>
-    <div class="top-h5">
-        <h5 class="top-text" style="display: inline;">작성자</h5>
-        <h5 style="display: inline; color:red;">관리자</h5>
-        <h5 class="top-text" style="display: inline;">공지번호</h5>
-        <h5 style="display: inline;">{{ post.notice_id }}</h5>
-        <h5 class="top-text" style="display: inline;">작성일</h5>
-        <h5 style="display: inline;">{{ post.createdDate }}</h5>
-        <h5 class="top-text" style="display: inline;">조회수</h5>
-        <h5 style="display: inline;">{{ post.viewNum }}</h5>
-    </div>
+  <h2 clss="'top-h2">{{ post.title }}
+    {% if post.modify_date %}
+    <span style="color:gray; font-size:12pt; font-weight: normal;">(최근 수정한 날짜: {{ post.modify_date }})</span>
+    {% endif %}
+  </h2>
+  <div class="top-h5">
+    <h5 class="top-text" style="display: inline;">작성자</h5>
+    <h5 style="display: inline; color:red;">관리자</h5>
+    <h5 class="top-text" style="display: inline;">공지번호</h5>
+    <h5 style="display: inline;">{{ post.notice_id }}</h5>
+    <h5 class="top-text" style="display: inline;">작성일</h5>
+    <h5 style="display: inline;">{{ post.createdDate }}</h5>
+    <h5 class="top-text" style="display: inline;">조회수</h5>
+    <h5 style="display: inline;">{{ post.viewNum }}</h5>
+  </div>
+</div>
+<div class=" text-container">
+  {{ post.content|mark }}
+</div>
 </div>
 
-
-    <div class=" text-container">
-        {{ post.content|mark }}
-    </div>
-  </div>
-
-  <div class="next-page">
-    <a href="/community/notice/{{ post.notice_id|add:'-1' }}" class="bt" onclick="return checkFirstPost({{ post.notice_id }})">이전 공지글</a>
-    <a href="/community/notice/" class="bt" style="padding: 10px 30px;">글 목록</a>
-    <a href="/community/notice/{{ post.notice_id|add:'+1' }}" class="bt" onclick="return checkLastPost({{ post.notice_id }}, {{ max_post_id }})">다음 공지글</a>
-  </div>
+<div class="next-page">
+  <a href="/community/notice/{{ post.notice_id|add:'-1' }}" class="bt" onclick="return checkFirstPost({{ post.notice_id }})">이전 공지글</a>
+  <a href="/community/notice/" class="bt" style="padding: 10px 30px;">글 목록</a>
+  <a href="/community/notice/{{ post.notice_id|add:'+1' }}" class="bt" onclick="return checkLastPost({{ post.notice_id }}, {{ max_post_id }})">다음 공지글</a>
+</div>
 {% endblock %}
