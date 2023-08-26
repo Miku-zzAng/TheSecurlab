@@ -5,81 +5,252 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="TopBar.css">
     <link rel="stylesheet" href="secucheck.css">
-    <script src="TopBar.js"></script>
     <title>secuCheckpage</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () { // 문서가 모두 열리면 함수를 실행하는 이벤트리스너
+            let targetPosition = 200;
+            let currentPosition = 200;
+            const navbar = document.querySelector(".navbar2"); // 해당 class 가진 태그를 각각의 변수에 할당
+            const navbarCover = document.querySelector(".navbar-cover");
+
+            function smoothFollow() { // current를 target 방향으로 부드럽게 움직이게 하는 함수.
+                currentPosition += (targetPosition - currentPosition) * 0.9; // currentPosition 값이 실시간으로 바뀌며 부드럽게 움직여짐.
+                navbar.style.top = currentPosition + "px"; // 네비바와 커버 css의 top 속성을 현재위치 값으로 동적으로 바꿔감.
+                navbarCover.style.top = currentPosition + "px";
+                requestAnimationFrame(smoothFollow);
+            }
+
+            window.addEventListener("scroll", function () { // 스크롤 행위에 대한 액션리스너
+                targetPosition = window.scrollY + 200; // 사용자가 스크롤 할때마다 현재 스크롤 위치에 100을 더하여 targetPosition 갱신
+            });
+
+            smoothFollow();
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const topics = document.querySelectorAll('.topic-wrapper');
+
+            topics.forEach(topic => {
+                let tree = topic.querySelector('.tree-wrapper');
+
+                topic.addEventListener('click', function () {
+                    // 다른 모든 tree-wrapper를 닫음
+                    topics.forEach(innerTopic => {
+                        if (innerTopic !== topic) { // 현재 클릭된 주제를 제외하고
+                            let innerTree = innerTopic.querySelector('.tree-wrapper');
+                            innerTree.style.height = '0px';
+                        }
+                    });
+
+                    if (tree.style.height === '0px' || tree.style.height === '') {
+                        tree.style.height = tree.scrollHeight + 'px';
+                    } else {
+                        tree.style.height = '0px';
+                    }
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // 모든 <a> 태그에 이벤트 리스너 추가
+            document.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault(); // 기본 동작 중지
+                    const targetId = this.getAttribute('href'); // 연결된 요소의 ID 가져오기
+                    const targetElement = document.querySelector(targetId); // 해당 요소 선택
+                    if (targetElement) {
+                        const rect = targetElement.getBoundingClientRect();
+                        const offset = rect.top + window.pageYOffset - (window.innerHeight / 2) + (rect.height / 2);
+                        window.scrollTo({
+                            top: offset,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+
+        // 해당 로직을 함수로 분리
+        function adjustTopicVisibility() {
+            const topics = document.querySelectorAll('.topic-wrapper');
+            const middle = window.innerHeight / 2;
+
+            let closest = null;
+            let closestDistance = Infinity;
+
+            topics.forEach(topic => {
+                const box = topic.getBoundingClientRect();
+                const focusPoint = box.top + (box.height / 2);
+                const distance = Math.abs(middle - focusPoint);
+
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closest = topic;
+                }
+
+                topic.classList.remove('active');
+                topic.classList.remove('nearby1');
+                topic.classList.remove('nearby2');
+            });
+
+            if (closest) {
+                closest.classList.add('active');
+                const prevElement = closest.previousElementSibling;
+                const nextElement = closest.nextElementSibling;
+
+                if (prevElement) prevElement.classList.add('nearby1');
+                if (nextElement) nextElement.classList.add('nearby1');
+
+                const prevElement2 = prevElement ? prevElement.previousElementSibling : null;
+                const nextElement2 = nextElement ? nextElement.nextElementSibling : null;
+
+                if (prevElement2) prevElement2.classList.add('nearby2');
+                if (nextElement2) nextElement2.classList.add('nearby2');
+            }
+        }
+
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            adjustTopicVisibility();
+            window.addEventListener('scroll', adjustTopicVisibility);
+        });
+
+
+    </script>
 </head>
 
 
 <body>
-    <div class="navbar">
-        <div class="left">
-            <div class="logo-container">
-                <a href="main-page.html">
-                    <img class="logo" src="로고.png" alt="none">
-                </a>
+    <div class="content-wrapper">
+        <div class="navbar2">
+            <p style="font-weight: bolder; font-size:20px; color:red;">OWASP Top 10</p>
+            <a href="#bac">Broken Access Control</a>
+            <a href="#cf">Cryptographic Failures</a>
+            <a href="#i">Injection</a>
+            <a href="#id">Insure Design</a>
+            <a href="#sm">Security Misconfiguration</a>
+            <a href="#vaoc">Vulnerable and Outdated Components</a>
+            <a href="#iaaf">Identification and Authentication Failures</a>
+            <a href="#sadif">Software and Data Integrity Failures</a>
+            <a href="#slamf">Security Logging and Monitoring Failures</a>
+            <a href="#ssrf">Server-Side Request Forgery</a>
+        </div>
+        <div class="navbar-cover"></div>
+
+
+        <div class='h1-container'>
+            <div class="topic-wrapper" id="bac">1. 접근 권한 취약점<br>(Broken Access Control)
+                <div class="tree-wrapper">
+                    <p>정의 
+                        일반적으로 웹 서비스에서 접근 불가능한 정보는 존재하지 않는 것처럼 노출하지 않거나 별도의 인증을 거치도록 하면서 정보를 보호한다. 
+                        취약한 접근 제어란 이러한 접근 제어 정책을 우회하거나 의도치 않은 권한 상승으로 인해 기밀 정보가 노출될 수 있는 취약점을 의미한다.
+                        공격자는 이러한 취약점을 악용하여 사용자의 계정 액세스, 중요한 파일 보기, 사용자의 데이터 수정, 액세스 권한 변경 등과 같은 권한 없는 기능 또는 데이터에 액세스 할 수 있다. 
+                        사용자로 하여금 허가되지 않은 정보에 접근할 수 없도록 서비스의 정책을 강제하는 것을 의미한다. 1. injectionVelit enim irure reprehenderit nisi incididunt in. Ut fugiat fugiat
+                        fugiat nostrud sint ullamco aute consequat officia proident Lorem. Ad do occaecat fugiat
+                        incididunt
+                        sunt
+                        exercitation ipsum id adipisicing et.
+                        Non Lorem magna ea nulla consequat consectetur magna. Adipisicing non reprehenderit aute elit id
+                        sit
+                        reprehenderit aute eu tempor cupidatat. Est minim irure laboris amet reprehenderit ullamco. Do
+                        est
+                        magna
+                        ex
+                        tempor veniam officia culpa ut nisi eiusmod dolore enim.Magna ea ea ut incididunt. Cupidatat
+                        aliqua
+                        ullamco duis duis reprehenderit dolor elit tempor. Excepteur
+                        nostrud mollit officia magna elit ullamco nostrud ullamco quis proident consequat culpa velit.
+                        Eu
+                        adipisicing culpa eu qui ex in irure qui officia quis pariatur.
+
+                        Commodo duis est non fugiat. Magna duis sit nulla excepteur sunt mollit cillum duis ea irure
+                        cillum.
+                        Id
+                        dolore cillum sint ad dolor ullamco et. Sunt incididunt do sint proident.Magna ea ea ut
+                        incididunt.
+                        Cupidatat aliqua ullamco duis duis reprehenderit dolor elit tempor. Excepteur
+                        nostrud mollit officia magna elit ullamco nostrud ullamco quis proident consequat culpa velit.
+                        Eu
+                        adipisicing culpa eu qui ex in irure qui officia quis pariatur.
+
+                        Commodo duis est non fugiat. Magna duis sit nulla excepteur sunt mollit cillum duis ea irure
+                        cillum.
+                        Id
+                        dolore cillum sint ad dolor ullamco et. Sunt incididunt do sint proident.</p>
+                    </p>
+                </div>
             </div>
-            <ul class="menu" style="align-items: center;">
-                <li><a href="보안 체크리스트로 이동.html" class="menu-item"
-                        style="font-family: Noto Sans KR, sans-serif;">Security CheckList</a></li>
-                <li class="menu-item" style="font-family: Noto Sans KR, sans-serif;">Tool
-                    <ul class="submenu">
-                        <li><a href="보안관련 자료로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">보안 관련
-                                자료</a></li>
-                        <li><a href="진단 및 대응으로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">진단 및
-                                대응 툴</a></li>
-                        <li><a href="기타 자료로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">기타 자료</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="menu-item" style="font-family: Noto Sans KR, sans-serif;">Community <!--로그인 회원가입 텍스트-->
-                    <ul class="submenu">
-                        <li><a href="공지사항으로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">공지사항</a>
-                        </li>
-                        <li><a href="FAQ로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">FAQ</a>
-                        </li>
-                        <li><a href="사용자 게시판으로 이동.html" style="color: rgb(112, 112, 112); text-decoration: none;">사용자
-                                게시판</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div class="right" style="align-items: center;"><!--로그인 회원가입 텍스트-->
-            <a href="로그인으로 이동.html" class="log-item" style="font-family: Noto Sans KR, sans-serif;">Log in</a>
-            <a href="회원가입으로 이동.html" class="log-item" style="font-family: Noto Sans KR, sans-serif;">Sign up</a>
-        </div>
-    </div>
 
+            <div class="topic-wrapper" id="cf">2. 암호화 오류<br>(Cryptographic Failures)
+                <div class="tree-wrapper">
+                    <p>1. injectionVelit enim irure reprehenderit nisi incididunt in. Ut fugiat fugiat
+                        fugiat nostrud sint ullamco aute consequat officia proident Lorem. Ad do occaecat fugiat
+                        incididunt
+                        sunt
+                        exercitation ipsum id adipisicing et.
+                        Non Lorem magna ea nulla consequat consectetur magna. Adipisicing non reprehenderit aute elit id
+                        sit
+                        reprehenderit aute eu tempor cupidatat. Est minim irure laboris amet reprehenderit ullamco. Do
+                        est
+                        magna
+                        ex
+                        tempor veniam officia culpa ut nisi eiusmod dolore enim.Magna ea ea ut incididunt. Cupidatat
+                        aliqua
+                        ullamco duis duis reprehenderit dolor elit tempor. Excepteur
+                        nostrud mollit officia magna elit ullamco nostrud ullamco quis proident consequat culpa velit.
+                        Eu
+                        adipisicing culpa eu qui ex in irure qui officia quis pariatur.
 
-    <!-- 스크롤 네비바 -->
-    <div class="navbar2">
-        <a href="#">Broken Object Level Authorization.</a>
-        <a href="#">Broken Authentication.</a>
-        <a href="#">Broken Object Property Level Authorization.</a>
-        <a href="#">Unrestricted Resource Consumption.</a>
-        <a href="#">Broken Function Level Authorization</a>
-        <a href="#">Server-Side Request Forgery</a>
-        <a href="#">Security Misconfiguration</a>
-        <a href="#">Lack of Protection From Automated Threats</a>
-        <a href="#">Improper Assets Management</a>
-        <a href="#">Unsafe Consumption of APIs</a>
-    </div>
+                        Commodo duis est non fugiat. Magna duis sit nulla excepteur sunt mollit cillum duis ea irure
+                        cillum.
+                        Id
+                        dolore cillum sint ad dolor ullamco et. Sunt incididunt do sint proident.Magna ea ea ut
+                        incididunt.
+                        Cupidatat aliqua ullamco duis duis reprehenderit dolor elit tempor. Excepteur
+                        nostrud mollit officia magna elit ullamco nostrud ullamco quis proident consequat culpa velit.
+                        Eu
+                        adipisicing culpa eu qui ex in irure qui officia quis pariatur.
 
-
-    <div class='h1-container'>
-        <h1 style="font-size: 3rem;">1. injection</h1>
-    </div>
-
-    <footer>
-        <div>
-            개발 2팀 | 대표 김선혁<br>
-            안동시 송천동 경동로 1375 공학2호관 3층<br>
-            <br>
-            <b>&copy; Development Team 2</b>
-            <br>
-        </div>
-    </footer>
+                        Commodo duis est non fugiat. Magna duis sit nulla excepteur sunt mollit cillum duis ea irure
+                        cillum.
+                        Id
+                        dolore cillum sint ad dolor ullamco et. Sunt incididunt do sint proident.</p>
+                    </p>
+                </div>
+            </div>
+            <div class="topic-wrapper" id="i">3. 인젝션<br>(Injection)
+                <div class="tree-wrapper">
+                </div>
+            </div>
+            <div class="topic-wrapper" id="id">4. 안전하지 않은 설계<br>(Insure Design)
+                <div class="tree-wrapper">
+                </div>
+            </div>
+            <div class="topic-wrapper" id="sm">5. 보안 설정 오류<br>(Security Misconfiguration)
+                <div class="tree-wrapper">
+                </div>
+            </div>
+            <div class="topic-wrapper" id="vaoc">6. 취약하고 오래된 소스<br>(Vulnerable and Outdated Components)
+                <div class="tree-wrapper">
+                </div>
+            </div>
+            <div class="topic-wrapper" id="iaaf">7. 식별 및 인증 오류<br>(Identification and Authentication Failures)
+                <div class="tree-wrapper">
+                </div>
+            </div>
+            <div class="topic-wrapper" id="sadif">8. 소프트웨어 및 데이터 무결성 오류<br>(Software and Data Integrity Failures)
+                <div class="tree-wrapper">
+                </div>
+            </div>
+            <div class="topic-wrapper" id="slamf">9. 보안 로깅 및 모니터링 실패<br>(Security Logging and Monitoring Failures)                <div class="tree-wrapper">
+                </div>
+            </div>
+            <div class="topic-wrapper" id="ssrf">10. 서버 측 요청 위조<br>(Server-Side Request Forgery)
+                <div class="tree-wrapper">
+                </div>
+            </div>
 
 </body>
 
