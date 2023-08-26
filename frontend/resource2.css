@@ -55,15 +55,15 @@
     color: rgb(255, 255, 255);
     margin-right: 100px;
 }
+
 .h1-container {
     text-align: center;
     width: 100%;
     margin-top: 300px;
-    margin-bottom: 290px;
+    margin-bottom: 200px;
 }
 
-
-
+/*
 .article-first {
     display: flex;
     flex-direction: column;
@@ -72,16 +72,7 @@
     left: 70px;
 }
 
-.article-second {
-    margin-top: 250px;
-    display: flex;
-    flex-direction: column;
-    gap: 100px;
-    position: relative;
-    left: 70px;
-}
-
-.article-third {
+.article-second, .article-third {
     margin-top: 250px;
     display: flex;
     flex-direction: column;
@@ -98,18 +89,16 @@
     /*margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 112px;
-    margin-inline-end: 0px;*/
+    margin-inline-end: 0px;
 }
+*/
 
 .allarticle1 {
-    display: flex;
-    justify-content: space-between;
-    /* article들을 좌우로 고르게 배치 */
-    gap: 48px;
-    width: 50%;
+    font-family: 'Noto Sans Demilight', 'Noto Sans KR';
+    font-size: 16px;
 }
 
-.article1, .article3 {
+.article1 {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -117,6 +106,7 @@
     padding: 3% 15%;
     align-items: center;
     gap: 48px;
+    margin-bottom: 80px;
 }
 
 .article2 {
@@ -126,8 +116,25 @@
     justify-content: center;
     align-items: center;
     gap: 48px;
+    margin-bottom: 80px;
+
 }
-.ph1, .ph2, .ph3 {
+
+.article3 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3% 15%;
+    align-items: center;
+    gap: 48px;
+    margin-bottom: 80px;
+
+}
+
+.ph1,
+.ph2,
+.ph3 {
     display: flex;
     /* Flexbox 사용 */
     justify-content: center;
@@ -136,20 +143,36 @@
     /* 세로축 중앙 정렬 */
 }
 
-#img1, #img2, #img3 {
-    width: 400px;
+#img1,
+#img2,
+#img3 {
+    width: 800px;
     /* 이미지의 폭을 원본 비율에 맞게 자동 조절 */
     height: 450px;
     border-radius: 10px;
 }
-.wr1, .wr2, .wr3 {
+
+.wr1,
+.wr2,
+.wr3 {
     display: flex;
-    /* margin-right: 60px; */
+    flex: 1;
     flex-direction: column;
-    justify-content: center;
-    /* 가로축 중앙 정렬 */
-    align-items: center;
-    /* 세로축 중앙 정렬 */
+    justify-content: center;/* 가로축 중앙 정렬 */
+    align-items: center;/* 세로축 중앙 정렬 */
+    margin-top: 30px;
+    text-align: center;
+    margin-right: 40px;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    width: 60%;
+}
+
+h7 {
+    font-size: 20px;
 }
 
 
@@ -164,7 +187,7 @@
 
 
 footer {
-    margin-top: 500px;
+    margin-top: 300px;
     font-size: 20px;
     background-color: rgb(83, 74, 74);
     padding: 50px;
