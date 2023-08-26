@@ -7,6 +7,9 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from community.forms import PostForm
 
+def indexBoard(request):
+    return redirect(f"/community/notice/")
+
 def board(request):
     receivePage = request.GET.get("page", "1")  # 페이지
     postListAllData = Post.objects.filter(notice_id__isnull=True).annotate(num_comments=Count("comment")).order_by(
