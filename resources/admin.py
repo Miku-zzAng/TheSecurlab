@@ -6,10 +6,10 @@ from django.utils.html import format_html
 @admin.register(SharePost)
 class SharePostAdmin(admin.ModelAdmin):
     list_display = [
-        "title", "id", "content", "thumbnail_preview",
+        "title", "id", "content", "thumbnail_preview", "group_id",
     ]
     fieldsets = [ 
-        ("기본 정보", {"fields": ("title", "content", "subinfo", "thumbnailImage",)}),
+        ("기본 정보", {"fields": ("title", "content", "subinfo", "thumbnailImage","group_id")}),
     ]
 
     def thumbnail_preview(self, obj):
