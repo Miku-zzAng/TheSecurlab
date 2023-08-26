@@ -1,0 +1,53 @@
+.h1-container {
+    text-align: center;
+    width: 100%;
+    margin-top: 300px;
+    margin-bottom: 290px;
+}
+
+.navbar2 {
+    background-color: #333;
+    position: fixed;
+    width: 100%;
+    transition: top 0.5s; /* 움직임 효과를 위한 트랜지션 속성 */
+  }
+  
+  .navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  .navbar a:hover {
+    background-color: #381c1c;
+    color: rgb(243, 231, 231);
+  }
+  
+  /* 스크롤 시 네비게이션 바가 나타나게 설정 */
+  /* 스크롤 양에 따라 top 값 조절 */
+  body.scrolling .navbar {
+    top: 0;
+  }
+
+.body {
+    padding: 0px;
+    display: flex;
+    text-align: center;
+    font-size: 20px;
+    background-color: rgb(83, 74, 74);
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+footer {
+    margin-top: 500px;
+    font-size: 20px;
+    background-color: rgb(83, 74, 74);
+    padding: 50px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
