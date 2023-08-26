@@ -1,6 +1,10 @@
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/post_add.css' %}">
+{% endblock %}
+
 
 {% block content %}
-<!-- message 표시 -->
 {% if messages %}
 <div class="alert alert-danger my-3" role="alert">
     {% for message in messages %}
@@ -9,56 +13,66 @@
         <li>{{ message.message }}</li>
     </ul>
     {% endfor %}
-</div>
 {% endif %}
-
-<a href="/" class="btn"><img src="/media/LOGO.png" style="width:200px; height:150px;"></a>
-<h1>커뮤니티 게시판</h1>
-{% if request.user.is_authenticated %}
-<div>
-    <img src="{{ user.profile_image.url }}" style="width:100px; height:100px; object-fit: cover;">
-    {{ user.nickname }}님 환영합니다. ID: {{ user.username }}
-</div>
-<a href="/users/logout/">로그아웃</a>
-{% else %}
-<h1>로그인 해라</h1>
-<strong><a href="/users/login/">로그인</a></strong>
-<strong><a href="/users/signup">회원가입</a></strong>
-{% endif %}
-
-<div id="navbar">
-    <a href="/community/board/" class="">뒤로 가기</a>
-    <h1>Post Add</h1>
+<div class="back-container">
+    <div class="back1">
+        <div class="text-overlay">
+            <h1>Community</h1>
+        </div>
+    </div>
 </div>
 
-<div id="post-add">
+
+
+
+<div class="board_wrap">
+    <!-- 게시글 세글자 -->
+    <div class="board_title">
+        <strong>게시글</strong>
+    </div>
+    <!-- 전체를 form으로 감쌈 -->
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        
-        {% if action == "add" %}
-        <div>
-            <label>제목</label>
-            <input name="title" type="text">
-        </div>
+        <!-- 글 작성부분 전체 -->
+        <div class="board_write_wrap">
+            <!-- 글 작성 -->
+            <div class="board_write">
+                <!-- 제목란 -->
+                <div class="title">
+                    <dl>
+                        <dt>제목</dt>
+                        <dd><input type="text" name="title" placeholder="제목 입력" value="{% if action == "modify" %}{{ post.title }}{% endif %}">
+                        </dd>
+                    </dl>
+                </div>
+                <!-- 이름과 파일란 -->
+                <div class="info">
+                    <dl>
+                        <dt>닉네임</dt>
+                        <dd>{{ writer.nickname }} ({{ writer.username }})</dd>
+                    </dl>
+                    {% comment %} <dl>
+                        <div class="filebox">
+                            <input class="upload-name" value="첨부파일" placeholder="첨부파일" readonly>
+                            <label for="file">파일찾기</label>
+                            <input type="file" id="file">
+                        </div>
+                        <script src="free-write.js"></script>
+                        </script>
+                    </dl> {% endcomment %}
+                </div>
+                <!-- 내용란 -->
+                <div class="cont">
+                    <textarea name="content" placeholder="내용 입력" cols="50" rows="50">{{ post.content }}</textarea>
+                </div>
+            </div>
+            <!-- 글 등록 -->
+            <div class="bt_wrap">
+                <button type="submit" class="on">저장</button>
+                <a href="/community/board/{{ post.id }}">취소</a>
+            </div>
 
-        <div>
-            <label>내용</label>
-            <textarea name="content" cols="50" rows="50"></textarea>
         </div>
-        
-        {% elif action == "modify" %}
-        <div>
-            <label>제목</label>
-            <input name="title" type="text" value="{{ post.title }}">
-        </div>
-
-        <div>
-            <label>내용</label>
-            <textarea name="content" cols="50" rows="50">{{ post.content }}</textarea>
-        </div>
-        {% endif %}
-        <button type="submit" class="btn btn-primary">저장하기</button>
-
     </form>
 </div>
 {% endblock %}

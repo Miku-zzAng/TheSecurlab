@@ -1,6 +1,7 @@
 {% extends 'base_topbar.html' %}
 {% load filter %}
 {% load static %}
+
 {% block head %}
 <script>
   function checkLastPost(post_id, max_post_id) {
@@ -104,11 +105,7 @@
 		<div class="comment_boxtext">
 			<h3 class="comment_text">
 				댓글
-					{% if post.num_comments > 0 %}
-					({{ post.num_comments }})
-					{% else %}
-					(0)
-					{% endif %}
+					({{ num_comments }})
 			</h3>
 		</div>
 	</div>
@@ -127,7 +124,7 @@
 		<div class="comment-line"></div>
 	</div>
 	{% empty %}
-	<li>아직 댓글이 없습니다.</li>
+	<li style="list-style-type: none;">아직 댓글이 없습니다.</li>
 	<div class="comment-line"></div>
 	{% endfor %}
 

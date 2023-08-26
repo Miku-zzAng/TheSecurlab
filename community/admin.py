@@ -18,11 +18,14 @@ class PostImageInline(admin.TabularInline):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = [
-        "id","title","content","writer","createdDate","thumbnailImage"
+        "title","id","writer","createdDate",
     ]
     inlines = [
         PostImageInline,
         CommentInline,
+    ]
+    fieldsets = [
+        ("기본 정보", {"fields": ("title", "content", "writer")}),
     ]
 
 

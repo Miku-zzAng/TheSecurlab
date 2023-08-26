@@ -21,6 +21,7 @@ def board(request):
 
 def post_detail(request, post_id):
     idTargetPost = Post.objects.get(id=post_id)
+    num_comments = idTargetPost.comment_set.count()
     print(idTargetPost)
     idTargetPost.viewNum += 1
     idTargetPost.save()
@@ -39,13 +40,14 @@ def post_detail(request, post_id):
 
     context = {
         "post": idTargetPost,
-        'max_post_id': max_post_id
+        'max_post_id': max_post_id,
+        "num_comments" : num_comments 
     }
     return render(request, "community/post_detail.html", context)
 
 
 def post_add(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated: # 인증된 유저인 경우
 
         if request.method == "POST": # POST 글 작성을 완료할 경우
             addPostTitle = request.POST["title"]
@@ -55,10 +57,14 @@ def post_add(request):
                 title=addPostTitle, content=addPostContent, writer=request.user
             )
             return redirect(f"/community/board/{addPost.id}")
-    else: # 상세보기에서 글 작성하기 버튼을 누를 경우
+        
+        else: # 인증된 유저이지만 글 작성인경우
+            context = {"action": "add",
+                       "writer": request.user }
+            return render(request, "community/post_add.html", context)
+
+    else: # 게시물 목록에서 글 작성하기 버튼을 눌렀는데 로그인한 사용자가 아닌 경우
         return redirect(f"/users/login/")
-    context = {"action": "add"}
-    return render(request, "community/post_add.html", context)
 
 
 @login_required(login_url="/users/login/")
@@ -79,7 +85,7 @@ def post_modify(request, post_id):
 
     else:  # GET 요청인경우, 즉 수정하기 버튼을 눌렀을 경우
         modifyForm = PostForm(instance=targetPost)  # instance 속성으로 수정 누를시 글 내용과 동일하게 채워놔야함. 수정할수 있게
-        context = {"form": modifyForm, "action": "modify", "post": targetPost}
+        context = {"form": modifyForm, "action": "modify", "post": targetPost, "writer": request.user }
         print(targetPost.title)
         return render(request, "community/post_add.html", context)
     
