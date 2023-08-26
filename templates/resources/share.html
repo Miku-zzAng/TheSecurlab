@@ -21,148 +21,114 @@
 
 
 <!--여기부터 touch-->
-
-
-<div class="article-first">
-    <!--<strong><h6 class="c1">♠      관련 오프라인 세미나 및 행사</h6></strong>-->
-</div>
-
 <div class="allarticle1">
-
-    <div class="article1">
-        <div class="ph1">
-            <a href="resource_detail.html"><img id='img1' src="secusecu.jpg"></a>
+    {% for post in postList %}
+        {% if forloop.counter <= 3 %}
+            <div class="article{{ forloop.counter }}">
+                <div class="ph1">
+                    <a href="{{ post.id }}"><img id='img{{ forloop.counter }}' src="{{ post.thumbnailImage.url }}"></a>
+                </div>
+                <div class="wr1">
+                    <strong>
+                        <a href="{{ post.id }}">
+                            <h3>{{ post.title }}</h3>
+                        </a>
+                    </strong>
+                </div>
+            </div>
+            {% if forloop.counter == 3 %}
+                </div>
+                <div class="allarticle1">
+            {% endif %}
+        {% elif forloop.counter <= 6 %}
+        <div class="article{{ forloop.counter|add:-3 }}">
+            <div class="ph1">
+                <a href="{{ post.id }}"><img id='img{{ forloop.counter|add:-3 }}' src="{{ post.thumbnailImage.url }}"></a>
+            </div>
+            <div class="wr1">
+                <strong>
+                    <a href="{{ post.id }}">
+                        <h3>{{ post.title }}</h3>
+                    </a>
+                </strong>
+            </div>
         </div>
-        <div class="wr1">
-            <strong>
-                <a href="resource_detail.html">
-                    <h7>『사이버보안 진단의 날』시행</h7>
-                </a>
-            </strong>
+            {% if forloop.counter == 6 %}
+                </div>
+                <div class="allarticle1">
+            {% endif %}
+        {% elif forloop.counter <= 9 %}
+        <div class="article{{ forloop.counter|add:-6 }}">
+            <div class="ph1">
+                <a href="{{ post.id }}"><img id='img{{ forloop.counter|add:-6 }}' src="{{ post.thumbnailImage.url }}"></a>
+            </div>
+            <div class="wr1">
+                <strong>
+                    <a href="{{ post.id }}">
+                        <h3>{{ post.title }}</h3>
+                    </a>
+                </strong>
+            </div>
         </div>
-    </div>
-
-    <div class="article2">
-        <div class="ph2">
-            <a href="resource_detail.html"><img id='img2' src="ph1-2.jpg"></a>
-        </div>
-        <div class="wr2">
-            <strong>
-                <a href="resource_detail.html">
-                    <h7>보안 경진 대회 개최</h7>
-                </a>
-            </strong>
-        </div>
-    </div>
-
-    <div class="article3">
-        <div class="ph3">
-            <a href="resource_detail.html"><img id='img1' src="ph1-3.jpg"></a>
-        </div>
-        <div class="wr3">
-            <strong>
-                <a href="resource_detail.html">
-                    <h7>한국 보안 협회장 최태용 교수 인터뷰</h7>
-                </a>
-            </strong>
-        </div>
-    </div>
-
+        {% endif %}
+    {% endfor %}
 </div>
+<!-- 페이징처리 시작 -->
+<div class="paging">
+    <!-- 첫 페이지 -->
+    {% if action == 'view' %}
+        <a class="bt" href="?page=1">첫 페이지</a>
+    {% elif action == 'search' %}
+        <a class="bt" href="?search_kw={{ search_kw }}&search_type={{ search_type }}&page=1">첫 페이지</a>
+    {% endif %}
 
-<div class="article-second">
-    <!--<strong><h6 class="c1">♠      관련 논문 모음</h6></strong>-->
+    <!-- 이전페이지 -->
+    {% if postList.has_previous %}
+        {% if action == 'view' %}
+            <a class="bt" href="?page={{ postList.previous_page_number }}">이전 페이지</a>
+        {% elif action == 'search' %}
+            <a class="bt" href="?search_kw={{ search_kw }}&search_type={{ search_type }}&page={{ postList.previous_page_number }}">이전 페이지</a>
+        {% endif %}
+    {% else %}
+        <a class="bt" tabindex="-1" aria-disabled="true" href="#">이전 페이지</a>
+    {% endif %}
+
+    <!-- 페이지리스트 -->
+    {% for page_number in postList.paginator.page_range %}
+        {% if page_number >= postList.number|add:-10 and page_number <= postList.number|add:10 %}
+            {% if action == 'view' %}
+                {% if page_number == postList.number %}
+                    <a class="num{% if page_number == postList.number %} on{% endif %}" href="?page={{ page_number }}">{{ page_number }}</a>
+                {% else %}
+                    <a class="num" href="?page={{ page_number }}">{{ page_number }}</a>
+                {% endif %}
+            {% elif action == 'search' %}
+                {% if page_number == postList.number %}
+                    <a class="num{% if page_number == postList.number %} on{% endif %}" href="?search_kw={{ search_kw }}&search_type={{ search_type }}&page={{ page_number }}">{{ page_number }}</a>
+                {% else %}
+                    <a class="num" href="?search_kw={{ search_kw }}&search_type={{ search_type }}&page={{ page_number }}">{{ page_number }}</a>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    <!-- 다음페이지 -->
+    {% if postList.has_next %}
+        {% if action == 'view' %}
+            <a class="bt" href="?page={{ postList.next_page_number }}">다음 페이지</a>
+        {% elif action == 'search' %}
+            <a class="bt" href="?search_kw={{ search_kw }}&search_type={{ search_type }}&page={{ postList.next_page_number }}">다음 페이지</a>
+        {% endif %}
+    {% else %}
+        <a class="bt" tabindex="-1" aria-disabled="true" href="#">다음 페이지</a>
+    {% endif %}
+
+     <!-- 끝 페이지 -->
+    {% if action == 'view' %}
+        <a class="bt" href="?page={{ postList.paginator.num_pages }}">마지막 페이지</a>
+    {% elif action == 'search' %}
+        <a class="bt" href="?search_kw={{ search_kw }}&search_type={{ search_type }}&page={{ postList.paginator.num_pages }}">마지막 페이지</a>
+    {% endif %}
 </div>
-
-<div class="allarticle1">
-
-    <div class="article1">
-        <div class="ph1">
-            <a href="resource_detail.html"><img id='img1' src="ph2-1.jpg"></a>
-        </div>
-        <div class="wr1">
-            <strong>
-                <a href="resource_detail.html">
-                    <h7>SECULAB 보안프로그램 출시 안내</h7>
-                </a>
-            </strong>
-        </div>
-    </div>
-
-    <div class="article2">
-        <div class="ph2">
-            <a href="resource_detail.html"><img id='img2' src="ph2-2.png"></a>
-        </div>
-        <div class="wr2">
-            <strong>
-                <a href="resource_detail.html">
-                    <h7>STEALIEN 보안 페어링 출시 안내</h7>
-                </a>
-            </strong>
-        </div>
-    </div>
-
-    <div class="article3">
-        <div class="ph3">
-            <a href="resource_detail.html"><img id='img1' src="ph2-3.jpg"></a>
-        </div>
-        <div class="wr3">
-            <strong>
-                <a href="resource_detail.html">
-                    <h7>화이트햇투게더 참가자 모집</h7>
-                </a>
-            </strong>
-        </div>
-    </div>
-
-</div>
-
-<div class="article-third">
-    <!--<strong><h6 class="c1">♠      학회 알림</h6></strong>-->
-</div>
-
-<div class="allarticle1">
-
-    <div class="article1">
-        <div class="ph1">
-            <a href="resource_detail.html"><img id='img1' src="ph3-1.jpg"></small></a>
-        </div>
-        <div class="wr1">
-            <strong>
-                <a href="resource_detail.html">
-                    <h7>사내보안교육 메뉴얼</h7>
-                </a>
-            </strong>
-        </div>
-    </div>
-
-    <div class="article2">
-        <div class="ph2">
-            <a href="resource_detail.html"><img id='img2' src="ph3-2.png"></a>
-        </div>
-        <div class="wr2">
-            <strong>
-                <a href="resource_detail.html">
-                    <h7>SW 보안교육 기본과정</h7>
-                </a>
-            </strong>
-        </div>
-    </div>
-
-    <div class="article3">
-        <div class="ph3">
-            <a href="resource_detail.html"><img id='img1' src="ph3-3.jpg"></a>
-        </div>
-        <div class="wr3">
-            <strong>
-                <a href="resource_detail.html">
-                    <h7>대학원생 보안</h7>
-                </a>
-            </strong>
-        </div>
-    </div>
-
-</div>
-
 
 {% endblock %}

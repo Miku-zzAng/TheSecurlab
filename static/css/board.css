@@ -214,9 +214,9 @@ a {
 .board_list_wrap .paging a {
     display: inline-block;
     margin-left: 10px;
-    padding: 5px 10px;
+    padding: 10px 15px;
     border-radius: 100px;
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .board_list_wrap .paging a:first-child {
