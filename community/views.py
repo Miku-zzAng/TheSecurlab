@@ -6,6 +6,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from community.forms import PostForm
+from django.utils.html import mark_safe
+from django.http import JsonResponse
+import markdown
+import os
 
 def indexBoard(request):
     return redirect(f"/community/notice/")
@@ -25,15 +29,29 @@ def board(request):
 def post_detail(request, post_id):
     idTargetPost = Post.objects.get(id=post_id)
     num_comments = idTargetPost.comment_set.count()
-    print(idTargetPost)
     idTargetPost.viewNum += 1
     idTargetPost.save()
     max_post_id = Post.objects.latest('id').id
+    idTargetPost.content = mark_safe(markdown.markdown(idTargetPost.content))
+
+    # 지운 게시글을 건너뛰고 이전 게시글 가져오기
+    try: # id__lt = post_id 보다 작은 게시물들을 필터링 한다.
+        # - 는 내림차순 정렬
+        # [0] 은 정렬된 게시물 리스트 중, 가장 첫번째 게시물 선택
+        prev_post = Post.objects.filter(id__lt=post_id).order_by('-id')[0]
+    except IndexError:
+        prev_post = None
+
+    # 지운 게시글을 건너뛰고 다음 게시글 가져오기
+    try:
+        next_post = Post.objects.filter(id__gt=post_id).order_by('id')[0]
+    except IndexError:
+        next_post = None
 
     if request.method == "POST": # 상세보기 속에서 댓글작성 POST 요청 받을시
         if request.user.is_authenticated:
             comment_content = request.POST["comment"]
-            addComment = Comment.objects.create(
+            Comment.objects.create(
                 content=comment_content,
                 targetPost=idTargetPost,
                 writer=request.user,
@@ -44,10 +62,24 @@ def post_detail(request, post_id):
     context = {
         "post": idTargetPost,
         'max_post_id': max_post_id,
-        "num_comments" : num_comments 
+        "num_comments" : num_comments,
+        'prev_post': prev_post,  # 이전 게시물 정보 추가
+        'next_post': next_post   # 다음 게시물 정보 추가
     }
     return render(request, "community/post_detail.html", context)
 
+def upload_image(request):
+    if request.method == 'POST' and request.FILES["image"]:
+        upload_image = request.FILES["image"]
+        upload_image_name = upload_image.name
+        upload_image_path = f"media/community/{{ request.username }}/" + upload_image_name
+        print(upload_image_path)
+        with open(upload_image_path, 'wb+') as destination: # 저장된 경로를 wb+ 쓰기와 바이너리 모드로 열고,
+            # 연 파일 객체를 destination 변수에 할당
+            for chunk in upload_image.chunks():
+                destination.write(chunk)
+        return JsonResponse({'상태': 'success', 'url': upload_image_path})
+    return JsonResponse({'상태': 'error'})
 
 def post_add(request):
     if request.user.is_authenticated: # 인증된 유저인 경우

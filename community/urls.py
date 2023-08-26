@@ -1,5 +1,6 @@
 from django.urls import path
 from community.views import *
+from . import views
 
 urlpatterns = [
     path("", indexBoard),
@@ -12,4 +13,5 @@ urlpatterns = [
     path("board/<int:post_id>/delete/<int:comment_id>", comment_delete),
     path("notice/", notice,),
     path("notice/<int:notice_id>/", notice_detail),
+    path('upload_image/', views.upload_image, name="upload,image")
 ]

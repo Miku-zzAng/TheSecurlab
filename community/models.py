@@ -13,7 +13,6 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-    
 
 class PostImage(models.Model):
     targetPost = models.ForeignKey(Post, verbose_name="게시물", on_delete=models.CASCADE)
@@ -22,7 +21,6 @@ class PostImage(models.Model):
         upload_to="community/board",
         blank=True,
     )
-
 
 class Comment(models.Model):
     targetPost = models.ForeignKey(Post, on_delete=models.CASCADE)

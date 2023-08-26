@@ -1,5 +1,4 @@
 {% extends 'base_topbar.html' %}
-{% load filter %}
 {% load static %}
 
 {% block head %}
@@ -47,8 +46,15 @@
         errorMessage.textContent = "";
     }
 });
-
 </script>
+<style>
+  blockquote {
+    border-left: 4px solid #ccc;
+    padding-left: 16px;
+    margin-left:0;
+    color: #666;
+}
+</style>
 <link rel="stylesheet" href="{% static 'css/post_detail.css' %}">
 {% endblock %}
 
@@ -88,7 +94,7 @@
 </div>
 
 <div class=" text-container">
-  <p>{{ post.content|mark }}</p>
+  <p>{{ post.content|safe }}</p>
 	{% if request.user == post.writer %}
 	<div class="edit-and-delete">
 		<a href="/community/board/{{ post.id }}/modify/" class="submit_buton" type="button">수정</a><br>
@@ -135,9 +141,19 @@
 	</form>
 
 	<div class="next-page">
-		<a href="/community/board/{{ post.id|add:'-1' }}" class="bt" onclick="return checkFirstPost({{ post.id }})">이전 게시글</a>
-		<a href="/community/board/" class="bt" style="padding: 10px 30px;">글 목록</a>
-		<a href="/community/board/{{ post.id|add:'+1' }}" class="bt" onclick="return checkLastPost({{ post.id }}, {{ max_post_id }})">다음 게시글</a>
+    {% if prev_post %}
+      <a href="/community/board/{{ prev_post.id }}" class="bt">이전 게시글</a>
+    {% else %}
+      <a href="#" class="bt" onclick="alert('이전 게시글이 없습니다.'); return false;">이전 게시글</a>
+    {% endif %}
+
+    <a href="/community/board/" class="bt" style="padding: 10px 30px;">글 목록</a>
+
+    {% if next_post %}
+      <a href="/community/board/{{ next_post.id }}" class="bt">다음 게시글</a>
+    {% else %}
+      <a href="#" class="bt" onclick="alert('다음 게시글이 없습니다.'); return false;">다음 게시글</a>
+    {% endif %}
 	</div>
 
 </div>
