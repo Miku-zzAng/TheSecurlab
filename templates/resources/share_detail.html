@@ -1,0 +1,119 @@
+{% extends 'base_topbar.html '%}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/share_detail.css' %}">
+{% endblock %}
+{% block content %}
+
+    <div class="back-container">
+        <div class="back1">
+            <div class="text-overlay">
+                <strong>{{ post.title }}</strong>
+            </div>
+            
+            <div class="t1">{% if post.subinfo %}{{ post.subinfo }}{% endif %}</div>
+            <div class="t2">{{ post.createdDate }}</div>
+        </div>
+
+    </div>
+
+    <div class="all">
+
+        <div>
+            {{ post.content }}
+            <p>한국언론인협회(회장 성대석)와
+                국회ICT융합포럼(공동대표의원 조명희, 변재일)이 공동 주최하는 ‘WACON 2023’이
+                9월 25일부터 26일까지 앰배서더 서울 풀만 호텔에서 열린다.
+            </p>
+            <p class="none">&nbsp;</p>
+            <p>
+                이 행사는 서강대학교 임채운 교수, KAIST 차상길 교수가 대회 공동운영위원장을 맡고 있으며,
+                이기혁 우수기업 심사위원장(중앙대학교 교수), 이상직 법률자문장(법무법인 태평양 변호사),
+                김승현 문제출제위원(Super Guesser 리더)가 이끌고 있다.
+                각종 국내외 해킹대회에서 우승 경력이 풍부한 국내외 최고 해커 25여 명으로 구성된 Super Guesser는
+                현장 운영 및 공동주관사로도 함께 참여하고 있다.
+            </p>
+            <p class="none">&nbsp;</p>
+            <p>
+                올해로 2회를 맞은 ‘WACON 2023’은 국제 모의 해킹대회 ‘Global CTF Championship’, 사이버보안 기술 발표회,
+                사이버보안 우수기업 정부시상, 인재채용 및 기업홍보관, 인적 네트워킹 프로그램 등으로 구성된
+                국내 대표 사이버보안 행사다.
+            </p>
+            <p class="none">&nbsp;</p>
+            <div>
+                <img class="art1" src="art1.jpg">
+            </div>
+            <p class="none">&nbsp;</p>
+            <p>
+                지능적 사이버 위협으로부터 대응 가능한 핵심 인재양성을 위한 국제 모의 해킹대회 ‘Global CTF Champio nship’는
+                올 9월 2일부터 3일까지 온라인으로 예선이 진행된다. 참가부문은 국내 일반부, 국외 일반부, 청소년부로 나눠지며,
+                예선 순위 국내 일반부 상위 6위 팀, 국외 일반부 상위 6위 팀, 청소년부 상위 10위 팀이 9월 25일부터 26일까지
+                앰배서더 서울 풀만에서 열리는 본선에 진출해 총 상금 5500만원을 차지하기 위한 경쟁을 펼치게 된다.
+            </p>
+            <p class="none">&nbsp;</p>
+            <div class="container1">
+                <div class="con1">
+                    <img class="imgart1" src="art2.jpg">
+                </div>
+                <div class="con2">
+                    <p>
+                        특히 일반부 1위 팀에는 포럼 공동대표의원 명의의 상장과 상금 3000만원,
+                        중국 최대 모의 해킹대회 ‘XCTF’ 본선 진출권의 특전이 주어지고,
+                        청소년부 1위 팀에는 부총리 겸 교육부 장관상과 상금 500만원이 수여된다.
+                        외부 사이버 침해에 선제적으로 대응하기 위한 혁신 기술 발표회의 기조강연은
+                        글로벌 보안기업 스플렁크(SPLUK)의 APAC 보안부문 부사장이 진행하고,
+                        엘지씨엔에스(LG CNS)와 안랩이 각각 사이버보안의 혁신적 기술을 발표한다.
+                    </p>
+                </div>
+            </div>
+
+            <p class="none">&nbsp;</p>
+            <p>
+                그밖에 탁월한 사이버보안의 기술력으로 국민의 자산보호와 보안산업 발전에 기여하고 있는
+                기업/기관을 분야별로 선정해 부처별로 포상하는 사이버보안 우수기업 시상과 기업의
+                핵심 인재 부족 해결과 양질의 일자리 창출을 위한 기업 홍보관 운영,
+                세계 정상급 해커들과 국경 없는 협력과 화합을 위한 네트워킹 프로그램이 함께 진행된다.
+            </p>
+            <p class="none">&nbsp;</p>
+
+            <div class="container2">
+               
+                <div class="con3">
+                    <p>
+                        ‘WACON 2023’은 고도화된 사이버 위협으로부터 대응 가능한 핵심 인재를 양성하고
+                        다양한 해킹의 피해 예방과 사이버보안 안전사회 형성을 위한 공익 목적의 국제 행사로,
+                        교육부·과학기술정보통신부·외교부·국방부·중소벤처기업부·개인정보보호위원회·엘지씨엔에스·
+                        카카오헬스케어·안랩·네이버·아이온시큐리티·아이티이지가
+                        공식 후원사로 참여하고, WACON운영위원회·한국지속경영평가원·Super Guesser가 공동 주관하며,
+                        전자신문·데일리시큐·중앙일보가 미디어 분야에서 협력하고 있다.
+                    </p>
+                </div>
+                <div class="con4">
+                    <img class="imgart2" src="art3.jpg">
+                </div>
+            </div>
+
+
+            <p class="none">&nbsp;</p>
+            <p>
+                한국지속경영평가원은 교육·연수 프로그램, 인증·시상제도,
+                경영 컨설팅 등의 서비스를 통해 기업 경영 효율화를 극대화하기 위한
+                토털 경영서비스를 제공해 고객의 지속 가능한 발전을 위한 성공 동반자로서 함께 하고자 한다.
+            </p>
+            <p class="none">&nbsp;</p>
+
+            <p>
+            <div class="art1">
+                <img class="imgart4" src="art4.png">
+            </div>
+            <p class="none">&nbsp;</p>
+            <b>연락처</b><br>
+            한국지속경영평가원<br>
+            기획팀<br>
+            변병필 팀장<br>
+            02-362-0805
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

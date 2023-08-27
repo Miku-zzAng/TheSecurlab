@@ -5,3 +5,6 @@ def index(request):
                 "user":request.user
         }
         return render(request, "index.html")
+
+def secucheck(request):
+        return render(request, "secucheck.html")

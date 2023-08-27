@@ -1,0 +1,199 @@
+.back-container {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+    background-color: rgba(44, 61, 13, 0.952);
+}
+
+.back1::before {
+    content: "";
+    display: block;
+    width: 100%;
+    padding-top: 75%;
+    /* 이미지 높이 비율 조절 */
+    background-image: inherit;
+    background-size: cover;
+    /* 이미지를 화면에 꽉 채우면서 비율 유지 */
+}
+
+.back1 {
+    width: 100%;
+    height: 10vh;
+    /* 화면 높이에 꽉 채움 */
+    /*background-image: url('1.png');*/
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.text-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    background: rgba(0, 0, 0, 0);
+    margin-top: 580px;
+}
+
+.text-overlay h1 {
+    font-size: 7rem;
+    margin: 0;
+    padding: 0;
+    color: rgb(255, 255, 255);
+    margin-right: 100px;
+}
+.h1-container {
+    text-align: center;
+    width: 100%;
+    margin-top: 180px;
+    margin-bottom: 100px;
+}
+
+
+
+.article-first {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    position: relative;
+    left: 70px;
+}
+
+.article-second {
+    margin-top: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    position: relative;
+    left: 70px;
+}
+h3 {
+    font-size: 23px;
+}
+.article-third {
+    margin-top: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    position: relative;
+    left: 70px;
+}
+
+.c1 {
+    margin: 40px;
+    padding: 30px;
+    font: inherit;
+    font-size: 30px;
+}
+
+.allarticle1 {
+    display: flex;
+    justify-content: space-between;
+    /* article들을 좌우로 고르게 배치 */
+    gap: 48px;
+    width: 50%;
+    margin-top: 200px;
+}
+
+.article1, .article3 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3% 15%;
+    align-items: center;
+    gap: 20px;
+}
+
+.article2 {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.ph1, .ph2, .ph3 {
+    display: flex;
+    /* Flexbox 사용 */
+    justify-content: center;
+    /* 가로축 중앙 정렬 */
+    align-items: center;
+    /* 세로축 중앙 정렬 */
+}
+
+#img1, #img2, #img3 {
+    width: 400px;
+    /* 이미지의 폭을 원본 비율에 맞게 자동 조절 */
+    height: 450px;
+    border-radius: 10px;
+}
+.wr1, .wr2, .wr3 {
+    display: flex;
+    /* margin-right: 60px; */
+    flex-direction: column;
+    justify-content: center;
+    /* 가로축 중앙 정렬 */
+    align-items: center;
+    /* 세로축 중앙 정렬 */
+}
+
+.body {
+    padding: 0px;
+    display: flex;
+    text-align: center;
+    font-size: 20px;
+    background-color: rgb(83, 74, 74);
+}
+
+.paging {
+    margin-top: 200px;
+    text-align: center;
+    font-size: 0;
+}
+
+.paging a {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 10px 15px;
+    border-radius: 100px;
+    font-size: 15px;
+}
+
+.paging a:first-child {
+    margin-left: 0;
+}
+
+.paging a.bt {
+    border: 1px solid #000;
+}
+
+.paging a.num {
+    border: 1px solid#535353;
+    font-weight: 600;
+    color: #535353;
+}
+
+.paging a.num.on {
+    /*해당 페이지일 떄 숫자 박스에 대한 css*/
+    background: gray;
+    color: #fff;
+}
+
+a {
+    color: inherit;        /* 텍스트 색상을 상속받게 설정 (즉, 부모 요소의 색상을 따라갑니다.) */
+    text-decoration: none; /* 밑줄 제거 */
+}

@@ -1,6 +1,49 @@
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/post_add.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplemde/1.11.2/simplemde.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplemde/1.11.2/simplemde.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // DOMContentLoaded -> 완전히 페이지가 로드되면 js를 실행하는 이벤트리스너
+            var simplemde = new SimpleMDE({ // 마크다운 에디터 초기화 (MDE 객체 생성하여 변수에 저장)
+            element: document.getElementById("id_content"), // 마크다운 에디터 적용될 id HTML 요소 지정
+            promptURLs: true,  // 이미지나 링크 삽입할때 URL 입력받는 창 활성화
+            uploadImage: true,  // simpleMDE 내에서 이미지 업로드 기능 활성화 =
+            imageUploadEndpoint: '/upload_image/',  // 이미지 업로드시, 장고의 upload_image URL로 이미지 전송하여 views 로직 처리
+            imageUploadFunction: function(file, onSuccess, onError) { // 이미지 선택시 함수 호출
+                var formData = new FormData(); // 폼데이터 객체 생성(서버로 전송할수 있게)
+                formData.append('image', file); // file을 image라는 key에 추가
+        
+                fetch('/upload_image/', { // fetch: 웹 API 호출(/upload_image/에 이미지 폼데이터 POST로 전송 )
+                    method: 'POST',
+                    body: formData
+                }).then(response => response.json()).then(data => { // fetch 함수 결과를 JSON 형식으로 변환후 데이터 처리
+                    if (data.status === 'success') {
+                        onSuccess(data.url);
+                    } else {
+                        onError("업로드에 실패했습니다.");
+                    }
+                });
+            }
+        });
+    });
+    </script>
+    <style>
+        .simplemde-editor, .CodeMirror {
+            font-size: 18px; /* 원하는 폰트 크기로 조정하세요. */
+        }
+        blockquote {
+            border-left: 4px solid #ccc;
+            padding-left: 16px;
+            margin-left:0;
+            color: #666;
+        }
+    </style>
+{% endblock %}
+
 
 {% block content %}
-<!-- message 표시 -->
 {% if messages %}
 <div class="alert alert-danger my-3" role="alert">
     {% for message in messages %}
@@ -9,56 +52,66 @@
         <li>{{ message.message }}</li>
     </ul>
     {% endfor %}
-</div>
 {% endif %}
-
-<a href="/" class="btn"><img src="/media/LOGO.png" style="width:200px; height:150px;"></a>
-<h1>커뮤니티 게시판</h1>
-{% if request.user.is_authenticated %}
-<div>
-    <img src="{{ user.profile_image.url }}" style="width:100px; height:100px; object-fit: cover;">
-    {{ user.nickname }}님 환영합니다. ID: {{ user.username }}
-</div>
-<a href="/users/logout/">로그아웃</a>
-{% else %}
-<h1>로그인 해라</h1>
-<strong><a href="/users/login/">로그인</a></strong>
-<strong><a href="/users/signup">회원가입</a></strong>
-{% endif %}
-
-<div id="navbar">
-    <a href="/community/board/" class="">뒤로 가기</a>
-    <h1>Post Add</h1>
+<div class="back-container">
+    <div class="back1">
+        <div class="text-overlay">
+            <h1>Community</h1>
+        </div>
+    </div>
 </div>
 
-<div id="post-add">
+
+
+
+<div class="board_wrap">
+    <!-- 게시글 세글자 -->
+    <div class="board_title">
+        <strong>게시글</strong>
+    </div>
+    <!-- 전체를 form으로 감쌈 -->
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        
-        {% if action == "add" %}
-        <div>
-            <label>제목</label>
-            <input name="title" type="text">
-        </div>
+        <!-- 글 작성부분 전체 -->
+        <div class="board_write_wrap">
+            <!-- 글 작성 -->
+            <div class="board_write">
+                <!-- 제목란 -->
+                <div class="title">
+                    <dl>
+                        <dt>제목</dt>
+                        <dd><input type="text" name="title" placeholder="제목 입력" value="{% if action == "modify" %}{{ post.title }}{% endif %}">
+                        </dd>
+                    </dl>
+                </div>
+                <!-- 이름과 파일란 -->
+                <div class="info">
+                    <dl>
+                        <dt>닉네임</dt>
+                        <dd>{{ writer.nickname }} ({{ writer.username }})</dd>
+                    </dl>
+                    {% comment %} <dl>
+                        <div class="filebox">
+                            <input class="upload-name" value="첨부파일" placeholder="첨부파일" readonly>
+                            <label for="file">파일찾기</label>
+                            <input type="file" id="file">
+                        </div>
+                        <script src="free-write.js"></script>
+                        </script>
+                    </dl> {% endcomment %}
+                </div>
+                <!-- 내용란 -->
+                <div class="cont">
+                    <textarea name="content" id="id_content" placeholder="내용 입력" cols="50" rows="50">{{ post.content }}</textarea>
+                </div>
+            </div>
+            <!-- 글 등록 -->
+            <div class="bt_wrap">
+                <button type="submit" class="on">저장</button>
+                <a href="/community/board/{{ post.id }}">취소</a>
+            </div>
 
-        <div>
-            <label>내용</label>
-            <textarea name="content" cols="50" rows="50"></textarea>
         </div>
-        
-        {% elif action == "modify" %}
-        <div>
-            <label>제목</label>
-            <input name="title" type="text" value="{{ post.title }}">
-        </div>
-
-        <div>
-            <label>내용</label>
-            <textarea name="content" cols="50" rows="50">{{ post.content }}</textarea>
-        </div>
-        {% endif %}
-        <button type="submit" class="btn btn-primary">저장하기</button>
-
     </form>
 </div>
 {% endblock %}
