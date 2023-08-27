@@ -16,7 +16,7 @@ def indexBoard(request):
 
 def board(request):
     receivePage = request.GET.get("page", "1")  # 페이지
-    postListAllData = Post.objects.filter(notice_id__isnull=True).annotate(num_comments=Count("comment")).order_by(
+    postListAllData = Post.objects.filter(group_id=3).annotate(num_comments=Count("comment")).order_by(
         "-createdDate"
     )
     paginator = Paginator(postListAllData, 10)
@@ -189,7 +189,7 @@ def comment_delete(request, post_id, comment_id):
 
 def notice(request):
     receivePage = request.GET.get("page", "1")  # 페이지
-    postListAllData = Post.objects.filter(notice_id__isnull=False).annotate(num_comments=Count("comment")).order_by("-createdDate")
+    postListAllData = Post.objects.filter(group_id=1).annotate(num_comments=Count("comment")).order_by("-createdDate")
     paginator = Paginator(postListAllData, 10)
     paginator_obj = paginator.get_page(receivePage)
     context = {"postList": paginator_obj,
@@ -197,12 +197,12 @@ def notice(request):
     return render(request, "community/notice.html", context)
 
 
-def notice_detail(request, notice_id):
-    idTargetPost = Post.objects.get(notice_id=notice_id)
+def notice_detail(request, post_id):
+    idTargetPost = Post.objects.get(post_id)
     idTargetPost.viewNum += 1
     idTargetPost.save()
 
-    max_post_id = Post.objects.latest('notice_id').notice_id
+    max_post_id = Post.objects.latest('post_id').notice_id
 
     context = {
         "post": idTargetPost,
