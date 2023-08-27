@@ -9,7 +9,7 @@ class Post(models.Model):
         "users.User", verbose_name="작성자", on_delete=models.CASCADE
     )
     modify_date = models.DateTimeField("수정일시", null=True, blank=True)
-    notice_id = models.PositiveIntegerField("공지글", null=True, blank=True)
+    group_id = models.PositiveIntegerField("분류", null=True, blank=True)
 
     def __str__(self):
         return self.title

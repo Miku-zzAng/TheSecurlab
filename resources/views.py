@@ -36,6 +36,23 @@ def solution(request):
 
     return render(request, "resources/solution.html", context)
 
+def etc(request):
+    # page 파라미터로 현재 페이지 번호를 가져옴. 기본값은 1
+    current_page = request.GET.get("page", 1)  
+    # 모든 게시물을 생성 날짜의 내림차순으로 가져옴
+    all_posts = SharePost.objects.filter(group_id=3).order_by('-createdDate')
+    # 페이지당 9개의 게시물로 Paginator 객체 생성
+    paginator = Paginator(all_posts, 9)
+    # 현재 페이지에 해당하는 게시물들만 가져옴
+    page_posts = paginator.get_page(current_page)
+
+    context = {
+        "postList": page_posts,  # 현재 페이지의 게시물들
+        "action": "view",  # 보기 액션
+    }
+
+    return render(request, "resources/etc.html", context)
+
 def share_detail(request,post_id):
     idTargetPost = SharePost.objects.get(id=post_id)
     context = {
