@@ -16,6 +16,10 @@ footer {
     color: rgb(255, 255, 255);
 }
 
+.footer {
+    z-index:1004;
+}
+
 .submenu li:hover {
     background-color: lightgray;
 }
@@ -28,7 +32,7 @@ footer {
     width: 100%;
     align-items: center;
     height: 80px;
-    z-index: 1000;
+    z-index: 1003;
     font-family: Arial, sans-serif;
     font-weight: bolder;
     left: 0;

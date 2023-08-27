@@ -1,0 +1,110 @@
+.navbar2 {
+  position: absolute;
+  /* 고정 위치 */
+  left: 50px;
+  /* 페이지의 왼쪽에서 100px 떨어뜨림 */
+  background-color: #e6dddd;
+  /* 배경색 */
+  padding: 15px;
+  /* 안쪽 여백 */
+  text-align: center;
+  box-shadow: 5px 0 10px rgba(0, 0, 0, 0.2);
+  /* 오른쪽 그림자 효과 */
+  border-radius: 15px;
+  transition: top 0.3s ease;
+  z-index: 1000;
+  /* 상대적으로 높은 값으로 설정 */
+}
+
+.navbar2 a {
+  width: 250px;
+  display: block;
+  /* 각 항목을 블록으로 표시 */
+  margin-bottom: 10px;
+  /* 항목 사이의 간격 */
+  padding: 5px 10px;
+  /* 안쪽 여백 */
+  font-size: 10px;
+  text-decoration: none;
+  /* 밑줄 제거 */
+  color: #333;
+  /* 글자색 */
+  text-align: center;
+  background-color: #e5e5e5;
+  /* 항목 배경색 */
+  border-radius: 5px;
+  /* 모서리 둥글게 */
+}
+
+.navbar2 a:hover {
+  background-color: #ccc;
+  /* a href 요소들 마우스 오버시 배경색 변경 */
+}
+
+.navbar-cover {
+  position: absolute;
+  top: 0;
+  left: 50px;
+  /* 네비바의 left 값과 동일하게 설정 */
+  width: 320px;
+  /* 네비바의 너비에 맞게 설정하세요. */
+  height: 100%;
+  /* 높이는 화면 전체 높이로 설정 */
+  background-color: rgba(255,255,255,0);
+  /* 투명 배경 */
+  z-index: 999;
+  /* 네비바보다 1만큼 낮은 값으로 설정 */
+  pointer-events: none;
+  /* 클릭 이벤트 방지 */
+}
+
+.content-wrapper {
+  display: flex;
+  /* 요소들을 가로로 배열 */
+}
+
+.h1-container {
+  margin-left: 380px;
+  text-align: center;
+  margin-top: 300px;
+}
+
+.topic-wrapper {
+  z-index: 1;
+  transition: all 0.3s ease;
+  opacity: 0.5;
+  transform: scale(0.8);
+  font-size: 50pt;
+  font-weight: bolder;
+  margin: 10px 0 150px 0;
+}
+
+#ssrf {
+    margin-bottom: 700px; /* 원하는 마진 값으로 조절하세요 */
+}
+
+.topic-wrapper p {
+  font-size: 15px;;
+}
+.topic-wrapper.active {
+  z-index: 2;  /* 이 부분 추가 */
+  opacity: 1;
+  transform: scale(1);
+}
+
+.topic-wrapper.nearby1 {
+  opacity: 0.35;
+  transform: scale(0.65);
+}
+
+.topic-wrapper.nearby2 {
+  opacity: 0.1;
+  transform: scale(0.4);
+}
+
+.tree-wrapper {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s ease-in-out;
+}
+
