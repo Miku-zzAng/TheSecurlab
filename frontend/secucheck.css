@@ -81,12 +81,9 @@
 
 .topic-wrapper p {
   font-size: 20px;
-  ;
 }
-
 .topic-wrapper.active {
   z-index: 2;
-  /* 이 부분 추가 */
   opacity: 1;
   transform: scale(1);
 }

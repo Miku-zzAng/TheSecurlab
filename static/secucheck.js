@@ -75,14 +75,14 @@ document.addEventListener('DOMContentLoaded', function () {
 // 해당 로직을 함수로 분리
 function adjustTopicVisibility() {
     const topics = document.querySelectorAll('.topic-wrapper');
-    const middle = window.innerHeight / 2;
+    const middle = window.innerHeight * 0.4;
 
     let closest = null;
     let closestDistance = Infinity;
 
     topics.forEach(topic => {
         const box = topic.getBoundingClientRect();
-        const focusPoint = box.top + (box.height / 2);
+        const focusPoint = box.top + (box.height * 0.95);
         const distance = Math.abs(middle - focusPoint);
 
         if (distance < closestDistance) {
@@ -110,8 +110,6 @@ function adjustTopicVisibility() {
         if (nextElement2) nextElement2.classList.add('nearby2');
     }
 }
-
-
 
 document.addEventListener('DOMContentLoaded', function () {
     adjustTopicVisibility();
