@@ -44,7 +44,7 @@
 
 <div class="board_list_wrap">  
     <table class="board_list">
-        <thead>
+        <thead style="background-color: #f0f0f0;">
             <tr>
                 <th style="width:100px; text-align: center;">작성일</th>
                 <th>제목</th>
@@ -52,11 +52,11 @@
                 <th style="text-align: center;">조회수</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody style="background-color: #f0f0f0;">
         {% for post in postList %}
         <tr>
             <td style="width:100px; text-align: center;">{{ post.createdDate }}</td>
-            <td style="font-weight:bold;"><a href="/community/notice/{{ post.post_id }}">{{ post.title }}</td>
+            <td style="font-weight:bold;"><a href="/community/notice/{{ post.id }}/">{{ post.title }}</td>
             <td style="font-weight:bold;">관리자</td>
             <td style="text-align: center;">{{ post.viewNum }}</td>
         </tr>
