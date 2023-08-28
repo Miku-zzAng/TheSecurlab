@@ -137,53 +137,155 @@
             <a href="#slamf">Security Logging and Monitoring Failures</a>
             <a href="#ssrf">Server-Side Request Forgery</a>
         </div>
-        <div class="navbar-cover"></div>
-
+        <div class="navbar-cover">
+        </div>
 
         <div class='h1-container'>
-            <div class="topic-wrapper" id="bac">1. 접근 권한 취약점<br>(Broken Access Control)
+            <div class="topic-wrapper" id="bac"><b>1. 접근 권한 취약점<br>(Broken Access Control)</b>
+
                 <div class="tree-wrapper">
-                    <p>정의 
-                        일반적으로 웹 서비스에서 접근 불가능한 정보는 존재하지 않는 것처럼 노출하지 않거나 별도의 인증을 거치도록 하면서 정보를 보호한다. 
-                        취약한 접근 제어란 이러한 접근 제어 정책을 우회하거나 의도치 않은 권한 상승으로 인해 기밀 정보가 노출될 수 있는 취약점을 의미한다.
-                        공격자는 이러한 취약점을 악용하여 사용자의 계정 액세스, 중요한 파일 보기, 사용자의 데이터 수정, 액세스 권한 변경 등과 같은 권한 없는 기능 또는 데이터에 액세스 할 수 있다. 
-                        사용자로 하여금 허가되지 않은 정보에 접근할 수 없도록 서비스의 정책을 강제하는 것을 의미한다. 1. injectionVelit enim irure reprehenderit nisi incididunt in. Ut fugiat fugiat
-                        fugiat nostrud sint ullamco aute consequat officia proident Lorem. Ad do occaecat fugiat
-                        incididunt
-                        sunt
-                        exercitation ipsum id adipisicing et.
-                        Non Lorem magna ea nulla consequat consectetur magna. Adipisicing non reprehenderit aute elit id
-                        sit
-                        reprehenderit aute eu tempor cupidatat. Est minim irure laboris amet reprehenderit ullamco. Do
-                        est
-                        magna
-                        ex
-                        tempor veniam officia culpa ut nisi eiusmod dolore enim.Magna ea ea ut incididunt. Cupidatat
-                        aliqua
-                        ullamco duis duis reprehenderit dolor elit tempor. Excepteur
-                        nostrud mollit officia magna elit ullamco nostrud ullamco quis proident consequat culpa velit.
-                        Eu
-                        adipisicing culpa eu qui ex in irure qui officia quis pariatur.
+                    <div class="title">
+                        정의
+                    </div>
+                            <div class="innerarticle">
+                                일반적으로 웹 서비스에서 접근 불가능한 정보는 존재하지 않는 것처럼 노출하지 않거나 별도의 인증을 거치도록 하면서 정보를 보호한다.
+                                취약한 접근 제어란 이러한 접근 제어 정책을 우회하거나 의도치 않은 권한 상승으로 인해 기밀 정보가 노출될 수 있는 취약점을 의미한다.
+                                공격자는 이러한 취약점을 악용하여 사용자의 계정 액세스, 중요한 파일 보기, 사용자의 데이터 수정, 액세스 권한 변경 등과 같은 권한 없는 기능 또는 데이터에 액세스 할 수
+                                있다.
+                                사용자로 하여금 허가되지 않은 정보에 접근할 수 없도록 서비스의 정책을 강제하는 것을 의미한다.<br>
+                            </div>
 
-                        Commodo duis est non fugiat. Magna duis sit nulla excepteur sunt mollit cillum duis ea irure
-                        cillum.
-                        Id
-                        dolore cillum sint ad dolor ullamco et. Sunt incididunt do sint proident.Magna ea ea ut
-                        incididunt.
-                        Cupidatat aliqua ullamco duis duis reprehenderit dolor elit tempor. Excepteur
-                        nostrud mollit officia magna elit ullamco nostrud ullamco quis proident consequat culpa velit.
-                        Eu
-                        adipisicing culpa eu qui ex in irure qui officia quis pariatur.
+                    <div class="title">
+                        종류
+                    </div>
+                        <div class="innerarticle">
+                            <ul>
+                                <li>파일 다운로드</li>
+                                <li>파일 업로드</li>
+                                <li>URL 파라미터 조작 우회</li>
+                                <li>안전하지 않은 직접 객체 참조 (IDOR 공격)</li>
+                                <li>관리자 페이지 인증 우회</li>
+                                <li>디렉토리 트래버셜(Directory Traversal) 취약점 공격</li>
+                            </ul>
+                        </div>
 
-                        Commodo duis est non fugiat. Magna duis sit nulla excepteur sunt mollit cillum duis ea irure
-                        cillum.
-                        Id
-                        dolore cillum sint ad dolor ullamco et. Sunt incididunt do sint proident.</p>
-                    </p>
+                    <div class="title">
+                        공격기법
+                    </div>
+
+                        <div class="title2nd">
+                            1. 파일 다운로드
+                        </div>
+
+                        <div class="innerarticle">
+                            <div class="underarticle">
+                                상위 디렉터리를 요청하는 파라미터를 조작하여 시스템 관련 파일 등에 접근하여 해당 파일을 다운로드하는 공격기법.
+                                파일 다운로드 기능이 존재하는 웹 애플리케이션에서 파일 다운로드 시 파일의 경로 및 파일명을 파라미터로 받아 처리하는 경우, 파일에 대한 접근 권한이 설정되어 있지
+                                않아 공격자가 파라미터를 조작하여 중요 파일(환경설정, 웹 소스코드, 데이터베이스 등)을 다운로드 받을 수 있다.
+                            </div>
+                            <div style="text-align: center;">
+                                <img class="art1" src="attack1.png" style="padding-left: 150px;">
+                            </div>
+                            <div class="underarticle">
+                            *) nix 계열의 경우 /.../... 문자열을 이용해 시스템 파일인 /etc/password에 접근 시도를 할 수 있다.
+                            *) 윈도우 계열에서 운영되는 어플리케이션의 경우 ..\..\ 같은 디렉토리 이동 문자열을 통해 \windows\boot.ini 파일 접근 시도가 가능하다.
+
+                            Nullbyte 문자열 (%00, 0x00)은 문자열의 끝을 의미하기 때문에 특정 확장자를 숨기기 위한 목적으로 사용될 수 있다.
+                            *) test.png를 호출하는 경우 널바이트를 삽입하여 호출하게 되면 상기 로직을 우회할 수 있기 때문에 같은 위치에 있는 log.txt 파일을 읽을 수 있게 된다.
+                            http://xxx.xxx.xxx/bbs.php?file=./test.png ->
+                            http://xxx.xxx.xxx/bbs.php?file=./log.txt%00test.png
+                            </div>
+                        </div>
+
+                        <div class="title2nd">
+                            2. 파일 업로드
+                        </div>
+                            <div class="innerarticle">
+                                <div class="underarticle">
+                                    게시판과 같은 업로드 기능이 존재하지 않는 폼에서 파일에 대한 검증이 수행되지 않을 경우 발생하는 취약점.
+                                    기본 이미지 업로드 기능을 사용하여 잠재적으로 위험한 파일이나 원격 코드를 실행할 수 있는 서버 스트립트 파일을 업로드 할 수 있다.
+
+                                    *) content 값 변조
+                                    확장자 검사를 통해 파일업로드 공격을 막고 있을 때, 파일 타입 변조를 통해 우회 공격을 시도할 수 있다.
+                                    데이터 프록시 도구를 통해 가로채면 content-type 값은 실행 파일을 의미하는 application/octet-stream으로 되어있다.
+                                    해당 값을 이미지 파일의 파일 타입으로 변조하여 전송할 경우, 단순한 루틴을 우회할 수 있다.
+                                </div>
+                                <div style="text-align: center;">
+                                    <img class="art1" src="attack2.png" style="padding-top: 100px; padding-left: 150px;">
+                                </div>
+                            </div>
+
+                        <div class="title2nd">
+                            3. URL 파라미터 조작
+                        </div>
+                            <div class="innerarticle">
+                                <div class="underarticle">
+                                    웹 어플리케이션 상에서 모든 실행경로에 대해서 접근제어를 검사하지 않거나 불완전하게 검사하는 경우, 
+                                    공격자가 접근 가능한 실행경로를 통해 정보를 유출할 수 있는 취약점.
+                                    *) 조작으로 비밀글로 등록되어 볼 수 없는 비밀글을 우회하여 보는 방법이 가능하다. 
+                                    index 값의 변화를 추적하여 비밀글을 접근할 수 있다.
+                                    http://xxx.xxx.xxx/xxxxxxx.xxxxxx?seq=13 -> http://xxx.xxx.xxx/xxxxxxx.xxxxxx?seq=11
+                                    *) 공지사항 글 변조
+	                                공지사항 등은 일반적으로 보기기능만 제공되어 주소 및 파라미터 값을 변조하여 접근을 시도한다. 
+                                    1. 페이지에서 사용되는 cmd 파라미터의 값 변경
+	                                2. 페이지 주소에 'view'가 있다면 'write'로 페이지 주소 변경
+                                    <div style="text-align: center;">
+                                        <img class="art1" src="attack3.png">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        <div class="title2nd">
+                            4. 안전하지 않은 직접 객체 참조 (IDOR 공격)
+                            </div>
+                            <div class="innerarticle">
+                        </div>
+
+                        <div class="title2nd">
+                            5. 관리자 페이지 인증 우회
+                        </div>
+                            <div class="innerarticle">
+                            </div>
+
+                        <div class="title2nd">
+                            6. 디렉토리 트래버셜 (Directory Traversal) 취약점 공격
+                        </div>
+                            <div class="innerarticle">
+                            </div>
+
+
+
+
+                    <div class="title">
+                        진단방법
+                    </div>
+                        <div class="innerarticle">
+                            <div class="underarticle">
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    <div class="title">
+                        대응방법
+                    </div>
+            
+
+
+                
+
+
+
                 </div>
             </div>
 
-            <div class="topic-wrapper" id="cf">2. 암호화 오류<br>(Cryptographic Failures)
+            <div class="topic-wrapper" id="cf"><b>2. 암호화 오류<br>(Cryptographic Failures)</b>
                 <div class="tree-wrapper">
                     <p>1. injectionVelit enim irure reprehenderit nisi incididunt in. Ut fugiat fugiat
                         fugiat nostrud sint ullamco aute consequat officia proident Lorem. Ad do occaecat fugiat
@@ -220,38 +322,40 @@
                     </p>
                 </div>
             </div>
-            <div class="topic-wrapper" id="i">3. 인젝션<br>(Injection)
+            <div class="topic-wrapper" id="i"><b>3. 인젝션<br>(Injection)</b>
                 <div class="tree-wrapper">
                 </div>
             </div>
-            <div class="topic-wrapper" id="id">4. 안전하지 않은 설계<br>(Insure Design)
+            <div class="topic-wrapper" id="id"><b>4. 안전하지 않은 설계<br>(Insure Design)</b>
                 <div class="tree-wrapper">
                 </div>
             </div>
-            <div class="topic-wrapper" id="sm">5. 보안 설정 오류<br>(Security Misconfiguration)
+            <div class="topic-wrapper" id="sm"><b>5. 보안 설정 오류<br>(Security Misconfiguration)</b>
                 <div class="tree-wrapper">
                 </div>
             </div>
-            <div class="topic-wrapper" id="vaoc">6. 취약하고 오래된 소스<br>(Vulnerable and Outdated Components)
+            <div class="topic-wrapper" id="vaoc"><b>6. 취약하고 오래된 소스<br>(Vulnerable and Outdated Components)</b>
                 <div class="tree-wrapper">
                 </div>
             </div>
-            <div class="topic-wrapper" id="iaaf">7. 식별 및 인증 오류<br>(Identification and Authentication Failures)
+            <div class="topic-wrapper" id="iaaf"><b>7. 식별 및 인증 오류<br>(Identification and Authentication Failures)</b>
                 <div class="tree-wrapper">
                 </div>
             </div>
-            <div class="topic-wrapper" id="sadif">8. 소프트웨어 및 데이터 무결성 오류<br>(Software and Data Integrity Failures)
+            <div class="topic-wrapper" id="sadif"><b>8. 소프트웨어 및 데이터 무결성 오류<br>(Software and Data Integrity Failures)</b>
                 <div class="tree-wrapper">
                 </div>
             </div>
-            <div class="topic-wrapper" id="slamf">9. 보안 로깅 및 모니터링 실패<br>(Security Logging and Monitoring Failures)                <div class="tree-wrapper">
+            <div class="topic-wrapper" id="slamf"><b>9. 보안 로깅 및 모니터링 실패<br>(Security Logging and Monitoring Failures)</b> 
+                <div
+                    class="tree-wrapper">
                 </div>
             </div>
-            <div class="topic-wrapper" id="ssrf">10. 서버 측 요청 위조<br>(Server-Side Request Forgery)
+            <div class="topic-wrapper" id="ssrf"><b>10. 서버 측 요청 위조<br>(Server-Side Request Forgery)</b>
                 <div class="tree-wrapper">
                 </div>
             </div>
-
+</div>
 </body>
 
 </html>

@@ -50,7 +50,7 @@
   /* 네비바의 너비에 맞게 설정하세요. */
   height: 100%;
   /* 높이는 화면 전체 높이로 설정 */
-  background-color: rgba(255,255,255,0);
+  background-color: rgba(255, 255, 255, 0);
   /* 투명 배경 */
   z-index: 999;
   /* 네비바보다 1만큼 낮은 값으로 설정 */
@@ -64,7 +64,7 @@
 }
 
 .h1-container {
-  margin-left: 380px;
+  margin-left: 420px;
   text-align: center;
   margin-top: 300px;
 }
@@ -75,15 +75,18 @@
   opacity: 0.5;
   transform: scale(0.8);
   font-size: 50pt;
-  font-weight: bolder;
   margin: 10px 0 150px 0;
 }
 
+
 .topic-wrapper p {
-  font-size: 15px;;
+  font-size: 20px;
+  ;
 }
+
 .topic-wrapper.active {
-  z-index: 2;  /* 이 부분 추가 */
+  z-index: 2;
+  /* 이 부분 추가 */
   opacity: 1;
   transform: scale(1);
 }
@@ -102,5 +105,63 @@
   height: 0;
   overflow: hidden;
   transition: height 0.5s ease-in-out;
+  max-width: 1200px;
+  margin: 80px auto 0 auto;
+  margin-top: 150px;
+  text-align: left;
+  line-height: 2;
+  font-family: 'Noto Sans Demilight', 'Noto Sans KR';
+  font-size: 16px;
+  line-height: 1.88;
 }
 
+.title {
+  font-weight: bold;
+  text-align: left;
+  font-size: 30px;
+  margin-bottom: 30px;
+  padding: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 25px;
+  background-color: rgb(17, 89, 161);
+  color: aliceblue;
+  border-radius: 10px;
+}
+
+.innerarticle {
+  margin: 50px;
+}
+
+.title2nd {
+  font-weight: bold;
+  text-align: left;
+  font-size: 17px;
+
+  margin-bottom: 0;
+  margin-left: 100px;
+  padding: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 25px;
+  background-color: rgb(190, 77, 77);
+  color: aliceblue;
+  border-radius: 5px;
+}
+
+.underarticle {
+  margin-left: 100px;
+  padding-left: 80px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.art1 {
+  height: 400px;
+} 
+.none {
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
