@@ -1,7 +1,7 @@
 .navbar2 {
   position: absolute;
   /* 고정 위치 */
-  left: 50px;
+  left: 220px;
   /* 페이지의 왼쪽에서 100px 떨어뜨림 */
   background-color: #e6dddd;
   /* 배경색 */
@@ -64,7 +64,7 @@
 }
 
 .h1-container {
-  margin-left: 420px;
+  margin-left: 650px;
   text-align: center;
   margin-top: 300px;
 }
@@ -139,7 +139,7 @@
   font-size: 17px;
 
   margin-bottom: 0;
-  margin-left: 100px;
+  margin-left: 50px;
   padding: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -150,10 +150,11 @@
 }
 
 .underarticle {
-  margin-left: 100px;
+  /*margin-left: px;*/
   padding-left: 80px;
   padding-top: 50px;
   padding-bottom: 50px;
+  
 }
 
 .art1 {
@@ -165,3 +166,14 @@
   margin-inline-start: 0px;
   margin-inline-end: 0px;
 }
+
+.updown {
+  border: 5px solid black;
+    width: 0.1px;
+    height: 50px;
+}
+
+/*.line {
+  border-left: thick solid #000000;
+  height: 50px; 
+} */
