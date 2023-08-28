@@ -17,7 +17,7 @@
 </div>
 
 <div class='h1-container'>
-    <h1 style="font-size: 3rem;">보안 커뮤니티</h1>
+    <h1 style="font-size: 3rem;">Forum</h1>
 </div>
 
 <!-- 키워드 검색하는 박스에 대한 html-->
@@ -57,7 +57,7 @@
         {% for post in postList %}
         <tr>
             <td>{{ post.id }}</td>
-            <td><a href="/community/board/{{ post.id }}">{{ post.title }}
+            <td><a href="/community/forum/{{ post.id }}">{{ post.title }}
                 {% if post.modify_date %}
                 <span style="color:gray; font-size:9pt;">(수정됨)</span>
                 {% endif %}

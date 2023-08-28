@@ -65,7 +65,7 @@ body {
 
 .top-containter {
     border: 1px solid rgba(128, 128, 128, 0.404);
-    width: 1550px;
+    width: 1200px;
     margin: 0 auto;
     display: flex;
     /* Flex 컨테이너로 설정 */
@@ -95,9 +95,10 @@ div h2 {
 }
 
 .text-container {
-    width: 1550px;
+    width: 1200px;
+    padding-left: 100px;
     margin: 0 auto;
-    margin-bottom: 80px;
+    margin-bottom: 300px;
 }
 
 .next-page {

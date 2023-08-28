@@ -25,6 +25,16 @@ def board(request):
                        "action": "view",}
     return render(request, "community/board.html", context)
 
+def forum(request):
+    receivePage = request.GET.get("page", "1")  # 페이지
+    postListAllData = Post.objects.filter(group_id=2).annotate(num_comments=Count("comment")).order_by(
+        "-createdDate"
+    )
+    paginator = Paginator(postListAllData, 5)
+    paginator_obj = paginator.get_page(receivePage)
+    context = {"postList": paginator_obj,
+                       "action": "view",}
+    return render(request, "community/forum.html", context)
 
 def post_detail(request, post_id):
     idTargetPost = Post.objects.get(id=post_id)
@@ -198,11 +208,11 @@ def notice(request):
 
 
 def notice_detail(request, post_id):
-    idTargetPost = Post.objects.get(post_id)
+    idTargetPost = Post.objects.get(id=post_id)
     idTargetPost.viewNum += 1
     idTargetPost.save()
 
-    max_post_id = Post.objects.latest('post_id').notice_id
+    max_post_id = Post.objects.latest('group_id')
 
     context = {
         "post": idTargetPost,
