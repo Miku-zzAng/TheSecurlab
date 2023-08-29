@@ -15,149 +15,156 @@
   </ul>
 </div>
 
-<div class="title">1-02. 공격기법</div>
+<div class="title" onclick="toggleBox('box-02')">1-02. 공격기법</div>
+<div id="box-02" class="content-box">
 
-<div class="title2nd">1-02-01. 파일 다운로드</div>
-
-<div class="innerarticle">
-  <div class="underarticle">상위 디렉터리를 요청하는 파라미터를 조작하여 시스템 관련 파일 등에 접근하여 해당 파일을 다운로드하는 공격기법. 파일 다운로드 기능이 존재하는 웹 애플리케이션에서 파일 다운로드 시 파일의 경로 및 파일명을 파라미터로 받아 처리하는 경우, 파일에 대한 접근 권한이 설정되어 있지 않아 공격자가 파라미터를 조작하여 중요 파일(환경설정, 웹 소스코드, 데이터베이스 등)을 다운로드 받을 수 있다.</div>
-  <div style="text-align: center;">
-    <img class="art1" src="/media/secucheck/01/attack1.png" style="padding-left: 150px;" />
+  
+  <div class="title2nd" onclick="toggleBox('box-02-01')">1-02-01. 파일 다운로드</div>
+  <div id="box-02-01" class="innerarticle">
+    <div class="underarticle">상위 디렉터리를 요청하는 파라미터를 조작하여 시스템 관련 파일 등에 접근하여 해당 파일을 다운로드하는 공격기법. 파일 다운로드 기능이 존재하는 웹 애플리케이션에서 파일 다운로드 시 파일의 경로 및 파일명을 파라미터로 받아 처리하는 경우, 파일에 대한 접근 권한이 설정되어 있지 않아 공격자가 파라미터를 조작하여 중요 파일(환경설정, 웹 소스코드, 데이터베이스 등)을 다운로드 받을 수 있다.</div>
+    <div style="text-align: center;">
+      <img class="art1" src="/media/secucheck/01/attack1.png" style="padding-left: 150px;" />
+    </div>
+    <div class="underarticle">*) nix 계열의 경우 /.../... 문자열을 이용해 시스템 파일인 /etc/password에 접근 시도를 할 수 있다. *) 윈도우 계열에서 운영되는 어플리케이션의 경우 ..\..\ 같은 디렉토리 이동 문자열을 통해 \windows\boot.ini 파일 접근 시도가 가능하다.
+      Nullbyte 문자열 (%00, 0x00)은 문자열의 끝을 의미하기 때문에 특정 확장자를 숨기기 위한 목적으로 사용될 수 있다. *) test.png를 호출하는 경우 널바이트를 삽입하여 호출하게 되면 상기 로직을 우회할 수 있기 때문에 같은 위치에 있는 log.txt 파일을 읽을 수 있게 된다. http://xxx.xxx.xxx/bbs.php?file=./test.png -> http://xxx.xxx.xxx/bbs.php?file=./log.txt%00test.png</div>
   </div>
-  <div class="underarticle">*) nix 계열의 경우 /.../... 문자열을 이용해 시스템 파일인 /etc/password에 접근 시도를 할 수 있다. *) 윈도우 계열에서 운영되는 어플리케이션의 경우 ..\..\ 같은 디렉토리 이동 문자열을 통해 \windows\boot.ini 파일 접근 시도가 가능하다.
 
-    Nullbyte 문자열 (%00, 0x00)은 문자열의 끝을 의미하기 때문에 특정 확장자를 숨기기 위한 목적으로 사용될 수 있다. *) test.png를 호출하는 경우 널바이트를 삽입하여 호출하게 되면 상기 로직을 우회할 수 있기 때문에 같은 위치에 있는 log.txt 파일을 읽을 수 있게 된다. http://xxx.xxx.xxx/bbs.php?file=./test.png -> http://xxx.xxx.xxx/bbs.php?file=./log.txt%00test.png</div>
-</div>
 
-<div class="title2nd">1-02-02. 파일 업로드</div>
-<div class="innerarticle">
-  <div class="underarticle">게시판과 같은 업로드 기능이 존재하지 않는 폼에서 파일에 대한 검증이 수행되지 않을 경우 발생하는 취약점. 기본 이미지 업로드 기능을 사용하여 잠재적으로 위험한 파일이나 원격 코드를 실행할 수 있는 서버 스트립트 파일을 업로드 할 수 있다.
+  <div class="title2nd" onclick="toggleBox('box-02-02')">1-02-02. 파일 업로드</div>
+  <div id="box-02-02" class="innerarticle">
+    <div class="underarticle">게시판과 같은 업로드 기능이 존재하지 않는 폼에서 파일에 대한 검증이 수행되지 않을 경우 발생하는 취약점. 기본 이미지 업로드 기능을 사용하여 잠재적으로 위험한 파일이나 원격 코드를 실행할 수 있는 서버 스트립트 파일을 업로드 할 수 있다.
 
-    *) content 값 변조 확장자 검사를 통해 파일업로드 공격을 막고 있을 때, 파일 타입 변조를 통해 우회 공격을 시도할 수 있다. 데이터 프록시 도구를 통해 가로채면 content-type 값은 실행 파일을 의미하는 application/octet-stream으로 되어있다. 해당 값을 이미지 파일의 파일 타입으로 변조하여 전송할 경우, 단순한 루틴을 우회할 수 있다.</div>
-  <div style="text-align: center;">
-    <img class="art1" src="/media/secucheck/01/attack2.png" style="padding-top: 100px; padding-left: 150px;" />
-  </div>
-</div>
-
-<div class="title2nd">1-02-03. URL 파라미터 조작</div>
-<div class="innerarticle">
-  <div class="underarticle">
-    웹 어플리케이션 상에서 모든 실행경로에 대해서 접근제어를 검사하지 않거나 불완전하게 검사하는 경우, 공격자가 접근 가능한 실행경로를 통해 정보를 유출할 수 있는 취약점. *) 조작으로 비밀글로 등록되어 볼 수 없는 비밀글을 우회하여 보는 방법이 가능하다. index 값의 변화를 추적하여 비밀글을 접근할 수 있다. http://xxx.xxx.xxx/xxxxxxx.xxxxxx?seq=13 -> http://xxx.xxx.xxx/xxxxxxx.xxxxxx?seq=11 *) 공지사항 글 변조 공지사항 등은 일반적으로 보기기능만 제공되어 주소 및 파라미터 값을 변조하여 접근을 시도한다. 1. 페이지에서 사용되는 cmd 파라미터의 값 변경 2. 페이지 주소에 'view'가 있다면 'write'로 페이지 주소 변경<div style="text-align: center;">
-      <img class="art1" src="/media/secucheck/01/attack3.png" />
+      *) content 값 변조 확장자 검사를 통해 파일업로드 공격을 막고 있을 때, 파일 타입 변조를 통해 우회 공격을 시도할 수 있다. 데이터 프록시 도구를 통해 가로채면 content-type 값은 실행 파일을 의미하는 application/octet-stream으로 되어있다. 해당 값을 이미지 파일의 파일 타입으로 변조하여 전송할 경우, 단순한 루틴을 우회할 수 있다.</div>
+    <div style="text-align: center;">
+      <img class="art1" src="/media/secucheck/01/attack2.png" style="padding-top: 100px; padding-left: 150px;" />
     </div>
   </div>
-</div>
 
-<div class="title2nd">1-02-04. 안전하지 않은 직접 객체 참조 (IDOR 공격)</div>
-<div class="innerarticle">
-  <div class="underarticle">
-    공격자가 요청 메시지의 URL이나 파라미터를 변경하여 정상적으로는 허용되지 않은 기능을 실행하거나 다른 사용자의 리소스에 접근할 수 있는 공격. 서버 쪽에서 입력값 검증을 소홀히 할 경우 취약해지는 경우가 많다. *)버프 스위트의 인터셉트 기능을 이용하여 POST 요청의 바디 부분에 전달괴는 파라미터를 조작하여 물건의 가격 변경 요청 메세지를 통해 물품의 가격이 전달될 때, 검증이 서버 쪽에서 수행되지 않으면 공격자는 자신이 원하는 가격으로 변경하여 구매 가능.<div style="text-align: center;">
-      <img src="/media/secucheck/01/attack4.png" style="padding-top: 40px;" />
-    </div>
-  </div>
-</div>
 
-<div class="title2nd">1-02-05. 관리자 페이지 인증 우회</div>
-<div class="innerarticle">
-  <div class="underarticle">
-    관리자 페이지의 URL을 직접 요청할 때 발생한다. 관리자 페이지에 접근하면 해당 사용자가 관리자 권한이 있는지 확인해야 하지만 로그인하지 않은 사용자 조차도 관리자 페이지의 URL만 알게 되면 관리자 메뉴에 접근할 수 있다. 이후 관리자 포털 메뉴로 접속하여 정보를 알아내고 관리자 권한을 획득할 수 있다.
-    <br />
-    <br />
-    *) admin, manager, system 등의 쉽게 추측할 수 있는 URL로 구성된 경우가 많다. *) 자동화 툴을 이용해서 찾아냄<div style="text-align: center;">
-      <img src="/media/secucheck/01/attack5.png" class="art1" style="padding-top: 40px;" />
-    </div>
-  </div>
-</div>
-
-<div class="title2nd">1-02-06. 디렉토리 트래버셜 (Directory Traversal) 취약점 공격</div>
-<div class="innerarticle">
-  <div class="underarticle">
-    공격자가 요청 메세지의 URL이나 파라미터를 변경하여 정상적으로 허용되지 않은 기능을 실행학거나 다른 사용자의 리소스에 접근할 수 있는 공격. 파일 경로를 지정하는 파라미터 값으로 ../ 문자열의 입력을 허용함으로써 발생하는 취약점이다. 호스트 내부의 모든 파일에 접근하는 것이 가능하다.<div style="text-align: center;">
-      <img src="/media/secucheck/01/attack6.png" class="art1" style="padding-top: 40px;" />
-    </div>
-  </div>
-</div>
-
-<div class="title">1-03. 진단방법</div>
-<div class="title2nd">1-03-01. 파일 다운로드</div>
-<div class="innerarticle">
-  <div class="underarticle">
-    <ul>
-      <li>파일 다운로드 링크 확인</li>
-      <li>파일 다운로드가 가능할 경우 다운로드 파일의 URL을 확인하여 다운로드 방식을 확인</li>
-      <li>
-        <b>정적 방식</b> : 첨부파일의 존재 위치와 파일의 이름을 공격자가 쉽게 획득할 수 있으므로 '파일 업로드' 공격 시 업로드 될 파일의 위치를 추정하는 등 웹서버의 내부 정보 수집에 활용될 수 있으므로 되도록 정적 방식을 지양
-      </li>
-      <li>
-        <b>동적 방식</b> : 파일명을 나타내는 변수와 파일의 위치를 나타내는 변수를 아래와 같이 수정하여 시스템 내부 파일의 다운로드를 시도
-      </li>
-    </ul>
-  </div>
-</div>
-
-<div class="title2nd">1-03-02. 파일 업로드</div>
-<div class="innerarticle">
-  <div class="underarticle">
-    <ul>
-      <li>파일 다운로드 링크 확인</li>
-      <li>파일 업로드가 가능한 게시판 등에 서버 사이드 스크립트(ASP, PHP, PHP3, JSP,CGI 등) 및 html 등의 파일을 업로드</li>
-      <li>업로드가 되었을 경우 해당 파일이 웹서버에서 실행되는지 점검</li>
-    </ul>
-  </div>
-</div>
-
-<div class="title2nd">1-03-03. URL 파라미터 조작 우회</div>
-<div class="innerarticle">
-  <div class="underarticle">
-    <ul>
-      <li>파라미터 변조를 통한 권한 상승이 가능한지 여부 확인</li>
-    </ul>
-  </div>
-</div>
-
-<div class="title2nd">1-03-04. 안전하지 않은 직접 객체 참조 (IDOR 공격)</div>
-<div class="innerarticle">
-  <div class="underarticle">
-    <ul>
-      <li>사용자의 Object에 참조될만한 파라미터에 다른 사용자의 값을 넣어 어플리케이션의 처리, 리턴되는 반응 확인</li>
-      <li>만약 유저의 데이터가 변경되었다면 IDOR에 취약한 것으로 판단</li>
-    </ul>
-  </div>
-</div>
-
-<div class="title2nd">1-03-05. 관리자 페이지 인증 우회</div>
-<div class="innerarticle">
-  <div class="underarticle">
-    <ul>
-      <li>직접 점검 방법</li>
-      <div style="padding-left : 15px;">
-        - 관리자 페이지 위치를 알지 못할 경우 일반적으로 많이 사용하는 관리자 페이지 명을 입력하여 관리자 페이지가 존재하는지 점검<br />
-        - 사용자 인증을 통과하여 페이지에 접속한 후 인증과정 없이 중간 페이지에 접속을 시도하여 접속이 가능한지 점검<br />
-        - 서버 내부 파일명을 알고 있을 경우 웹서버에서 관리자 페이지로의 웹페이지 (파일) 목록을 확인하여 웹 브라우저로를 직접 접속을 시도
+  <div class="title2nd" onclick="toggleBox('box-02-03')">1-02-03. URL 파라미터 조작</div>
+  <div id="box-02-03" class="innerarticle">
+    <div class="underarticle">
+      웹 어플리케이션 상에서 모든 실행경로에 대해서 접근제어를 검사하지 않거나 불완전하게 검사하는 경우, 공격자가 접근 가능한 실행경로를 통해 정보를 유출할 수 있는 취약점. *) 조작으로 비밀글로 등록되어 볼 수 없는 비밀글을 우회하여 보는 방법이 가능하다. index 값의 변화를 추적하여 비밀글을 접근할 수 있다. http://xxx.xxx.xxx/xxxxxxx.xxxxxx?seq=13 -> http://xxx.xxx.xxx/xxxxxxx.xxxxxx?seq=11 *) 공지사항 글 변조 공지사항 등은 일반적으로 보기기능만 제공되어 주소 및 파라미터 값을 변조하여 접근을 시도한다. 1. 페이지에서 사용되는 cmd 파라미터의 값 변경 2. 페이지 주소에 'view'가 있다면 'write'로 페이지 주소 변경<div style="text-align: center;">
+        <img class="art1" src="/media/secucheck/01/attack3.png" />
       </div>
-      <br />
-      <li>구글을 이용한 점검 방법</li>
-      <div style="padding-left : 15px;">- 구글(www.google.co.kr) 사이트에 접속 후 고급 검색으로 이동 - 메인 설정에 해당 웹서버 주소를 입력하고 검색어 입력란에는 검색어를 입력하여 ID/PW 및 관리자 웹서버(관리자 로그인 페이지 등) 노출 페이지를 검색</div>
-    </ul>
+    </div>
   </div>
-</div>
 
-<div class="title2nd">1-03-06. 디렉토리 트래버셜(Directory Traversal) 취약점 공격</div>
-<div class="innerarticle">
-  <div class="underarticle">
-    <ul>
-      <li>직접 점검 방법</li>
-      <div style="padding-left : 15px;">
-        - 점검 대상 웹 사이트의 하위 디렉터리 정보를 사전에 모두 확인<br />
-        - 웹 루트(Root)의 모든 하위 디렉터리에 대해서 웹 브라우저에 해당 주소를 입력하여 디렉터리 리스팅 취약점 존재여부를 점검<br />
+  <div class="title2nd" onclick="toggleBox('box-02-04')">1-02-04. 안전하지 않은 직접 객체 참조 (IDOR 공격)</div>
+  <div id="box-02-04" class="innerarticle">
+    <div class="underarticle">
+      공격자가 요청 메시지의 URL이나 파라미터를 변경하여 정상적으로는 허용되지 않은 기능을 실행하거나 다른 사용자의 리소스에 접근할 수 있는 공격. 서버 쪽에서 입력값 검증을 소홀히 할 경우 취약해지는 경우가 많다. *)버프 스위트의 인터셉트 기능을 이용하여 POST 요청의 바디 부분에 전달괴는 파라미터를 조작하여 물건의 가격 변경 요청 메세지를 통해 물품의 가격이 전달될 때, 검증이 서버 쪽에서 수행되지 않으면 공격자는 자신이 원하는 가격으로 변경하여 구매 가능.<div style="text-align: center;">
+        <img src="/media/secucheck/01/attack4.png" style="padding-top: 40px;" />
       </div>
+    </div>
+  </div>
+
+
+  <div class="title2nd" onclick="toggleBox('box-02-05')">1-02-05. 관리자 페이지 인증 우회</div>
+  <div id="box-02-05" class="innerarticle">
+    <div class="underarticle">
+      관리자 페이지의 URL을 직접 요청할 때 발생한다. 관리자 페이지에 접근하면 해당 사용자가 관리자 권한이 있는지 확인해야 하지만 로그인하지 않은 사용자 조차도 관리자 페이지의 URL만 알게 되면 관리자 메뉴에 접근할 수 있다. 이후 관리자 포털 메뉴로 접속하여 정보를 알아내고 관리자 권한을 획득할 수 있다.
       <br />
-      <li>구글을 이용한 점검 방법</li>
-      <div style="padding-left : 15px;">- 구글(www.google.co.kr) 사이트에 접속 후 고급 검색으로 이동 - 도메인 설정 란에는 해당 사이트 주소를 입력하고, 검색창에는 다음을 입력하여 디렉터리 목록이 저장된 페이지를 검색</div>
-    </ul>
+      <br />
+      *) admin, manager, system 등의 쉽게 추측할 수 있는 URL로 구성된 경우가 많다. *) 자동화 툴을 이용해서 찾아냄<div style="text-align: center;">
+        <img src="/media/secucheck/01/attack5.png" class="art1" style="padding-top: 40px;" />
+      </div>
+    </div>
+  </div>
+
+
+  <div class="title2nd" onclick="toggleBox('box-02-06')">1-02-06. 디렉토리 트래버셜 (Directory Traversal) 취약점 공격</div>
+  <div id="box-02-06" class="innerarticle">
+    <div class="underarticle">
+      공격자가 요청 메세지의 URL이나 파라미터를 변경하여 정상적으로 허용되지 않은 기능을 실행학거나 다른 사용자의 리소스에 접근할 수 있는 공격. 파일 경로를 지정하는 파라미터 값으로 ../ 문자열의 입력을 허용함으로써 발생하는 취약점이다. 호스트 내부의 모든 파일에 접근하는 것이 가능하다.<div style="text-align: center;">
+        <img src="/media/secucheck/01/attack6.png" class="art1" style="padding-top: 40px;" />
+      </div>
+    </div>
   </div>
 </div>
 
+
+<div class="title" onclick="toggleBox('box-03')">1-03. 진단방법</div>
+<div id="box-03" class="content-box">
+  <div class="title2nd">1-03-01. 파일 다운로드</div>
+  <div class="innerarticle">
+    <div class="underarticle">
+      <ul>
+        <li>파일 다운로드 링크 확인</li>
+        <li>파일 다운로드가 가능할 경우 다운로드 파일의 URL을 확인하여 다운로드 방식을 확인</li>
+        <li>
+          <b>정적 방식</b> : 첨부파일의 존재 위치와 파일의 이름을 공격자가 쉽게 획득할 수 있으므로 '파일 업로드' 공격 시 업로드 될 파일의 위치를 추정하는 등 웹서버의 내부 정보 수집에 활용될 수 있으므로 되도록 정적 방식을 지양
+        </li>
+        <li>
+          <b>동적 방식</b> : 파일명을 나타내는 변수와 파일의 위치를 나타내는 변수를 아래와 같이 수정하여 시스템 내부 파일의 다운로드를 시도
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="title2nd">1-03-02. 파일 업로드</div>
+  <div class="innerarticle">
+    <div class="underarticle">
+      <ul>
+        <li>파일 다운로드 링크 확인</li>
+        <li>파일 업로드가 가능한 게시판 등에 서버 사이드 스크립트(ASP, PHP, PHP3, JSP,CGI 등) 및 html 등의 파일을 업로드</li>
+        <li>업로드가 되었을 경우 해당 파일이 웹서버에서 실행되는지 점검</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="title2nd">1-03-03. URL 파라미터 조작 우회</div>
+  <div class="innerarticle">
+    <div class="underarticle">
+      <ul>
+        <li>파라미터 변조를 통한 권한 상승이 가능한지 여부 확인</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="title2nd">1-03-04. 안전하지 않은 직접 객체 참조 (IDOR 공격)</div>
+  <div class="innerarticle">
+    <div class="underarticle">
+      <ul>
+        <li>사용자의 Object에 참조될만한 파라미터에 다른 사용자의 값을 넣어 어플리케이션의 처리, 리턴되는 반응 확인</li>
+        <li>만약 유저의 데이터가 변경되었다면 IDOR에 취약한 것으로 판단</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="title2nd">1-03-05. 관리자 페이지 인증 우회</div>
+  <div class="innerarticle">
+    <div class="underarticle">
+      <ul>
+        <li>직접 점검 방법</li>
+        <div style="padding-left : 15px;">
+          - 관리자 페이지 위치를 알지 못할 경우 일반적으로 많이 사용하는 관리자 페이지 명을 입력하여 관리자 페이지가 존재하는지 점검<br />
+          - 사용자 인증을 통과하여 페이지에 접속한 후 인증과정 없이 중간 페이지에 접속을 시도하여 접속이 가능한지 점검<br />
+          - 서버 내부 파일명을 알고 있을 경우 웹서버에서 관리자 페이지로의 웹페이지 (파일) 목록을 확인하여 웹 브라우저로를 직접 접속을 시도
+        </div>
+        <br />
+        <li>구글을 이용한 점검 방법</li>
+        <div style="padding-left : 15px;">- 구글(www.google.co.kr) 사이트에 접속 후 고급 검색으로 이동 - 메인 설정에 해당 웹서버 주소를 입력하고 검색어 입력란에는 검색어를 입력하여 ID/PW 및 관리자 웹서버(관리자 로그인 페이지 등) 노출 페이지를 검색</div>
+      </ul>
+    </div>
+  </div>
+
+  <div class="title2nd">1-03-06. 디렉토리 트래버셜(Directory Traversal) 취약점 공격</div>
+  <div class="innerarticle">
+    <div class="underarticle">
+      <ul>
+        <li>직접 점검 방법</li>
+        <div style="padding-left : 15px;">
+          - 점검 대상 웹 사이트의 하위 디렉터리 정보를 사전에 모두 확인<br />
+          - 웹 루트(Root)의 모든 하위 디렉터리에 대해서 웹 브라우저에 해당 주소를 입력하여 디렉터리 리스팅 취약점 존재여부를 점검<br />
+        </div>
+        <br />
+        <li>구글을 이용한 점검 방법</li>
+        <div style="padding-left : 15px;">- 구글(www.google.co.kr) 사이트에 접속 후 고급 검색으로 이동 - 도메인 설정 란에는 해당 사이트 주소를 입력하고, 검색창에는 다음을 입력하여 디렉터리 목록이 저장된 페이지를 검색</div>
+      </ul>
+    </div>
+  </div>
+</div>
 <div class="title">1-04. 대응방법</div>
 <div class="title2nd">1-04-01. 파일 다운로드</div>
 <div class="innerarticle">

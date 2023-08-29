@@ -30,13 +30,6 @@
                 </strong>
                 <br>
                 <br>
-                <p>
-                    {% if post.content|length > 500 %}
-                        {{ post.content|slice:":500" }}<br><br>...더보기</a>
-                    {% else %}
-                        {{ post.content }}
-                    {% endif %} 
-                </p>
             </div>
         </div>
     </div>
