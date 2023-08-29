@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-l@98a+e2d77ix(!!h370nqyhn$zb40rp&6zk+laj=$29f(*le$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['220.69.241.66','220.69.241.66:8080','127.0.0.1:8080','theseculab.site','www.theseculab.site'
+		,'theseculab.site:8080','www.theseculab.site:8080','127.0.0.1']
 
 # Application definition
 
@@ -66,6 +67,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.csrf',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -126,6 +128,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR.parent / "thesecurlab-media"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
