@@ -74,8 +74,8 @@
   transition: all 0.3s ease;
   opacity: 0.5;
   transform: scale(0.8);
-  font-size: 50pt;
   font-weight: bolder;
+  font-size: 50pt;
   margin: 10px 0 150px 0;
 }
 
@@ -140,7 +140,7 @@
   font-size: 17px;
 
   margin-bottom: 0;
-  margin-left: 100px;
+  margin-left: 50px;
   padding: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -151,7 +151,6 @@
 }
 
 .underarticle {
-  margin-left: 100px;
   padding-left: 80px;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -165,4 +164,10 @@
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
+}
+
+.updown {
+  border: 5px solid black;
+    width: 0.1px;
+    height: 50px;
 }
