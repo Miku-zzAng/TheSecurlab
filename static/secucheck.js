@@ -29,29 +29,49 @@ document.addEventListener('DOMContentLoaded', function () { // 문서가 모두 
     smoothFollow();
 });
 
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
-    const topics = document.querySelectorAll('.topic-wrapper');
+    const titles = document.querySelectorAll('.title[data-toggle-id], .title2nd[data-toggle-id]');
+    const treeWrapper = document.querySelector('.tree-wrapper');
 
-    topics.forEach(topic => {
-        let tree = topic.querySelector('.tree-wrapper');
+    titles.forEach(title => {
+        title.addEventListener('click', function () {
+            const toggleId = this.getAttribute('data-toggle-id');
+            const content = document.getElementById(toggleId);
 
-        topic.addEventListener('click', function () {
-            // 다른 모든 tree-wrapper를 닫음
-            topics.forEach(innerTopic => {
-                if (innerTopic !== topic) { // 현재 클릭된 주제를 제외하고
-                    let innerTree = innerTopic.querySelector('.tree-wrapper');
-                    innerTree.style.height = '0px';
+            // 기존에 열려있는 내용을 닫습니다.
+            document.querySelectorAll('.description').forEach(desc => {
+                if (desc !== content) {
+                    desc.style.maxHeight = '0px';
+                    desc.style.opacity = '0';
                 }
             });
 
-            if (tree.style.height === '0px' || tree.style.height === '') {
-                tree.style.height = tree.scrollHeight + 'px';
+            // 클릭한 제목에 해당하는 설명을 토글합니다.
+            if (content.style.opacity === '0' || content.style.opacity === '') {
+                content.style.maxHeight = '2300px'; // 임의의 큰 값
+                content.style.opacity = '1';
+                
+                treeWrapper.style.height = "auto"; // 혹은 특정 값으로 조절
             } else {
-                tree.style.height = '0px';
+                content.style.maxHeight = '0';
+                content.style.opacity = '0';
+
+                treeWrapper.style.height = "auto"; // 혹은 초기 높이 값으로 설정
             }
         });
     });
 });
+
+
+
+
+
+
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
     // navbar2 내부의 모든 <a> 태그에 이벤트 리스너 추가
@@ -72,13 +92,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+
+let currentlyExpanded = null; // 현재 전개된 topic-wrapper를 추적하기 위한 전역 변수
+
 // 해당 로직을 함수로 분리
 function adjustTopicVisibility() {
     const topics = document.querySelectorAll('.topic-wrapper');
-    const middle = window.innerHeight * 0.4;
+    const middle = window.innerHeight * 0.6;
 
     let closest = null;
     let closestDistance = Infinity;
+
+    if (currentlyExpanded) return; // 현재 전개된 topic-wrapper가 있다면 함수를 종료합니다.
 
     topics.forEach(topic => {
         const box = topic.getBoundingClientRect();
@@ -92,7 +118,6 @@ function adjustTopicVisibility() {
 
         topic.classList.remove('active');
         topic.classList.remove('nearby1');
-        topic.classList.remove('nearby2');
     });
 
     if (closest) {
@@ -102,16 +127,48 @@ function adjustTopicVisibility() {
 
         if (prevElement) prevElement.classList.add('nearby1');
         if (nextElement) nextElement.classList.add('nearby1');
-
-        const prevElement2 = prevElement ? prevElement.previousElementSibling : null;
-        const nextElement2 = nextElement ? nextElement.nextElementSibling : null;
-
-        if (prevElement2) prevElement2.classList.add('nearby2');
-        if (nextElement2) nextElement2.classList.add('nearby2');
     }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    const topics = document.querySelectorAll('.topic-wrapper');
+    topics.forEach(topic => {
+        let tree = topic.querySelector('.tree-wrapper');
+
+        // tree-wrapper를 클릭했을 때 이벤트 버블링을 막는 코드
+        tree.addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+
+        topic.addEventListener('click', function () {
+            topics.forEach(innerTopic => {
+                innerTopic.classList.remove('active'); // 모든 주제에서 'active' 클래스 제거
+                innerTopic.classList.remove('nearby1');
+            });
+
+            topic.classList.add('active'); // 현재 클릭된 주제에 'active' 클래스 추가
+
+            // 다른 모든 tree-wrapper를 닫음
+            topics.forEach(innerTopic => {
+                if (innerTopic !== topic) { // 현재 클릭된 주제를 제외하고
+                    let innerTree = innerTopic.querySelector('.tree-wrapper');
+                    innerTree.style.height = '0px';
+                }
+            });
+
+            if (tree.style.height === '0px' || tree.style.height === '') {
+                tree.style.height = tree.scrollHeight + 'px';
+                currentlyExpanded = topic; // 현재 전개된 topic-wrapper를 전역 변수에 할당
+            } else {
+                tree.style.height = '0px';
+                currentlyExpanded = null; // topic-wrapper가 닫힐 경우 전역 변수를 null로 설정
+            }
+        });
+    });
+
     adjustTopicVisibility();
     window.addEventListener('scroll', adjustTopicVisibility);
 });
+
+
+

@@ -103,7 +103,8 @@
 }
 
 .tree-wrapper {
-  height: 0;
+ height:0px;
+  max-height: 5000px;
   overflow: hidden;
   transition: height 0.5s ease-in-out;
   max-width: 1200px;
@@ -116,11 +117,18 @@
   line-height: 1.88;
 }
 
+.content, .description {
+  max-height: 0;          
+  overflow: hidden;     
+  opacity: 0;           
+  transition: max-height 0.5s ease-out, opacity 0.3s ease-out; 
+}
+
 .title {
   font-weight: bold;
   text-align: left;
   font-size: 30px;
-  margin-bottom: 30px;
+  margin: 15px 0;
   padding: 20px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -137,17 +145,16 @@
 .title2nd {
   font-weight: bold;
   text-align: left;
-  font-size: 17px;
-
-  margin-bottom: 0;
-  margin-left: 50px;
+  font-size: 20px;
+  margin-bottom: 15px;
+  margin-left: 30px;
   padding: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 25px;
   background-color: rgb(190, 77, 77);
   color: aliceblue;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 .underarticle {
