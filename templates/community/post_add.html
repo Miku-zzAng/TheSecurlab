@@ -1,4 +1,31 @@
-
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/post_add.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplemde/1.11.2/simplemde.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplemde/1.11.2/simplemde.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // DOMContentLoaded -> 완전히 페이지가 로드되면 js를 실행하는 이벤트리스너
+            var simplemde = new SimpleMDE({ // 마크다운 에디터 초기화 (MDE 객체 생성하여 변수에 저장)
+            element: document.getElementById("id_content"), // 마크다운 에디터 적용될 id HTML 요소 지정
+            promptURLs: true,  // 이미지나 링크 삽입할때 URL 입력받는 창 활성화
+            uploadImage: true,  // simpleMDE 내에서 이미지 업로드 기능 활성화 =
+            imageUploadEndpoint: '/upload_image/',  // 이미지 업로드시, 장고의 upload_image URL로 이미지 전송하여 views 로직 처리
+            imageUploadFunction: function(file, onSuccess, onError) { // 이미지 선택시 함수 호출
+                var formData = new FormData(); // 폼데이터 객체 생성(서버로 전송할수 있게)
+                formData.append('image', file); // file을 image라는 key에 추가
+        
+                fetch('/upload_image/', { // fetch: 웹 API 호출(/upload_image/에 이미지 폼데이터 POST로 전송 )
+                    method: 'POST',
+                    body: formData
+                }).then(response => response.json()).then(data => { // fetch 함수 결과를 JSON 형식으로 변환후 데이터 처리
+                    if (data.status === 'success') {
+                        onSuccess(data.url);
+                    } else {
+                        onError("업로드에 실패했습니다.");
+                    }
+                });
+            }
         });
     });
     </script>
