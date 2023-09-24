@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="myPage3.css">
+</head>
+
+<body>
+
+    <div class="topbar"> <!--상단 바-->
+        <div class="logo-container">
+            <a href="메인페이지로 이동.html">
+                <img class="logo" src="로고.png" alt="none">
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <nav class="leftnavibar">
+            <div class="incontainer">
+                <ul>
+                    <li class="nav-item li-title">"  "의 page</li>
+                    <li><a>쓴 게시글</a></li>
+                    <li><a class="current">쓴 댓글</a></li>
+                </ul>
+            </div>
+        </nav>
+
+
+
+        <div class="content">
+            <h1 class="caption">"  "님께서 쓴 댓글</h1>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 10%">번호</th>
+                            <th style="width: 50%">내용</th>
+                            <th style="width: 10%">작성일</th>
+                            <th style="width: 10%">조회수</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="post: ${posts}">
+                            <td style="width: 10%" th:text="${post.id}">1</td>
+                            <td style="width: 10%" th:text="${post.member.username}">그렇군요</td>
+                            <td style="width: 10%" th:text="${post.likes}">2023.08.01</td>
+                            <td style="width: 10%" th:text="${#temporals.format(post.createDate, 'HH:mm')}">81</td>
+                        </tr>
+                        <tr th:each="post: ${posts}">
+                            <td style="width: 10%" th:text="${post.id}">2</td>
+                            <td style="width: 10%" th:text="${post.member.username}">네</td>
+                            <td style="width: 10%" th:text="${post.likes}">2023.04.23</td>
+                            <td style="width: 10%" th:text="${#temporals.format(post.createDate, 'HH:mm')}">858</td>
+                        </tr>
+                        <tr th:each="post: ${posts}">
+                            <td style="width: 10%" th:text="${post.id}">3</td>
+                            <td style="width: 10%" th:text="${post.member.username}">제 생각에는 .....</td>
+                            <td style="width: 10%" th:text="${post.likes}">2023.09.01</td>
+                            <td style="width: 10%" th:text="${#temporals.format(post.createDate, 'HH:mm')}">10</td>
+                        </tr>
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+</body>
+
+</html>

@@ -16,6 +16,12 @@
     position: fixed;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .logo {
     width: 160px;
     height: 130px;
@@ -187,7 +193,8 @@
 .text-position {
     text-align: center;
 }
+
 .submit-login button,
-.google-login button{
+.google-login button {
     font-weight: bold;
 }
