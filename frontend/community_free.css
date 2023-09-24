@@ -60,7 +60,7 @@ body {
     text-align: center;
     width: 100%;
     margin-top: 100px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 .select-box {
@@ -140,6 +140,37 @@ a {
 
 }
 
+.category_box {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 1010px;
+    
+}
+
+.category_button {
+    text-decoration: none;
+    background-color: #d3d3d3; 
+    cursor: pointer; /* 커서 스타일 변경 */
+    
+}
+
+.category_box a {
+    text-decoration: none;
+    color: #000000;
+    padding: 10px 32px;
+    border: 1px solid transparent;
+    border-radius: 10px 10px 0px 0px;
+    margin-right: 10px;
+    border-bottom: none;
+    align-content: right;
+}
+
+.category_box a:hover {
+    background-color: gray; /* 커서 호버시 색상 */
+    border-color: #ddd;
+    color: white;
+} 
+
 .board_list {
     width: 100%;
     border-top: 2px solid #535353;
@@ -211,3 +242,5 @@ a {
     border-radius: 100px;
     font-size: 12px;
 }
+
+
