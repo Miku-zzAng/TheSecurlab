@@ -59,19 +59,20 @@ page = 1
 #검색 종료할 페이지 입력
 page2 = 5
 
+#뉴스 크롤러 실행
+news_titles = []
+finding_url = []
+news_contents =[]
+news_dates = []
+news_image = []
+news_writer = []
+
 
 # naver url 생성
 for search_num in range(len(search)) :
     url = makeUrl(search[search_num],page,page2)
 
-    #뉴스 크롤러 실행
-    news_titles = []
     news_url =[]
-    finding_url = []
-    news_contents =[]
-    news_dates = []
-    news_image = []
-    news_writer = []
     
     for i in url:
         url = articles_crawler(url)
@@ -101,7 +102,6 @@ for search_num in range(len(search)) :
             pass
 
     # 내용 크롤링
-
     for i in tqdm(final_urls):
         #각 기사 html get하기
         news = requests.get(i,headers=headers)
@@ -164,7 +164,6 @@ for search_num in range(len(search)) :
     
 
     #크롤링 데이터 각 길이 확인
-    print("검색된 기사 갯수: 총 ",(page2+1-page)*10,'개')
     print('news_title: ',len(news_titles))
     print('news_url: ',len(finding_url))
     print('news_contents: ',len(news_contents))
@@ -172,19 +171,17 @@ for search_num in range(len(search)) :
     print('news_image: ',len(news_image))
     print('news_writer: ', len(news_writer))
 
+###데이터 프레임으로 만들기###
+import pandas as pd
 
-    ###데이터 프레임으로 만들기###
-    import pandas as pd
+#데이터 프레임 만들기
+news_df = pd.DataFrame({'date':news_dates,'title':news_titles,'writer':news_writer,'link':finding_url,'content':news_contents,'image':news_image})
 
-    #데이터 프레임 만들기
-    news_df = pd.DataFrame({'date':news_dates,'title':news_titles,'writer':news_writer,'link':finding_url,'content':news_contents,'image':news_image})
-
-    #중복 행 지우기
-    news_df = news_df.drop_duplicates(keep='first',ignore_index=True)
-    print("\n", search[search_num])
-    print(news_df)
+#중복 행 지우기
+news_df = news_df.drop_duplicates(keep='first',ignore_index=True)
+print("\n")
+print(news_df)
 
 #데이터 프레임 저장
-for i in range (len(search)):
-    now = datetime.datetime.now() 
-    news_df.to_csv('{}_{}.csv'.format(search[i],now.strftime('%Y%m%d_%H시%M분%S초')),encoding='utf-8-sig',index=False)
+now = datetime.datetime.now() 
+news_df.to_csv('{}_{}.csv'.format(search,now.strftime('%Y%m%d_%H시%M분%S초')),encoding='utf-8-sig',index=False)
