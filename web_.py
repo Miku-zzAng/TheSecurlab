@@ -160,18 +160,6 @@ for search_num in range(len(search)) :
             news_dates.append(news_date)
         else : 
             pass
-   
-    
-
-    #크롤링 데이터 각 길이 확인
-    print("검색된 기사 갯수: 총 ",(page2+1-page)*10,'개')
-    print('news_title: ',len(news_titles))
-    print('news_url: ',len(finding_url))
-    print('news_contents: ',len(news_contents))
-    print('news_dates: ',len(news_dates))
-    print('news_image: ',len(news_image))
-    print('news_writer: ', len(news_writer))
-
 
     ###데이터 프레임으로 만들기###
     import pandas as pd
