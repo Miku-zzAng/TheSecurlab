@@ -53,7 +53,7 @@ def articles_crawler(url):
 #####크롤링 시작#####
 
 #검색어 입력
-search = ["접근권한취약점", "암호화실패" ]
+search = ["접근 권한 취약점", "암호화 실패", "암호화 오류", "SSRF", "CSRF", "취약한 컴포넌트", "오래된 컴포넌트", "OWASP"]
 #검색 시작할 페이지 입력
 page = 1 
 #검색 종료할 페이지 입력
@@ -143,7 +143,7 @@ for search_num in range(len(search)) :
         content = content.replace(pattern2, '')
         content = content.replace("[", "").replace("]", "")
         
-        if "피해사례" or "피해자" or "피해그룹" or "실제" or "해킹" in content :
+        if "피해사례" or "피해액" or "피해 사례" or "피해자" or "피해그룹" or "피해 그룹" or "피해 규모" or "피해규모" or "실제 피해" in content :
             news_titles.append(title)
             news_contents.append(content)
             news_writer.append(writer)
