@@ -53,11 +53,11 @@ def articles_crawler(url):
 #####크롤링 시작#####
 
 #검색어 입력
-search = ["접근 권한 취약점", "암호화 실패", "암호화 오류", "SSRF", "CSRF", "취약한 컴포넌트", "오래된 컴포넌트", "OWASP"]
+search = ["접근권한취약점", "암호화실패", "암호화오류", "SSRF", "CSRF", "취약한컴포넌트", "오래된컴포넌트", "OWASP"]
 #검색 시작할 페이지 입력
 page = 1 
 #검색 종료할 페이지 입력
-page2 = 5
+page2 = 10
 
 #뉴스 크롤러 실행
 news_titles = []
@@ -143,24 +143,23 @@ for search_num in range(len(search)) :
         content = content.replace(pattern2, '')
         content = content.replace("[", "").replace("]", "")
         
-        if "피해사례" or "피해액" or "피해 사례" or "피해자" or "피해그룹" or "피해 그룹" or "피해 규모" or "피해규모" or "실제 피해" in content :
-            news_titles.append(title)
-            news_contents.append(content)
-            news_writer.append(writer)
-            news_image.append(link)
-            finding_url.append(i)
+        search_info = ["피해사례", "피해액", "피해 사례", "피해자", "피해그룹", "피해 그룹", "피해 규모", "피해규모", "실제 피해"] 
+        for info in search_info:
+            if info in content:
+                news_titles.append(title)
+                news_contents.append(content)
+                news_writer.append(writer)
+                news_image.append(link)
+                finding_url.append(i)
 
-            try:
-                html_date = news_html.select_one("div#ct> div.media_end_head.go_trans > div.media_end_head_info.nv_notrans > div.media_end_head_info_datestamp > div > span")
-                news_date = html_date.attrs['data-date-time']
-            except AttributeError:
-                news_date = news_html.select_one("#content > div.end_ct > div > div.article_info > span > em")
-                news_date = re.sub(pattern=pattern1,repl='',string=str(news_date))
-            # 날짜 가져오기
-            news_dates.append(news_date)
-        else : 
-            pass
-   
+                try:
+                    html_date = news_html.select_one("div#ct> div.media_end_head.go_trans > div.media_end_head_info.nv_notrans > div.media_end_head_info_datestamp > div > span")
+                    news_date = html_date.attrs['data-date-time']
+                except AttributeError:
+                    news_date = news_html.select_one("#content > div.end_ct > div > div.article_info > span > em")
+                    news_date = re.sub(pattern=pattern1,repl='',string=str(news_date))
+                # 날짜 가져오기
+                news_dates.append(news_date)
     
 
     #크롤링 데이터 각 길이 확인
