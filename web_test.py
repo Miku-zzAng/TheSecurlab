@@ -143,7 +143,7 @@ for search_num in range(len(search)) :
         content = content.replace(pattern2, '')
         content = content.replace("[", "").replace("]", "")
         
-        search_info = ["피해사례", "피해액", "피해 사례", "피해자", "피해그룹", "피해 그룹", "피해 규모", "피해규모", "실제 피해"] 
+        search_info = ["피해사례", "피해액", "피해 사례", "피해자", "피해그룹", "피해 그룹", "피해 규모", "피해규모", "실제 피해", "공격"] 
         for info in search_info:
             if info in content:
                 news_titles.append(title)
