@@ -1,0 +1,53 @@
+.center-logo{
+    width: 200px;
+    height: 160px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 12%;
+    margin-bottom: 30px;
+}
+
+.url-text{
+    text-align: center;
+    color: rgb(78, 78, 78);
+    font-weight: 550;
+}
+
+.input-url{
+    width: 515px;
+    height: 28px;
+    border-radius: 20px;
+ 
+}
+
+.analysis-button{
+    background: gray;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.vertical-line {
+    height: 130px;
+    border-left: 2px solid rgb(175, 175, 175);
+    margin-right: 40px;
+    margin-left: 40px;
+}
+
+.warning-text{
+    color: red;
+}
