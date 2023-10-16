@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="result-page.css">
+</head>
+
+<body>
+    <img class="center-logo" src="로고.png" alt="시큐리티 로고">
+    <h2 class="result-text">theseculab.site:8080 분석 결과</h2>
+
+    <div class="list-container" style="margin-bottom: 40px;">
+        <div class="list-box">요청 횟수</div>
+        <h3 class="list-font" style="margin-right: 60px;">5018 회</h3>
+        <div class="list-box">취약점 목록</div>
+        <h3 class="list-font">11 종</h3>
+    </div>
+
+    <h3 class="list-container" style="color: rgb(163, 163, 163); font-size:medium; light; margin-bottom: 20px;">각<span
+           style="color: rgb(211, 8, 8);">&nbsp;취약점</span>을 클릭하시면 분석 결과를 보실 수 있습니다.</h3>
+
+    <div class="list-container">
+        <div class="line" style="margin-bottom: 10px;"></div>
+    </div>
+
+    <div class="list-container">
+        <div class="line" style="margin-bottom: 35px;"></div>
+    </div>
+
+    <div class="WeakPoint-container">
+        <img class="mark" src="mark-red.png" alt="none">
+        <a>Content Security Policy (CSP) Header Not Set</a>
+        <div class="mark-line"></div>
+        <a class="mark-text"style="color: red;">중간</a>
+
+    </div>
+    <div class="WeakPoint-container">
+        <img class="mark" src="mark-yellow.png" alt="none">
+        <a>Application Error Disdosure</a>
+        <div class="mark-line"></div>
+        <a class="mark-text"style="color: orange">낮음</a>
+    </div>
+    <div class="WeakPoint-container">
+        <img class="mark" src="mark-yellow.png" alt="none">
+        <a>Cookie No HttpOnlt Flag</a>
+        <div class="mark-line"></div>
+        <a class="mark-text"style="color: orange">낮음</a>
+    </div>
+    <div class="WeakPoint-container">
+        <img class="mark" src="mark-yellow.png" alt="none">
+        <a>Server Leaks Version Infomation via "Server" HTTP Response Header Field</a>
+        <div class="mark-line"></div>
+        <a class="mark-text"style="color: orange">낮음</a>
+    </div>
+    <div class="WeakPoint-container">
+        <img class="mark" src="mark-yellow.png" alt="none">
+        <a>Timestamp Didosure - Unix</a>
+        <div class="mark-line"></div>
+        <a class="mark-text"style="color: orange">낮음</a>
+    </div>
+    <div class="WeakPoint-container">
+        <img class="mark" src="mark-yellow.png" alt="none">
+        <a>X-content-Type-Option Header Missing</a>
+        <div class="mark-line"></div>
+        <a class="mark-text"style="color: orange">낮음</a>
+    </div>
+    <div class="WeakPoint-container">
+        <img class="mark-blue" src="mark-blue.png" alt="none">
+        <a>Authentication Request Identified</a>
+        <div class="mark-line"></div>
+        <a class="mark-text"style="color: blue">참조 수준</a>
+    </div>
+    <div class="WeakPoint-container">
+        <img class="mark-blue" src="mark-blue.png" alt="none">
+        <a>Modern Web Application</a>
+        <div class="mark-line"></div>
+        <a class="mark-text"style="color: blue">참조 수준</a>
+    </div>
+
+</body>

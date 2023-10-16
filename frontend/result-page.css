@@ -1,0 +1,81 @@
+.center-logo{
+    width: 200px;
+    height: 160px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10%;
+    margin-bottom: 10px;
+}
+
+.result-text{
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: 550;
+}
+
+.list-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.list-box{
+    width: 130px;
+    height: 50px;
+    border-radius: 18px;
+    display: block;
+    background-color: gray;
+    color: white;
+    font-size:110%;
+    font-weight: 570;
+    text-align: center;
+    line-height: 50px; /* 텍스트를 상하 중앙 정렬 */
+    margin-right: 15px;
+}
+
+.list-font{
+    font-weight: normal;
+}
+
+.line{
+    width: 40%;
+    height: 2px;
+    background: gray;
+}
+.WeakPoint-container{
+    display: flex;
+    align-items: center;
+    margin-left: 29.5%;
+    margin-bottom: 15px;
+}
+.mark{
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+}
+
+.mark-line{
+    border-left: 2px solid rgb(87, 87, 87);
+    height: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.mark-text{
+    font-weight: bold;
+}
+
+.mark-blue{
+    width: 30px;
+    height: 28px;
+    margin-left: 6px;
+    margin-bottom: 6px;
+    margin-right: 9px;
+}
+
+
+
+
+
+
