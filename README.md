@@ -50,9 +50,9 @@
 
 ## More Info
 
-- [yANUs 보안팀 보안 체크리스트 개발계획서 종합.pdf](https://github.com/OuserDev/TheSecurlab/files/13651132/yANUs.pdf)
-- [TheSeculab 보안셀 2팀 성과조사 발표 PPT.pdf](https://github.com/OuserDev/TheSecurlab/files/13651145/TheSeculab.2.PPT.pdf)
-- [TheSeculab 보안셀 2팀 성과조사 발표 판넬.pptx](https://github.com/OuserDev/TheSecurlab/files/13651147/TheSeculab.2.pptx)
-- [OWASP Top 10 웹 애플리케이션 보안 종합 포털사이트 구축 - 논문.pdf](https://github.com/OuserDev/TheSecurlab/files/13651159/OWASP.Top.10.-.pdf)
+- [yANUs 보안팀 보안 체크리스트 개발계획서 종합.pdf](https://github.com/OuserDev/TheSecurlab/files/13651132/yANUs.pdf) (초안)
+- [TheSeculab 보안셀 2팀 성과조사 발표 PPT.pdf](https://github.com/OuserDev/TheSecurlab/files/13651145/TheSeculab.2.PPT.pdf) (SW중심대학 성과발표회)
+- [TheSeculab 보안셀 2팀 성과조사 발표 판넬.pptx](https://github.com/OuserDev/TheSecurlab/files/13651147/TheSeculab.2.pptx) (SW중심대학 성과발표회)
+- [OWASP Top 10 웹 애플리케이션 보안 종합 포털사이트 구축 - 논문.pdf](https://github.com/OuserDev/TheSecurlab/files/13651159/OWASP.Top.10.-.pdf) (한국정보기술학회 추계종합학술대회 제출 논문)
 
 
